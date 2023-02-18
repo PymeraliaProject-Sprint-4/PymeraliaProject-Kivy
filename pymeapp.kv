@@ -1,6 +1,7 @@
 #:import LoginScreen views.LoginScreen
 #:import Window kivy.core.window.Window
 
+#aquí van las vistas
 ScreenManager:
     SplashScreen:
         name: 'splash'
@@ -45,10 +46,6 @@ ScreenManager:
             id: screen_manager
             MDScreen:
                 name: "Inicio"
-                MDLabel:
-                    text:"Bienvenido a Pymeshield, haz click en el menú para navegar entre secciones"
-                    halign: "center"
-                    font_style: "H3"
 
             MDScreen:
                 name: "Tareas"
