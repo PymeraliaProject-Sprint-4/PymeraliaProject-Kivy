@@ -1,0 +1,72 @@
+<ElevatedCard@MDCard+CommonElevationBehavior>
+    orientation: 'vertical'
+    elevation: 1
+
+<LoginField@MDTextField>:
+    mode: "fill"
+    normal_color: app.theme_cls.primary_light
+    pos_hint: {"center_x": 0.5}
+    write_tab: False
+    multiline: True
+
+
+<LoginScreen>:
+    md_bg_color: app.theme_cls.bg_dark
+    FitImage:
+        source:"assets/fondo.png"
+
+    ElevatedCard:
+        size_hint: 0.8, 0.8
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.6
+            size_hint_y: 0.6
+            spacing: "20dp"
+            pos_hint: {"center_x": .5, "center_y": .6}
+            adaptive_height: True
+            Image:
+                source: 'assets/logo_pymeshield.png'
+
+        MDLabel:
+            text: "Pymeshield"
+            halign: 'center'
+            size_hint_y: 0.1
+            font_style: 'H4'
+            text_color: app.theme_cls.primary_color
+
+        MDLabel:
+            text: "Iniciar sesión"
+            halign: 'center'
+            size_hint_y: 0.1
+            font_style: 'H5'
+            text_color: app.theme_cls.primary_color
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.9
+            size_hint_y: 0.6
+            spacing: "20dp"
+            pos_hint: {"center_x": .5, "center_y": .6}
+            adaptive_height: True
+
+            LoginField:
+                id: username
+                hint_text: "Usuario"
+                icon_right: "account"
+
+            LoginField:
+                id: password
+                hint_text: "Contraseña"
+                icon_right: "eye-off"
+                password: True
+
+            MDRaisedButton:
+                text: "Entra"
+                pos_hint: {"center_x": 0.5}
+                on_release: root.do_login()
+                font_size: 28
+
+            Widget:
+                size_hint_y: 0.2
