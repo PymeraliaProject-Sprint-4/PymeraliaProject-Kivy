@@ -1,5 +1,6 @@
 #:import LoginScreen views.LoginScreen
 #:import HomeScreen views.HomeScreen
+#:import InventoryScreen views.InventoryScreen
 #:import QrScreen views.QrScreen
 #:import Window kivy.core.window.Window
 
@@ -13,6 +14,8 @@ ScreenManager:
         name: 'dashboard'
     HomeScreen:
         name: 'home'
+    InventoryScreen:
+        name: 'inventory'
     QrScreen:
         name: 'QR'
 
@@ -65,8 +68,8 @@ ScreenManager:
             MDScreen:
                 name: "Listado tareas"
                                
-            QrScreen:
-                name: "QR"
+            InventoryScreen:
+                name: "inventory"
 
             MDScreen:
                 name: "Contacto"
@@ -127,15 +130,15 @@ ScreenManager:
                 root.manager.current="Cursos" 
 
         DrawerClickableItem:
+            text: "QR"
+            icon: "qrcode-scan"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="inventory" 
+
+        DrawerClickableItem:
             icon: "email"
             text: "Contacto"
             on_release: 
                 root.nav_drawer.set_state("close")
                 root.manager.current="Contacto"
-
-        DrawerClickableItem:
-            text: "QR"
-            icon: "qrcode-scan"
-            on_release: 
-                root.nav_drawer.set_state("close")
-                root.manager.current="QR" 

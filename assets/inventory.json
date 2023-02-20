@@ -1,0 +1,56 @@
+[
+    {   "id_inventory":"1",
+        "inventory_number":"4213", 
+        "id_device": "23",
+        "hidden": "NULL"
+
+    },
+    {   "id_inventory":"2",
+        "inventory_number":"9283", 
+        "id_device": "43",
+        "hidden": "2022-11-22"
+
+    },
+    {   "id_inventory":"3",
+        "inventory_number":"1923", 
+        "id_device": "12",
+        "hidden": "NULL"
+
+    },
+    {   "id_inventory":"4",
+        "inventory_number":"3412", 
+        "id_device": "62",
+        "hidden": "NULL"
+
+    },
+    {   "id_inventory":"5",
+        "inventory_number":"0823", 
+        "id_device": "72",
+        "hidden": "NULL"
+
+    },
+    {   "id_inventory":"6",
+        "inventory_number":"6620", 
+        "id_device": "53",
+        "hidden": "NULL"
+
+    },
+    {   "id_inventory":"7",
+        "inventory_number":"9823", 
+        "id_device": "8",
+        "hidden": "2021-09-04"
+
+    },
+    {   "id_inventory":"8",
+        "inventory_number":"8672", 
+        "id_device": "73",
+        "hidden": "2021-12-04"
+
+    },
+    {   "id_inventory":"9",
+        "inventory_number":"4523", 
+        "id_device": "82",
+        "hidden": "2022-01-12"
+
+    }
+]
