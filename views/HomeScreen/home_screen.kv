@@ -15,21 +15,24 @@
                 name: "Perfil"
                 image:"assets/perfil.png"
                 text:"Perfil"
+                on_release: root.manager.current="profile"
             ElementCard:
                 name: "Informes"
                 image:"assets/informes.png"
                 text:"Informes"
-                on_release: app.switch_screen('test')
+                #on_release: root.manager.current="test"
 
             ElementCard:
                 name: "Cursos"
                 image:"assets/cursos.png"
                 text:"Cursos"
+                #on_release: root.manager.current="test"
 
             ElementCard:
                 name: "Tareas"
                 image:"assets/tareas.png"
                 text:"Tareas"
+                #on_release: root.manager.current="test"
         MDGridLayout:
             size_hint_y:.40
             cols:1
@@ -39,6 +42,7 @@
                 name: "Inventario"
                 image:"assets/inventario.png"
                 text:"Inventario"
+                #on_release: root.manager.current="test"
 
 <ElementCard@MDCard>:
     md_bg_color:app.theme_cls.primary_color
