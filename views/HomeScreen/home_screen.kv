@@ -1,0 +1,60 @@
+<HomeScreen>:
+    MDBoxLayout:
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.10
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+        MDGridLayout:
+            size_hint_y:.80
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(0)]
+            spacing:dp(15)
+            ElementCard:
+                name: "Perfil"
+                image:"assets/perfil.png"
+                text:"Perfil"
+            ElementCard:
+                name: "Informes"
+                image:"assets/informes.png"
+                text:"Informes"
+                on_release:screen_manager.current='Tareas'
+
+            ElementCard:
+                name: "Cursos"
+                image:"assets/cursos.png"
+                text:"Cursos"
+
+            ElementCard:
+                name: "Tareas"
+                image:"assets/tareas.png"
+                text:"Tareas"
+        MDGridLayout:
+            size_hint_y:.40
+            cols:1
+            padding:[dp(15),dp(15),dp(15),dp(15)]
+            # spacing:dp(15)
+            ElementCard:
+                name: "Inventario"
+                image:"assets/inventario.png"
+                text:"Inventario"
+
+<ElementCard@MDCard>:
+    md_bg_color:app.theme_cls.primary_color
+    padding:dp(15)
+    spacing:dp(15)
+    radius:dp(25)
+    ripple_behavior: True
+    image:''
+    text:""
+        
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_style:"H6"
