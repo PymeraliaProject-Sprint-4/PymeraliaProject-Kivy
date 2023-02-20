@@ -1,0 +1,118 @@
+MDScreen:
+    MDTopAppBar:
+        title: "PymeShield"
+        elevation: 4
+        pos_hint: {"top": 1}
+        md_bg_color: "#ff6720"
+        specific_text_color: "black"
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+            id: screen_manager
+            MDScreen:
+                name: "Inicio"
+                MDLabel:
+                    text:"Splash Screen"
+                    halign: "center"
+                Image:
+                    source: 'Images/questionary.png'
+            MDScreen:
+                name: "Informes"
+                MDBoxLayout:
+                    orientation: "vertical"
+                    padding:0, 70, 0, 0
+                    TextInput:
+                        id: search
+                        hint_text: "Buscar Informe.."
+                        halign: "center"
+                        size_hint_y: 0.065
+                        size_hint_x: 1
+                        multiline: False
+                        on_text: app.buscar_informe(self.text)
+                    MDScrollView:
+                        MDList:
+                            id: informes
+            MDScreen:
+                name: "Estat"
+                MDBoxLayout:
+                    padding:0, 50, 0, 0
+                    orientation: "vertical"
+                    MDLabel:
+                        id: estatext
+                        text:"Splash Screen"
+                        halign: "center"
+                        font_style: "H5"
+                    Image:
+                        id: imagen
+                        source: 'Images/load.gif'
+                        center: self.parent.center
+                        size: 600, 600
+                    MDScrollView:
+                        MDList:
+                            id: estat
+            MDScreen:
+                name: "Contacto"
+                MDLabel:
+                    halign: "center"
+                Image:
+                    source: 'Images/telefono-contacto.png'
+                    MDScrollView:
+                        MDList:
+                            id: contacto
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                ContentNavigationDrawer:
+                    manager: screen_manager
+                    nav_drawer: nav_drawer
+<ContentNavigationDrawer>:
+    MDNavigationDrawerMenu:
+        MDNavigationDrawerHeader:
+            title: "Pymeralia"
+            source: "Images/logo.png"
+            spacing: "4dp"
+            padding: "12dp", 0, 0, "56dp"
+
+        MDNavigationDrawerLabel:
+            text: "Pymeralia-Equip2-Sprint 3"
+
+        DrawerClickableItem:
+            icon: "home"
+            text: "Inicio"
+            on_release:
+                root.nav_drawer.set_state("close")
+                root.manager.current="Inicio"
+
+        DrawerClickableItem:
+            icon: "form-select"
+            text: "Informes"
+            on_release:
+                root.nav_drawer.set_state("close")
+                root.manager.current="Informes"
+
+        DrawerClickableItem:
+            icon: "card-account-phone"
+            text: "Contacto"
+            on_release:
+                root.nav_drawer.set_state("close")
+                root.manager.current="Contacto"
+
+        MDNavigationDrawerDivider:
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
