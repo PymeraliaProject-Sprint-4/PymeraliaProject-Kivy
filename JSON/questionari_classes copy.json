@@ -1,0 +1,68 @@
+[
+  {
+    "id": 0,
+    "name": "Qüestionari 1 - Pymeralia",
+    "data": "2022-09-28",
+    "preguntes":[
+      {
+        "id": 1,
+        "pregunta": "Como te llamas?",
+        "resposta": "El Pepe"
+      },
+
+      {
+        "id": 2,
+        "pregunta": "Como va?",
+        "resposta": "Bien!!"
+      },
+
+      {
+        "id": 3,
+        "pregunta": "Si ec?",
+        "resposta": "Si"
+      },
+
+      {
+        "id": 4,
+        "pregunta": "Como te llamas?",
+        "resposta": "El Pepe"
+      },
+
+      {
+        "id": 5,
+        "pregunta": "Como va?",
+        "resposta": "Bien!!"
+      },
+
+      {
+        "id": 6,
+        "pregunta": "Si ec?",
+        "resposta": "Si"
+      },
+
+      {
+        "id": 7,
+        "pregunta": "Como te llamas?",
+        "resposta": "El Pepe"
+      },
+
+      {
+        "id": 8,
+        "pregunta": "Como va?",
+        "resposta": "Bien!!"
+      },
+
+      {
+        "id": 9,
+        "pregunta": "Si ec?",
+        "resposta": "Si"
+      },
+
+      {
+        "id": 10,
+        "pregunta": "Compras amigos?",
+        "resposta": "Si"
+      }
+    ]
+  }
+]
