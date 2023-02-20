@@ -1,4 +1,5 @@
 #:import LoginScreen views.LoginScreen
+#:import HomeScreen views.HomeScreen
 #:import Window kivy.core.window.Window
 
 #aquí van las vistas
@@ -9,6 +10,8 @@ ScreenManager:
         name: 'login'
     Dashboard:
         name: 'dashboard'
+    HomeScreen:
+        name: 'home'
 
  
 <SplashScreen>:
@@ -44,8 +47,8 @@ ScreenManager:
 
         MDScreenManager:
             id: screen_manager
-            MDScreen:
-                name: "Inicio"
+            HomeScreen:
+                name: "home"
 
             MDScreen:
                 name: "Tareas"
