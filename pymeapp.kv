@@ -1,5 +1,6 @@
 #:import LoginScreen views.LoginScreen
 #:import HomeScreen views.HomeScreen
+#:import ProfileScreen views.ProfileScreen
 #:import Window kivy.core.window.Window
 
 #aquí van las vistas
@@ -12,6 +13,8 @@ ScreenManager:
         name: 'dashboard'
     HomeScreen:
         name: 'home'
+    ProfileScreen:
+        name: 'test'
 
  
 <SplashScreen>:
@@ -49,6 +52,8 @@ ScreenManager:
             id: screen_manager
             HomeScreen:
                 name: "home"
+            ProfileScreen:
+                name: "test"
 
             MDScreen:
                 name: "Tareas"
@@ -97,7 +102,7 @@ ScreenManager:
             icon: "file-document"
             on_release: 
                 root.nav_drawer.set_state("close")
-                root.manager.current="Informe"     
+                root.manager.current="test"     
 
         DrawerClickableItem:
             text: "Tareas"
