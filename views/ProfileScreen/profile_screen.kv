@@ -1,0 +1,84 @@
+<ProfileScreen>:
+    MDFloatLayout:
+        id: main_layout
+
+        MDFloatLayout:
+            size_hint_x: 1 #grandaria de la x
+            size_hint_y: .15 #grandaria de la y
+            pos_hint: {"center_x": .5,"center_y": 0.85} #donar tamany
+            canvas:
+                Color:
+                    rgb: (1, 1, 1, 1)
+                Rectangle:
+                #self fa referencia a la calse actual de la instancia la clase es rectangle
+                    size: self.size 
+                    pos: self.pos
+                    source: "assets/fondo.jpg" #imatge
+
+        MDFloatLayout:
+            size_hint_x: .265
+            size_hint_y: .265
+            pos_hint: {"center_x": .5, "center_y": .7}
+            canvas:
+                Color:
+                    rgb: (1, 1, 1, 1)
+                Ellipse:#ellipse es per a donarli forma rodona a la imatge
+                    size: self.size
+                    pos: self.pos
+                    source: "assets/imatgeTatiana.png"
+
+        MDLabel:
+            id: name
+            text: ""
+            pos_hint: {"center_y": 0.55}#posicio del text
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            font_style: "H6"#timpo de medida de lletra
+
+        MDLabel:
+            id: name1
+            text: ""
+            pos_hint: {"center_y": .48}
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+
+        MDLabel:
+            id: name2
+            text: ""
+            pos_hint: {"center_y": .41}
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+
+        MDLabel:
+            id: name3
+            text: ""
+            pos_hint: {"center_y": .34}
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+
+    #Botons de la flecha i del editar perfil
+        MDIconButton:
+            id: back_button
+            icon: "arrow-left"
+            pos_hint: {'x': 0.05,'center_y': 0.1}
+            user_font_size: "40sp"
+            theme_text_color: "Custom"
+            text_color: 0.5, 0.5, 0.5, 1
+            md_bg_color: 1, 1, 1, 1
+            elevation_normal: 5
+            on_release: pass
+
+        MDIconButton:
+            id: edit_button
+            icon: "account-edit"
+            pos_hint: {'right': 0.95,'center_y': 0.1} #donar tamany
+            user_font_size: "40sp" #donarl altura
+            theme_text_color: "Custom"
+            text_color: 0.5, 0.5, 0.5, 1
+            md_bg_color: 1, 1, 1, 1
+            elevation_normal: 5
+            on_release: pass #cuant cliquem al boto que no fara resç
