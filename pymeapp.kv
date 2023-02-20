@@ -1,0 +1,135 @@
+#:import LoginScreen views.LoginScreen
+#:import HomeScreen views.HomeScreen
+#:import Window kivy.core.window.Window
+
+#aquí van las vistas
+ScreenManager:
+    SplashScreen:
+        name: 'splash'
+    LoginScreen:
+        name: 'login'
+    Dashboard:
+        name: 'dashboard'
+    HomeScreen:
+        name: 'home'
+
+ 
+<SplashScreen>:
+    md_bg_color: app.theme_cls.primary_color
+    MDBoxLayout:
+        Image:
+            source:'assets/splash_pymeshield.png'
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#efb58c"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#ff6720"
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+<Dashboard>:
+    MDTopAppBar:
+        title: "PymeShield"
+        elevation: 1
+        pos_hint: {"top": 1}
+        md_bg_color: "#ff6720"
+        specific_text_color: "black"
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+        
+    MDNavigationLayout:
+
+        MDScreenManager:
+            id: screen_manager
+            HomeScreen:
+                name: "home"
+
+            MDScreen:
+                name: "Tareas"
+
+            MDScreen:
+                name: "Presupuesto"
+
+            MDScreen:
+                name: "Gantt"
+                               
+            MDScreen:
+                name: "Listado tareas"
+
+            MDScreen:
+                name: "Contacto"
+
+        MDNavigationDrawer:
+            id: nav_drawer    
+            elevation: 1    
+            radius:(0, 16, 16, 0)
+            BoxLayout:
+                orientation: 'vertical' 
+                ContentNavigationDrawer:
+                    manager: screen_manager
+                    nav_drawer: nav_drawer
+                    
+<ContentNavigationDrawer>:
+    MDNavigationDrawerMenu:
+        MDNavigationDrawerHeader:
+            title: "Pymeshield"
+            title_font_style: "H5"
+            text: "Menú"
+            source: "assets/logo_menu.png"
+            spacing: "20dp"
+            padding: "12dp", 0, 0, "56dp"
+
+        DrawerClickableItem:
+            text: "Inicio"
+            icon: "home"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="Inicio"
+
+        DrawerClickableItem:
+            text: "Informes"
+            icon: "file-document"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="Informe"     
+
+        DrawerClickableItem:
+            text: "Tareas"
+            icon: "clipboard-list"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="Tareas"  
+
+        DrawerClickableItem:
+            text: "Presupuesto"
+            icon: "chart-gantt"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="Presupuesto"  
+
+        DrawerClickableItem:
+            icon: "book-education"
+            text: "Cursos"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="Cursos" 
+
+        DrawerClickableItem:
+            icon: "email"
+            text: "Contacto"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="Contacto"
+
+        DrawerClickableItem:
+            text: "QR"
+            icon: "qrcode-scan"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="QR" 
