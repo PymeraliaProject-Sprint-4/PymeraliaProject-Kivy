@@ -1,5 +1,6 @@
 #:import LoginScreen views.LoginScreen
 #:import HomeScreen views.HomeScreen
+#:import QrScreen views.QrScreen
 #:import Window kivy.core.window.Window
 
 #aquí van las vistas
@@ -12,6 +13,8 @@ ScreenManager:
         name: 'dashboard'
     HomeScreen:
         name: 'home'
+    QrScreen:
+        name: 'QR'
 
  
 <SplashScreen>:
@@ -61,6 +64,9 @@ ScreenManager:
                                
             MDScreen:
                 name: "Listado tareas"
+                               
+            QrScreen:
+                name: "QR"
 
             MDScreen:
                 name: "Contacto"

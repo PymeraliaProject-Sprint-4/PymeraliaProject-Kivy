@@ -1,0 +1,47 @@
+#:import LoginScreen views.LoginScreen
+#:import HomeScreen views.HomeScreen
+#:import QrScreen views.QrScreen
+#:import Window kivy.core.window.Window
+#:import ZBarCam kivy_garden.zbarcam.ZBarCam
+#:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
+
+
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#efb58c"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#ff6720"
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+<QrScreen>:
+    md_bg_color: app.theme_cls.bg_dark
+    BoxLayout:
+        orientation: 'vertical'
+        #TODO: La càmera s'obre per defecte...
+        ZBarCam:
+            id: zbarcam
+            # optional, by default checks all types
+            code_types: ZBarSymbol.QRCODE, ZBarSymbol.EAN13
+        Label:
+            id: qrlabel
+            size_hint: None, None
+            size: self.texture_size[0], 50
+            text: ', '.join([str(symbol.data) for symbol in zbarcam.symbols])
+            on_text: root.calc(self.text)
+    MDTopAppBar:
+        title: "PymeShield"
+        elevation: 1
+        pos_hint: {"top": 1}
+        md_bg_color: "#ff6720"
+        specific_text_color: "black"
+        left_action_items: [["menu", lambda x: app.switch_screen("home")]]
+        
+    
