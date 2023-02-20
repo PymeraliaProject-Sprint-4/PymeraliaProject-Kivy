@@ -27,7 +27,7 @@ class PymeApp(MDApp):
     def build(self):
         if platform in ['win', 'linux', 'macosx']:
             #resolución más común móvil
-            Window.size = (414, 896)
+            Window.size = (414, 750)
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Orange"
         self.theme_cls.material_style = "M3"
