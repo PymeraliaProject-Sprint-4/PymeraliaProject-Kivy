@@ -1,5 +1,7 @@
 from views.LoginScreen.login_screen import LoginScreen
 from views.HomeScreen.home_screen import HomeScreen
+from views.QrScreen.qr_screen import QrScreen
+from views.InventoryScreen.inventory_screen import InventoryScreen
 from views.TaskScreen.task_screen import TaskScreen
 from views.DetailsTaskScreen.details_task_screen import DetailsTaskScreen
 from views.BudgetScreen.budget_screen import BudgetScreen

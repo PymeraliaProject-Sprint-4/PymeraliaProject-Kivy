@@ -42,7 +42,7 @@
                 name: "Inventario"
                 image:"assets/inventario.png"
                 text:"Inventario"
-                #on_release: root.manager.current="test"
+                on_release:app.switch_screen('inventory')
 
 <ElementCard@MDCard>:
     md_bg_color:app.theme_cls.primary_color
