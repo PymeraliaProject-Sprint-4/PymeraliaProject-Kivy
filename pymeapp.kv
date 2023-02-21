@@ -1,5 +1,9 @@
 #:import LoginScreen views.LoginScreen
 #:import HomeScreen views.HomeScreen
+#:import TaskScreen views.TaskScreen
+#:import DetailsTaskScreen views.DetailsTaskScreen
+#:import BudgetScreen views.BudgetScreen
+#:import DetailsBudgetScreen views.DetailsBudgetScreen
 #:import ProfileScreen views.ProfileScreen
 #:import Window kivy.core.window.Window
 
@@ -13,6 +17,17 @@ ScreenManager:
         name: 'dashboard'
     HomeScreen:
         name: 'home'
+    TaskScreen:
+        name: 'tasks'
+
+    DetailsTaskScreen:
+        name: 'details_tasks'
+
+    BudgetScreen:
+        name: "budgets"
+    
+    DetailsBudgetScreen:
+        name: "details_budgets"
     ProfileScreen:
         name: 'test'
 
@@ -56,11 +71,17 @@ ScreenManager:
             ProfileScreen:
                 name: "profile"
 
-            MDScreen:
-                name: "Tareas"
+            TaskScreen:
+                name: "tasks"
 
-            MDScreen:
-                name: "Presupuesto"
+            DetailsTaskScreen:
+                name: "details_tasks"
+
+            BudgetScreen:
+                name: "budgets"
+
+            DetailsBudgetScreen:
+                name: "details_budgets"
 
             MDScreen:
                 name: "Gantt"
@@ -110,14 +131,14 @@ ScreenManager:
             icon: "clipboard-list"
             on_release: 
                 root.nav_drawer.set_state("close")
-                root.manager.current="Tareas"  
+                root.manager.current="tasks"  
 
         DrawerClickableItem:
             text: "Presupuesto"
             icon: "chart-gantt"
             on_release: 
                 root.nav_drawer.set_state("close")
-                root.manager.current="Presupuesto"  
+                root.manager.current="budgets"  
 
         DrawerClickableItem:
             icon: "book-education"

@@ -1,5 +1,4 @@
-[
-    {
+[{
         "email": "admin@pymeshield.com",
         "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"
     },
@@ -10,5 +9,9 @@
     {
         "email": "test@pymeshield.com",
         "password": "$2a$10$XAx4EnMYHLn9ifvox4bxr.PeM7GAIaVNtvlNsnM2qre8Bx0dNIJK6"
+    },
+    {
+        "email": "a",
+        "password": "$2a$12$/a2BvThMDBRrAV2m1KNf2eEFMY3yDafW7oO7PZDEI4S9zuOpdFVX6"
     }
 ]

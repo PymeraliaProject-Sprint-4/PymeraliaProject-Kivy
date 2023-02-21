@@ -1,3 +1,7 @@
 from views.LoginScreen.login_screen import LoginScreen
 from views.HomeScreen.home_screen import HomeScreen
+from views.TaskScreen.task_screen import TaskScreen
+from views.DetailsTaskScreen.details_task_screen import DetailsTaskScreen
+from views.BudgetScreen.budget_screen import BudgetScreen
+from views.DetailsBudgetScreen.details_budget_screen import DetailsBudgetScreen
 from views.ProfileScreen.profile_screen import ProfileScreen

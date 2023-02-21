@@ -1,0 +1,14 @@
+<BudgetScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding:0, 70, 0, 0
+        SearchE4:
+            id: search_item
+            hint_text: "Buscar..."
+            halign: "center"
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5}
+            on_text: root.calc(self.text)
+        MDScrollView:
+            MDList:
+                id: presupuesto
