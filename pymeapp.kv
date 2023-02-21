@@ -6,10 +6,6 @@
 #:import DetailsTaskScreen views.DetailsTaskScreen
 #:import BudgetScreen views.BudgetScreen
 #:import DetailsBudgetScreen views.DetailsBudgetScreen
-#:import TaskScreen views.TaskScreen
-#:import DetailsTaskScreen views.DetailsTaskScreen
-#:import BudgetScreen views.BudgetScreen
-#:import DetailsBudgetScreen views.DetailsBudgetScreen
 #:import ProfileScreen views.ProfileScreen
 #:import Window kivy.core.window.Window
 
@@ -38,17 +34,7 @@ ScreenManager:
     
     DetailsBudgetScreen:
         name: "details_budgets"
-    TaskScreen:
-        name: 'tasks'
 
-    DetailsTaskScreen:
-        name: 'details_tasks'
-
-    BudgetScreen:
-        name: "budgets"
-    
-    DetailsBudgetScreen:
-        name: "details_budgets"
     ProfileScreen:
         name: 'test'
 
@@ -91,12 +77,6 @@ ScreenManager:
 
             ProfileScreen:
                 name: "profile"
-
-            TaskScreen:
-                name: "tasks"
-
-            DetailsTaskScreen:
-                name: "details_tasks"
 
             TaskScreen:
                 name: "tasks"

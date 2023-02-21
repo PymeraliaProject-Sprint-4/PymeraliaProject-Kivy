@@ -18,7 +18,7 @@
             on_text: root.calc(self.text)
     MDRectangleFlatButton:
         pos_hint: {'center_y': 0.80, 'x': 0.8}
-        on_release: app.switch_screen("home")
+        on_release: root.manager.current="home"
         MDIcon:
             icon: 'home'
             halign: 'center'
