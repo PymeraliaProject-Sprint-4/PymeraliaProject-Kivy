@@ -5,13 +5,26 @@
     id: inventory
     MDBoxLayout:
         orientation:"vertical"
-        pos_hint: {'center_y': .39, 'x': .0}
+        padding:0, 70, 0, 0
         MDScrollView:
             MDList:
                 id: list
+
+    MDTextField:
+        id: search_field
+        hint_text: 'Buscar dipositivo'
+        icon_right: "magnify"
+        helper_text_mode: "on_error"
+        helper_text: "Introduce un nombre valido"
+        mode: "fill"
+        pos_hint: {'center_x': 0.5}
+        fill_color: 0, 0, 0, .5
+        on_text: root.buscar(self.text)
+
     MDRectangleFlatButton:
         pos_hint: {'center_y': 0.80, 'x': 0.8}
         on_release: root.open_camera()
         MDIcon:
             icon: 'camera'
             halign: 'center'
+

@@ -73,6 +73,12 @@ class PymeApp(MDApp):
             self.dataJsonPresu = json.load(json_file) #guardamos en una variable los datos del json cargados
         return self.dataJsonPresu
 
+    def getDeviceData(self):
+        self.dataJsonDevice = None
+        with open(self.rutaPath / "assets/inventory.json","rt") as json_file: #abre el archivo en modo texto, en este caso el json de donde sacamos los datos
+            self.dataJsonDevice = json.load(json_file) #guardamos en una variable los datos del json cargados
+        return self.dataJsonDevice
+
 if __name__ == '__main__':
     app = PymeApp()
     app.run()
