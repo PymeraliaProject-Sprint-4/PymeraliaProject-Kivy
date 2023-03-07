@@ -1,0 +1,103 @@
+[
+    {
+      "id": 0,
+      "tarea": "Realizar una auditoria de seguridad en la red de la empresa",
+      "available": true
+    },
+    {
+      "id": 1,
+      "tarea": "Elaborar un plan de contingencia para un ataque de phishing",
+      "available": false
+    },
+    {
+      "id": 2,
+      "tarea": "Desarrollar una aplicacion sencilla en Python",
+      "available": true
+    },
+    {
+      "id": 3,
+      "tarea": "Crear una aplicacion movil de tareas con React Native",
+      "available": true
+    },
+    {
+      "id": 4,
+      "tarea": "Implementar un modelo de regresion lineal en un conjunto de datos",
+      "available": false
+    },
+    {
+      "id": 5,
+      "tarea": "Disenar una clase que modele un objeto de una aplicacion en Java",
+      "available": true
+    },
+    {
+      "id": 6,
+      "tarea": "Crear una base de datos para una aplicacion web utilizando MySQL",
+      "available": true
+    },
+    {
+      "id": 7,
+      "tarea": "Desarrollar una pagina web con Django",
+      "available": false
+    },
+    {
+      "id": 8,
+      "tarea": "Entrenar una red neuronal simple para clasificacion de imagenes",
+      "available": true
+    },
+    {
+      "id": 9,
+      "tarea": "Crear un videojuego de plataforma basico en Unity",
+      "available": true
+    },
+    {
+      "id": 10,
+      "tarea": "Implementar un arbol binario de busqueda en C++",
+      "available": true
+    },
+    {
+      "id": 11,
+      "tarea": "Desarrollar un sitio web que permita registrar usuarios con JavaScript",
+      "available": false
+    },
+    {
+      "id": 12,
+      "tarea": "Crear una aplicacion para iPhone con Swift",
+      "available": true
+    },
+    {
+      "id": 13,
+      "tarea": "Implementar una funcion recursiva en Haskell",
+      "available": false
+    },
+    {
+      "id": 14,
+      "tarea": "Realizar una prueba de penetracion en un sitio web",
+      "available": true
+    },
+    {
+      "id": 15,
+      "tarea": "Crear una aplicacion para Android con Kotlin",
+      "available": true
+    },
+    {
+      "id": 16,
+      "tarea": "Desarrollar una pagina web que permita realizar busquedas en Ruby",
+      "available": false
+    },
+    {
+      "id": 17,
+      "tarea": "Analizar un conjunto de datos utilizando R",
+      "available": true
+    },
+    {
+      "id": 18,
+      "tarea": "Desplegar una aplicacion en Google Cloud Platform",
+      "available": true
+    },
+    {
+      "id": 19,
+      "tarea": "Implementar un algoritmo de ordenamiento en lenguaje ensamblador",
+      "available": false
+    }
+  ]
+  

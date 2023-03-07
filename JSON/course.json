@@ -1,0 +1,102 @@
+[
+    {
+        "id": 0,
+        "curso": "Ciberseguridad para Empresas",
+        "available": true
+    },
+    {
+        "id": 1,
+        "curso": "Ciberseguridad para Autonomos",
+        "available": false
+    },
+    {
+        "id": 2,
+        "curso": "Introduccion a la programacion en Python",
+        "available": true
+    },
+    {
+        "id": 3,
+        "curso": "Desarrollo de aplicaciones moviles con React Native",
+        "available": true
+    },
+    {
+        "id": 4,
+        "curso": "Machine Learning para principiantes",
+        "available": false
+    },
+    {
+        "id": 5,
+        "curso": "Programacion orientada a objetos en Java",
+        "available": true
+    },
+    {
+        "id": 6,
+        "curso": "Diseno de bases de datos con MySQL",
+        "available": true
+    },
+    {
+        "id": 7,
+        "curso": "Desarrollo web con Django",
+        "available": false
+    },
+    {
+        "id": 8,
+        "curso": "Introduccion a la inteligencia artificial",
+        "available": true
+    },
+    {
+        "id": 9,
+        "curso": "Programacion de videojuegos en Unity",
+        "available": true
+    },
+    {
+        "id": 10,
+        "curso": "Programacion en C++",
+        "available": true
+    },
+    {
+        "id": 11,
+        "curso": "Fundamentos de programacion en JavaScript",
+        "available": false
+    },
+    {
+        "id": 12,
+        "curso": "Desarrollo de aplicaciones para iOS con Swift",
+        "available": true
+    },
+    {
+        "id": 13,
+        "curso": "Programacion funcional en Haskell",
+        "available": false
+    },
+    {
+        "id": 14,
+        "curso": "Seguridad informatica para usuarios",
+        "available": true
+    },
+    {
+        "id": 15,
+        "curso": "Desarrollo de aplicaciones para Android con Kotlin",
+        "available": true
+    },
+    {
+        "id": 16,
+        "curso": "Fundamentos de programacion en Ruby",
+        "available": false
+    },
+    {
+        "id": 17,
+        "curso": "Analisis de datos con R",
+        "available": true
+    },
+    {
+        "id": 18,
+        "curso": "Desarrollo de aplicaciones para la nube con Google Cloud Platform",
+        "available": true
+    },
+    {
+        "id": 19,
+        "curso": "Programacion en lenguaje ensamblador",
+        "available": false
+    }
+]

@@ -1,0 +1,143 @@
+MDScreen:
+    app: app
+    MDTopAppBar:
+        title: "PymeShield"
+        elevation: 4
+        pos_hint: {"top": 1}
+        md_bg_color: "#ff6720"
+        specific_text_color: "black"
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+    
+    MDNavigationLayout:
+
+        MDScreenManager:
+            id: screen_manager
+            MDScreen:
+                name: "Inicio"
+                MDLabel:
+                    halign: "center"
+                    size: (500,500)
+                Image:
+                    source: 'Images/cursos.png'     
+            
+            MDScreen:
+                name: "EVA"
+                MDBoxLayout:
+                    padding: "8dp"
+                    spacing: "4dp"
+                    size_hint: 1, 0.9 
+                    pos_hint: {"top": 0.9}
+                    MDGridLayout:
+                        cols: 1
+                        MDRectangleFlatButton:
+                            size_hint: (1, 0.5)
+                            md_bg_color: "#e38c35"
+                            font_size: 20
+                            line_color: '000000'
+                            on_release: app.root.ids.screen_manager.current = "Cursos"
+                            BoxLayout:
+                                orientation: 'vertical'
+                                Image:
+                                    source: "Images/cursos.png"
+                                    size_hint_y: 0.7
+                                Label:
+                                    text: "Cursos"
+                                    font_size: 40
+                                    size_hint_y: 0.3
+                        MDRectangleFlatButton:
+                            size_hint: (1, 0.5)
+                            md_bg_color: "#e38c35"
+                            font_size: 20
+                            line_color: '000000'
+                            on_release: app.root.ids.screen_manager.current = "Actividades"
+                            BoxLayout:
+                                orientation: 'vertical'
+                                Image:
+                                    source: "Images/actividades.png"
+                                    size_hint_y: 0.7
+                                Label:
+                                    text: "Actividades"
+                                    font_size: 40
+                                    size_hint_y: 0.3
+
+            MDScreen:
+                name: "Cursos"
+                MDBoxLayout:
+                    padding:0, 70, 0, 0
+                    orientation: 'vertical'
+                    SearchBar:
+                        id: search_field_tasks
+                        on_text: app.filter_list_course(self.text)
+                        hint_text: "Buscar..."
+                        size_hint_y: None
+                        height: "40dp"
+                    MDScrollView:
+                        MDList:
+                            id: cursos            
+            
+            MDScreen:
+                name: "Actividades"
+                MDBoxLayout:
+                    padding:0, 70, 0, 0
+                    orientation: 'vertical'
+                    SearchBar:
+                        id: search_field_tasks
+                        on_text: app.filter_list_tasks(self.text)
+                        hint_text: "Buscar..."
+                        size_hint_y: None
+                        height: "40dp"
+                    MDScrollView:
+                        MDList:
+                            id: actividades
+   
+            MDScreen:
+                name: "Contacto"
+                MDLabel:
+                    halign: "center"
+                Image:
+                    source: 'Images/telefono-contacto.png'
+                    MDScrollView:
+                        MDList:
+                            id: contacto   
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical' 
+                ContentNavigationDrawer:
+                    manager: screen_manager
+                    nav_drawer: nav_drawer
+<ContentNavigationDrawer>:
+    MDNavigationDrawerMenu:
+        MDNavigationDrawerHeader:
+            title: "Pymeralia"
+            source: "Images/cursos.png"
+            spacing: "4dp"
+            padding: "12dp", 0, 0, "56dp"
+
+        MDNavigationDrawerLabel:
+            text: "Pymeralia-Equip3-Sprint 4"    
+
+
+        DrawerClickableItem:
+            icon: "school"
+            text: "EVA"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="EVA"  
+        
+        MDNavigationDrawerDivider:
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
