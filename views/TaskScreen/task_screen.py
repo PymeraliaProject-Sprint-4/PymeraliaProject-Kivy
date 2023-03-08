@@ -70,7 +70,7 @@ class TaskScreen(MDScreen):
                     
                     id = f"Tarea {i['id']}",
                     text = f"Tarea {i['name']}",
-                    secondary_text=f"Descripcion {i['descripcion']}", #línea 2
+                    # secondary_text=f"Descripcion {i['descripcion']}", #línea 2
                     on_press = self.detalles
                 )
             )# Lista que muestra las tareas

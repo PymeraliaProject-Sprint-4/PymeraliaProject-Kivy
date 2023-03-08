@@ -7,6 +7,8 @@ from kivymd.uix.scrollview import MDScrollView
 from kivy.clock import Clock
 import json #importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path #cargar ruta del script
+import requests
+
 
 class SplashScreen(MDScreen):
     def on_enter(self, *args):
@@ -47,6 +49,23 @@ class PymeApp(MDApp):
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
         
+        url = "http://localhost/api/all-data"
+        response = requests.get(url)
+        data = json.loads(response.text)
+        
+        self.dataJsonPresu = data['tasks']['data']
+        
+        self.dataJsonTask = data['tasks']['data']
+        
+        # with open(self.rutaPath / "assets/data.json","rt") as json1_file: #abre el archivo en modo texto, en este caso el json de donde sacamos los datos
+        #     self.dataJsonPresu = json.load(json1_file) #guardamos en una variable los datos del json cargados
+                
+        # with open(self.rutaPath / "assets/tareas.json","rt") as json2_file: #abre el archivo en modo texto, en este caso el json de donde sacamos los datos
+        #     self.dataJsonTask = json.load(json2_file) #guardamos en una variable los datos del json cargados
+            
+    def get_api_data():
+        pass
+        
     def rowDetails(self,row):
         self.rowDetails = row
         return self.rowDetails
@@ -61,16 +80,10 @@ class PymeApp(MDApp):
     
     #Método que utilizaremos para recoger los datos del Json de Tareas y guardarlos 
     def getTareasData(self):
-        self.dataJsonTask = None
-        with open(self.rutaPath / "assets/tareas.json","rt") as json_file: #abre el archivo en modo texto, en este caso el json de donde sacamos los datos
-            self.dataJsonTask = json.load(json_file) #guardamos en una variable los datos del json cargados
         return self.dataJsonTask
     
     #Método que utilizaremos para recoger los datos del Json de Presupuestos y guardarlos 
     def getPresuData(self):
-        self.dataJsonPresu = None
-        with open(self.rutaPath / "assets/data.json","rt") as json_file: #abre el archivo en modo texto, en este caso el json de donde sacamos los datos
-            self.dataJsonPresu = json.load(json_file) #guardamos en una variable los datos del json cargados
         return self.dataJsonPresu
 
 if __name__ == '__main__':
