@@ -46,7 +46,7 @@ class TaskScreen(MDScreen):
                     ),
                     
                     id = f"Tarea {result['id']}",
-                    text = f"Tarea {result['name']}",
+                    text = f"{result['name']}",
                     # secondary_text=f"Descripcion {result['descripcion']}",
                 )
             )
