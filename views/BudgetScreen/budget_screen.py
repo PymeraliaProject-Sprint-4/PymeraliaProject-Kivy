@@ -31,7 +31,7 @@ class BudgetScreen(MDScreen):
         dataPresu = app.getPresuData()
             
         # Filtramos los datos según el texto de búsqueda
-        search_results = [search_text for search_text in dataPresu if item.lower() in search_text['name'].lower()]
+        search_results = [search_text for search_text in dataPresu if item.lower() in search_text['first_name'].lower()]
 
         # Actualizamos la lista de resultados de búsqueda en la interfaz de usuario
         search_results_list = self.ids.presupuesto
@@ -45,9 +45,9 @@ class BudgetScreen(MDScreen):
                         icon="account-cash"
                     ),
                     
-                    text = f"Presupuesto {result['id']}",
-                    secondary_text=f"Nombre {result['name']}", 
-                    tertiary_text=f"Precio {result['preu']}", 
+                    id = f"Presupuesto {result['id']}",
+                    text = f"{result['first_name']} - {result['last_name']}",
+                    secondary_text=f"{result['position']}", #línea 2
                 )
             )
             
@@ -60,6 +60,8 @@ class BudgetScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         dataTareas = app.getPresuData()
+        
+        self.ids.presupuesto.clear_widgets()
 
         for i in dataTareas: #bucle que recorre el rango que le pasemos como parametro
             self.ids.presupuesto.add_widget( #añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
@@ -69,8 +71,8 @@ class BudgetScreen(MDScreen):
                     ),
                     
                     id = f"Presupuesto {i['id']}",
-                    text = f"Presupuesto {i['name']}",
-                    secondary_text=f"Descripcion {i['data']}", #línea 2
+                    text = f"{i['first_name']} - {i['last_name']}",
+                    secondary_text=f"{i['position']}", #línea 2
                     on_press = self.detalles
                 )
             )# Lista que muestra las tareas

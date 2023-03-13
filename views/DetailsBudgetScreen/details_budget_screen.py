@@ -33,12 +33,12 @@ class DetailsBudgetScreen(MDScreen):
         id_presu = app.rowPressed()
         print(f"Pressed {id_presu}") #imprimimos el valor
         dataPresu = app.getPresuData()
-        id_presu = id_presu[10:]
+        id_presu = int(id_presu[12:])
         print(id_presu)
 
         for i in dataPresu:
             id = i['id']
-            text= f"{i['name']} - {i['preu']} - {i['data']}"
+            text= f"{i['first_name']} - {i['last_name']}"
 
             self.ids.desc.text = text
 

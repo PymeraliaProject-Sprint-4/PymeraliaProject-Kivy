@@ -38,7 +38,7 @@ class DetailsTaskScreen(MDScreen):
 
         for i in dataTareas: #recorremos los valores de la variable data2 que guarda los datos del json
             id = i['id'] #asignamos el nuevo valos a la variable id
-            text= f"{i['name']} - {i['descripcion']}" #asignamos un nuevo valor a la variable text recuperando datos del archivo json
+            text= f"{i['name']}" #asignamos un nuevo valor a la variable text recuperando datos del archivo json
 
             self.ids.desc.text = text #damos valor a la variable
 
