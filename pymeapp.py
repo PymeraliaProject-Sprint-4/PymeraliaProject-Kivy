@@ -40,6 +40,8 @@ class PymeApp(MDApp):
     rutaPath = None
 
     rowDetails = None
+    
+    url = None
 
     def build(self):
         if platform in ['win', 'linux', 'macosx']:
@@ -52,12 +54,14 @@ class PymeApp(MDApp):
         self.title = "Pymeshield"
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
+        self.url = "http://localhost/api/"
 
     def get_api_task_data(self):
-        url = "http://localhost/api/all-data"
+        url = self.url + "all-data"
+        print(url)
         response = requests.get(url)
         data = json.loads(response.text)
-        self.dataJsonTask = data['tasks']['data']
+        self.dataJsonTask = data['data']
         return self.dataJsonTask
     
     def get_api_presu_data(self):
