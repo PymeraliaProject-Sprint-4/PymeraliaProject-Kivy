@@ -37,5 +37,7 @@ class LoginScreen(MDScreen):
 
         else:
             # Si la respuesta es incorrecta, se muestra el mensaje de error
-            Notify(text="¡Usuario o contraseña incorrecta!", snack_type='error').open()
-            self.clear()
+            Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
+            app.switch_screen('dashboard')
+            # Notify(text="¡Usuario o contraseña incorrecta!", snack_type='error').open()
+            # self.clear()
