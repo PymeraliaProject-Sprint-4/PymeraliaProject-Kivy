@@ -1,0 +1,24 @@
+<CourseScreen>:
+    id: course
+    MDBoxLayout:
+        orientation:"vertical"
+        pos_hint: {'center_y': .39, 'x': .0}
+        MDScrollView:
+            MDList:
+                id: list
+    MDScreen:
+        name: "Courses"
+        MDBoxLayout:
+            orientation: "vertical"
+            padding:0, 70, 0, 0
+            TextInput:
+                id: search
+                hint_text: "Buscar Informe.."
+                halign: "center"
+                size_hint_y: 0.055
+                size_hint_x: 1
+                multiline: False
+                on_text: root.buscar_curso(self.text)
+            MDScrollView:
+                MDList:
+                    id: course
