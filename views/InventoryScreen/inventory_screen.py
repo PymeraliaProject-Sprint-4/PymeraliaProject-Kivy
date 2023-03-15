@@ -1,7 +1,9 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.textfield import MDTextField
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFloatingActionButton
+from kivymd.uix.list import OneLineIconListItem
 from kivy.uix.scrollview import ScrollView
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.list import MDList, IconLeftWidget
@@ -15,6 +17,32 @@ import bcrypt
 load_kv(__name__)
 
 class InventoryScreen(MDScreen):
+    def buscar(self, item):
+        #accedir a l'aplicació en execució
+        app = MDApp.get_running_app()
+        dataDispositius = app.getDeviceData()
+        
+        searchDevice = [search_field for search_field in dataDispositius if item.lower() in search_field['id_inventory'].lower()]
+        
+        #actualitzar la llista filtrada
+        searchDeviceList = self.ids.list
+        searchDeviceList.clear_widgets()
+        
+        for result in searchDevice:
+            searchDeviceList.add_widget(
+                OneLineIconListItem(
+                    IconLeftWidget(
+                            icon="laptop"
+                        ), 
+                    
+                    text=f"Dispositiu: {result['id_inventory']}",
+                    secondary_text=f"Num Inv: {result['inventory_number']}",
+                    tertiary_text=f"ID Disp: {result['id_device']}"
+                    
+                )
+            )
+
+    
     def on_enter(self, *args):
         Clock.schedule_once(self.load_data)
     
