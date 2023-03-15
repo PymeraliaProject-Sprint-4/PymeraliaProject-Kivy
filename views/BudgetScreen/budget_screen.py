@@ -86,5 +86,5 @@ class BudgetScreen(MDScreen):
     def detalles(self, row):  # inicializamos una función con el parametro row
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
-        app.rowDetails(row.id)
+        app.setRowDetails(row.id)
         app.switch_screen('details_budgets')  # mostrar detalles de la tarea.

@@ -76,7 +76,7 @@ class PymeApp(MDApp):
         self.dataJsonPresu = data['data']
         return self.dataJsonPresu
 
-    def rowDetails(self, row):
+    def setRowDetails(self, row):
         self.rowDetails = row
         return self.rowDetails
 
