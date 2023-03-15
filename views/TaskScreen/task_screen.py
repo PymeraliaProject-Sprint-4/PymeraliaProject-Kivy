@@ -46,8 +46,9 @@ class TaskScreen(MDScreen):
                     ),
                     
                     id = f"Tarea {result['id']}",
-                    text = f"Tarea {result['name']}",
-                    secondary_text=f"Descripcion {result['descripcion']}",
+                    text = f"{result['name']}",
+                    on_press = self.detalles
+                    # secondary_text=f"Descripcion {result['descripcion']}",
                 )
             )
             
@@ -60,6 +61,7 @@ class TaskScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         dataTareas = app.getTareasData()
+        self.ids.tareas.clear_widgets()
 
         for i in dataTareas: #bucle que recorre el rango que le pasemos como parametro
             self.ids.tareas.add_widget( #añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
@@ -69,8 +71,8 @@ class TaskScreen(MDScreen):
                     ),
                     
                     id = f"Tarea {i['id']}",
-                    text = f"Tarea {i['name']}",
-                    secondary_text=f"Descripcion {i['descripcion']}", #línea 2
+                    text = f"{i['name']}",
+                    # secondary_text=f"Descripcion {i['descripcion']}", #línea 2
                     on_press = self.detalles
                 )
             )# Lista que muestra las tareas
@@ -78,6 +80,6 @@ class TaskScreen(MDScreen):
     def detalles(self,row): #inicializamos una función con el parametro row
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
-        app.rowDetails(row.id)
+        app.setRowDetails(row.id)
         app.switch_screen('details_tasks') #mostrar detalles de la tarea.
         
