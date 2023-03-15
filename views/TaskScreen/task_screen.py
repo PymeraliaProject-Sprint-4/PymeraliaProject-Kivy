@@ -47,6 +47,7 @@ class TaskScreen(MDScreen):
                     
                     id = f"Tarea {result['id']}",
                     text = f"{result['name']}",
+                    on_press = self.detalles
                     # secondary_text=f"Descripcion {result['descripcion']}",
                 )
             )

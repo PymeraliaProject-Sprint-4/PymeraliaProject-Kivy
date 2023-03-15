@@ -53,6 +53,7 @@ class BudgetScreen(MDScreen):
                     id=f"Presupuesto {result['id']}",
                     text=f"{result['first_name']} - {result['last_name']}",
                     secondary_text=f"{result['position']}",  # línea 2
+                    on_press=self.detalles
                 )
             )
 
