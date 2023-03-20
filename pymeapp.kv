@@ -7,6 +7,7 @@
 #:import BudgetScreen views.BudgetScreen
 #:import DetailsBudgetScreen views.DetailsBudgetScreen
 #:import ProfileScreen views.ProfileScreen
+#:import CourseScreen views.CourseScreen
 #:import Window kivy.core.window.Window
 #:import DetailsQuestionaryScreen views.DetailsQuestionaryScreen
 
@@ -26,7 +27,8 @@ ScreenManager:
         name: 'QR'
     TaskScreen:
         name: 'tasks'
-
+    CourseScreen:
+        name: 'course'
     DetailsTaskScreen:
         name: 'details_tasks'
 
@@ -37,11 +39,9 @@ ScreenManager:
         name: 'details_questionary'
 
     BudgetScreen:
-        name: "budgets"
-    
+        name: 'budgets'
     DetailsBudgetScreen:
-        name: "details_budgets"
-
+        name: 'details_budgets'
     ProfileScreen:
         name: 'test'
 
@@ -93,6 +93,9 @@ ScreenManager:
 
             BudgetScreen:
                 name: "budgets"
+
+            CourseScreen:
+                name: "course"
 
             DetailsBudgetScreen:
                 name: "details_budgets"
@@ -168,7 +171,7 @@ ScreenManager:
             text: "Cursos"
             on_release: 
                 root.nav_drawer.set_state("close")
-                root.manager.current="Cursos" 
+                root.manager.current="course"
 
         DrawerClickableItem:
             text: "QR"
