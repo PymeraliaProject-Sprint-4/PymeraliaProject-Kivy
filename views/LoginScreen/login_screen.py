@@ -21,7 +21,9 @@ class LoginScreen(MDScreen):
         self.session = JsonStore('session.json')
         email = self.ids.email.text
         password = self.ids.password.text
-
+        Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
+        app.switch_screen('dashboard')
+        return
         # Envía la solicitud POST con los datos de email y password
         response = requests.post('http://localhost/api/loginPhone', data={'email': email, 'password': password})
 

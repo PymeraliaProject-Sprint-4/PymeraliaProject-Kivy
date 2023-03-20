@@ -9,6 +9,7 @@
 #:import ProfileScreen views.ProfileScreen
 #:import CourseScreen views.CourseScreen
 #:import Window kivy.core.window.Window
+#:import DetailsQuestionaryScreen views.DetailsQuestionaryScreen
 
 #aquí van las vistas
 ScreenManager:
@@ -30,6 +31,13 @@ ScreenManager:
         name: 'course'
     DetailsTaskScreen:
         name: 'details_tasks'
+
+    QuestionaryScreen:
+        name: 'questionary'
+
+    DetailsQuestionaryScreen:
+        name: 'details_questionary'
+
     BudgetScreen:
         name: 'budgets'
     DetailsBudgetScreen:
@@ -92,6 +100,12 @@ ScreenManager:
             DetailsBudgetScreen:
                 name: "details_budgets"
 
+            QuestionaryScreen:
+                name: "questionary"
+
+            DetailsQuestionaryScreen:
+                name: "details_questionary"
+
             MDScreen:
                 name: "Gantt"
                                
@@ -136,7 +150,7 @@ ScreenManager:
             icon: "file-document"
             on_release: 
                 root.nav_drawer.set_state("close")
-                root.manager.current="test"     
+                root.manager.current="questionary"     
 
         DrawerClickableItem:
             text: "Tareas"
