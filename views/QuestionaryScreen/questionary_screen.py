@@ -23,31 +23,27 @@ from pathlib import Path #cargar ruta del script
 from kivymd.uix.textfield import MDTextField
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
+from utils import load_kv
 
-class QuestionaryScreen(MDApp):
-    def build(self):
-            self.title = "PymeShield"
-            Window.size = (400, 600)
-            scroll = ScrollView()
-            self.sm = self.root
+load_kv(__name__)
 
-            list_view = MDList()
-            for i in range(20):
 
-                items = OneLineIconListItem(text=str(i) + ' item')
-                list_view.add_widget(items)
+class QuestionaryScreen(MDScreen):
+    def open(self):
+        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
+        app = MDApp.get_running_app()
+        app.switch_screen('questionary') #mostrar pantalla tareas.
 
-            scroll.add_widget(list_view)
-
-            return Builder.load_file("questionary_screen.kv")  # importacion de estilos
 
     def on_start(self):  # creamos la clase on_start
         # Cargamos los datos desde el archivo data.json
         script_location = Path(__file__).absolute().parent
+        print(script_location)
         with open(script_location / "informe_classes.json", "rt") as json_file:
             data = json.load(json_file)
 
         for i in data:  # bucle que recorre el rango que le pasemos como parametro
+            print(self)
             self.root.ids.informes.add_widget(  # añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
 
                 OneLineIconListItem(  # método que nos deja trabajar con 1 lineas que previamente lo hemos importado en la parte superior
@@ -61,7 +57,7 @@ class QuestionaryScreen(MDApp):
             )  # Lista que muestra los informes
 
     def buscar_informe(self, query):
-        self.root.ids.informes.clear_widgets() # Limpiar la lista de informes antes de mostrar los resultados de búsqueda
+        self.ids.informes.clear_widgets() # Limpiar la lista de informes antes de mostrar los resultados de búsqueda
 
         script_location = Path(__file__).absolute().parent
         with open(script_location / "informe_classes.json", "rt") as json_file:
@@ -69,7 +65,7 @@ class QuestionaryScreen(MDApp):
 
         for i in data:
             if query.lower() in i['name'].lower(): # Verificar si el nombre del informe contiene la query
-                self.root.ids.informes.add_widget(
+                self.ids.informes.add_widget(
                     OneLineIconListItem(
                         IconLeftWidget(
                             icon="clipboard-file-outline"
@@ -79,10 +75,8 @@ class QuestionaryScreen(MDApp):
                         on_press=self.print
                     )
                 )
-
-
-
-
-
-myapp = QuestionaryScreen()
-myapp.run()
+    def print(self, row):
+        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
+        app = MDApp.get_running_app()
+        app.rowDetails(row.id)
+        app.switch_screen('details_questionary') #mostrar detalles de la tarea.
