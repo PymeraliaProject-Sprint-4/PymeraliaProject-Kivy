@@ -60,7 +60,8 @@ class TaskScreen(MDScreen):
     def on_enter(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
-        dataTareas = app.getTareasData()
+        app.get_api_data('all-data')
+        dataTareas = app.getData()
         self.ids.tareas.clear_widgets()
 
         for i in dataTareas: #bucle que recorre el rango que le pasemos como parametro
