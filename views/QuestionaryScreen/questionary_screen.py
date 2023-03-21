@@ -4,6 +4,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.list import IconLeftWidget
 from utils import load_kv
 import requests
+from utils import Notify
 
 load_kv(__name__)
 
@@ -12,60 +13,65 @@ class QuestionaryScreen(MDScreen):
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
-        app.switch_screen('questionary')  # mostrar pantalla tareas.
+        app.switch_screen('questionary')
 
     def on_enter(self):
         self.ids.informes.clear_widgets()
-        # Cargamos los datos desde la respuesta de la API
-        self.getReports()
+        # Al entrar, recuperamos los datos desde la API
+        self.reports = self.get_reports()
+        if self.reports is None:
+            # If the API request failed, show an error message
+            Notify(text="Error al recuperar los datos", snack_type='error').open()
+            return
+        self.update_list()
 
-    def getReports(self):
+    def get_reports(self):
         url = "http://localhost/api/kivy/report"
-        response = requests.get(url)
-        data = response.json()
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
+            return data
+        except requests.exceptions.RequestException as error:
+            print(error)  # Logeamos el error
+            return None
 
-        reports = []
-
-        for reports in data:  # bucle que recorre el rango que le pasemos como parametro
-            self.ids.informes.add_widget(  # añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
-
-                OneLineIconListItem(  # método que nos deja trabajar con 1 lineas que previamente lo hemos importado en la parte superior
-                    IconLeftWidget(  # método que nos permite agregar un icono
+    def update_list(self):
+        self.ids.informes.clear_widgets()
+        for report in self.reports:
+            self.ids.informes.add_widget(
+                OneLineIconListItem(
+                    IconLeftWidget(
                         icon="clipboard-file-outline"
                     ),
-                    id=f"informe-{reports['id']}",
-                    text=f"{reports['name']}",
+                    id=f"informe-{report['id']}",
+                    text=f"{report['name']}",
                     on_press=self.print
                 )
-            )  # Lista que muestra los informes
-
-        return reports
+            )
 
     def buscar_informe(self, query):
+        if not self.reports:
+            return
+
         # Limpiar la lista de informes antes de mostrar los resultados de búsqueda
         self.ids.informes.clear_widgets()
-
-        url = "http://localhost/api/kivy/report"
-        response = requests.get(url)
-        data = response.json()
-
-        for i in data:
-            # Verificar si el nombre del informe contiene la query
-            if query.lower() in i['name'].lower():
-                self.ids.informes.add_widget(
-                    OneLineIconListItem(
-                        IconLeftWidget(
-                            icon="clipboard-file-outline"
-                        ),
-                        id=f"informe-{i['id']}",
-                        text=f"{i['name']}",
-                        on_press=self.print
-                    )
+        # Verificar si el nombre del informe contiene la query
+        filtered_reports = filter(
+            lambda x: query.lower() in x['name'].lower(), self.reports)
+        for report in filtered_reports:
+            self.ids.informes.add_widget(
+                OneLineIconListItem(
+                    IconLeftWidget(
+                        icon="clipboard-file-outline"
+                    ),
+                    id=f"informe-{report['id']}",
+                    text=f"{report['name']}",
+                    on_press=self.print
                 )
+            )
 
     def print(self, row):
-        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         app.setRowDetails(row.id)
-        # mostrar detalles de la tarea.
         app.switch_screen('details_questionary')
