@@ -22,7 +22,7 @@ class InventoryScreen(MDScreen):
         app = MDApp.get_running_app()
         dataDispositius = app.getDeviceData()
         
-        searchDevice = [search_field for search_field in dataDispositius if item.lower() in search_field['id_inventory'].lower()]
+        searchDevice = [search_field for search_field in dataDispositius if (item.lower() in search_field['brand'].lower()) or (item.isdigit() and int(item) == search_field['id'])]
         
         #actualitzar la llista filtrada
         searchDeviceList = self.ids.list
@@ -30,14 +30,14 @@ class InventoryScreen(MDScreen):
         
         for result in searchDevice:
             searchDeviceList.add_widget(
-                OneLineIconListItem(
+                ThreeLineIconListItem(
                     IconLeftWidget(
                             icon="laptop"
                         ), 
                     
-                    text=f"Dispositiu: {result['id_inventory']}",
-                    secondary_text=f"Num Inv: {result['inventory_number']}",
-                    tertiary_text=f"ID Disp: {result['id_device']}"
+                    text=f"Dispositiu: {result['brand']} {result['model']}",
+                    secondary_text=f"Estat dispositiu: {result['state']}",
+                    tertiary_text=f"ID Disp: {result['id']}"
                     
                 )
             )
@@ -49,27 +49,20 @@ class InventoryScreen(MDScreen):
     def load_data(self, dt):
         scroll = ScrollView()
         
-        print(open('assets/inventory.json').read()) #! NO VA..., no entra a l'on_start
-        
-        # Leer los datos del archivo "inventory.json"
-        with open("assets/inventory.json", "r") as f:
-            inventory = json.load(f)
-
+        app = MDApp.get_running_app()
+        dataDispositius = app.getDeviceData()
         # Crear el layout principal
         layout = MDBoxLayout()
         layout.add_widget(scroll)
 
-        # Crear la lista y añadir los elementos
-        self.list = layout
-
-        for device in inventory:
+        for result in dataDispositius:
             item = ThreeLineIconListItem(
                 IconLeftWidget(
                     icon="laptop",
                 ),
-                text=f"Dispositiu: {device['id_inventory']}",
-                secondary_text=f"Num Inv: {device['inventory_number']}",
-                tertiary_text=f"ID Disp: {device['id_device']}"
+                text=f"Dispositiu: {result['brand']} {result['model']}",
+                secondary_text=f"Estat dispositiu: {result['state']}",
+                tertiary_text=f"ID Disp: {result['id']}"
             )
 
             print(self)
