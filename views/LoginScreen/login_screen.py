@@ -22,6 +22,10 @@ class LoginScreen(MDScreen):
         email = self.ids.email.text
         password = self.ids.password.text
 
+        # DE MOMENTO HASTA LA UNIFICACIÓN
+        Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
+        app.switch_screen('dashboard')
+
         # Envía la solicitud POST con los datos de email y password
         response = requests.post('http://localhost/api/loginPhone', data={'email': email, 'password': password})
 
@@ -34,10 +38,7 @@ class LoginScreen(MDScreen):
             # Guardamos el token en la session
             self.session.put('token',token=token)
 
-
         else:
             # Si la respuesta es incorrecta, se muestra el mensaje de error
-            Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
-            app.switch_screen('dashboard')
-            # Notify(text="¡Usuario o contraseña incorrecta!", snack_type='error').open()
-            # self.clear()
+            Notify(text="¡Usuario o contraseña incorrecta!", snack_type='error').open()
+            self.clear()
