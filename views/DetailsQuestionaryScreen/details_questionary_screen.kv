@@ -1,0 +1,23 @@
+<DetailsQuestionaryScreen>:
+    MDTopAppBar:
+        title: "PymeShield"
+        elevation: 4
+        pos_hint: {"top": 1}
+        md_bg_color: "#ff6720"
+        specific_text_color: "black"
+        left_action_items: [["menu", lambda x: root.index()]]
+    MDBoxLayout:
+        padding:0, 50, 0, 0
+        orientation: "vertical"
+        MDLabel:
+            id: estatext
+            text:"Splash Screen"
+            halign: "center"
+            font_style: "H5"
+        Image:
+            id: imagen
+            center: self.parent.center
+            size: 600, 600
+        MDScrollView:
+            MDList:
+                id: estat

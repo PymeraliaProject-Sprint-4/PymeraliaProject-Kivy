@@ -24,7 +24,7 @@ class CourseScreen(MDScreen):
 
     def get_cursos(self):
         # Obtener la lista completa de cursos
-        url = f"{API_URL}/CursosCalificar-datos"
+        url = f"{API_URL}/api/CursosCalificar-datos"
         response = requests.get(url)
         data = response.json()
 
