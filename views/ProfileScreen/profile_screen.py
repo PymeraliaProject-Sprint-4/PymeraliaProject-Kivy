@@ -45,7 +45,7 @@ class ProfileScreen(MDScreen):
                     f.write(response.content) #se escribe el archivo en la ruta especificada
                 self.ids.imagen.source = image_path 
             else:
-                self.ids.imagen.source = "./assets/perfil.png" #imagen que carga por defecto si no encuentra imagen
+                self.ids.imagen.source = "./assets/default_profile.jpg" #imagen que carga por defecto si no encuentra imagen
                 
         else:
             print("You don't have access")
