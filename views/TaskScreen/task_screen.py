@@ -28,7 +28,7 @@ class TaskScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         #variable que guarda el resultado el método getTareasData()
-        dataTareas = app.getTareasData()
+        dataTareas = app.getData()
             
         # Filtramos los datos según el texto de búsqueda
         search_results = [search_text for search_text in dataTareas if item.lower() in search_text['name'].lower()]

@@ -58,7 +58,6 @@ class PymeApp(MDApp):
 
     def get_api_data(self, url):
         url = self.api + url
-        print(url)
         response = requests.get(url)
         data = json.loads(response.text)
         self.data = data['data']
@@ -81,7 +80,6 @@ class PymeApp(MDApp):
         return self.rowDetails
 
     def rowPressed(self):
-        print(self.rowDetails)
         return self.rowDetails
 
     def switch_screen(self, screen_name='login'):
