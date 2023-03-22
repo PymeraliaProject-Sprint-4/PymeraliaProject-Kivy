@@ -12,7 +12,7 @@ import requests
 
 class SplashScreen(MDScreen):
     def on_enter(self, *args):
-        Clock.schedule_once(self.switch_to_home, 2)
+        Clock.schedule_once(self.switch_to_home, 20)
 
     def switch_to_home(self, dt):
         app = MDApp.get_running_app()
@@ -35,13 +35,14 @@ class PymeApp(MDApp):
     # Variable global que contendrá les dades del JSON de presupostos
     dataJsonPresu = None
     # Variable global que contendrá les dades del JSON de tasques
-    data = None
+    dataJsonTask = None
+    # Variable global que contendrá les dades del JSON de dispositius
+    dataJsonDevice = None
     # indicamos donde se encuentra el archivo actual
     rutaPath = None
-
     rowDetails = None
     
-    api = None
+    url = None
 
     def build(self):
         if platform in ['win', 'linux', 'macosx']:
@@ -54,14 +55,15 @@ class PymeApp(MDApp):
         self.title = "Pymeshield"
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
-        self.api = "http://localhost/api/"
+        self.url = "http://localhost/api/"
 
-    def get_api_data(self, url):
-        url = self.api + url
+    def get_api_task_data(self):
+        url = self.url + "all-data"
+        print(url)
         response = requests.get(url)
         data = json.loads(response.text)
-        self.data = data['data']
-        return self.data
+        self.dataJsonTask = data['data']
+        return self.dataJsonTask
     
     def get_api_presu_data(self):
         url = "https://free-nba.p.rapidapi.com/players"
@@ -75,19 +77,31 @@ class PymeApp(MDApp):
         self.dataJsonPresu = data['data']
         return self.dataJsonPresu
 
+    def get_api_devices(self):
+        url = self.url + "devicelist"
+        print(url)
+        response = requests.get(url)
+        data = json.loads(response.text)
+        self.dataJsonDevice = []
+        for i in range(len(data)):
+            self.dataJsonDevice.append(data[i])
+        return self.dataJsonDevice
+      
+    
     def setRowDetails(self, row):
         self.rowDetails = row
         return self.rowDetails
 
     def rowPressed(self):
+        print(self.rowDetails)
         return self.rowDetails
 
     def switch_screen(self, screen_name='login'):
         self.sm.current = screen_name
 
     # Método que utilizaremos para recoger los datos del Json de Tareas y guardarlos
-    def getData(self):
-        return self.data
+    def getTareasData(self):
+        return self.get_api_task_data()
 
     # Método que utilizaremos para recoger los datos del Json de Presupuestos y guardarlos
     def getPresuData(self):
@@ -95,10 +109,7 @@ class PymeApp(MDApp):
 
 
     def getDeviceData(self):
-        self.dataJsonDevice = None
-        with open(self.rutaPath / "assets/inventory.json","rt") as json_file: #abre el archivo en modo texto, en este caso el json de donde sacamos los datos
-            self.dataJsonDevice = json.load(json_file) #guardamos en una variable los datos del json cargados
-        return self.dataJsonDevice
+        return self.get_api_devices()
 
 if __name__ == '__main__':
     app = PymeApp()
