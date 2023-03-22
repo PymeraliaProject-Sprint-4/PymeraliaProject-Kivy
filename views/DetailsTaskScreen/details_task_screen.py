@@ -39,11 +39,9 @@ class DetailsTaskScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         id_tasca = app.rowPressed()
-        print(f"Pressed {id_tasca}")  # imprimimos el valor
-        dataTareas = app.getTareasData()
+        dataTareas = app.getData()
         # asignamos un valor a id_tasca accediendo con el parametro row y con id que es un campo del json
         id_tasca = int(id_tasca[6:])
-        print(id_tasca)  # imprimos el valor de id_tasca
 
         for i in dataTareas:  # recorremos los valores de la variable data2 que guarda los datos del json
             id = i['id']  # asignamos el nuevo valos a la variable id
