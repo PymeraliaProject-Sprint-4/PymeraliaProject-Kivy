@@ -12,7 +12,7 @@ import requests
 
 class SplashScreen(MDScreen):
     def on_enter(self, *args):
-        Clock.schedule_once(self.switch_to_home, 20)
+        Clock.schedule_once(self.switch_to_home, 5)
 
     def switch_to_home(self, dt):
         app = MDApp.get_running_app()
