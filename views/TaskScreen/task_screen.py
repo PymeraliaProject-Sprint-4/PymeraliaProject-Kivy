@@ -61,6 +61,7 @@ class TaskScreen(MDScreen):
     def on_enter(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
+        app.get_api('all-data')
         app.get_api_data()
         dataTareas = app.getData()
         self.ids.tareas.clear_widgets()
