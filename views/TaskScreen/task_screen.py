@@ -17,6 +17,7 @@ import json #importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path
 from utils import load_kv #cargar ruta del script
 
+
 load_kv(__name__)
 
 # Esta clase es la clase que se encarga de las acciones que va a realizar el buscador.
@@ -60,17 +61,17 @@ class TaskScreen(MDScreen):
     def on_enter(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
-        app.get_api_data('all-data')
+        app.get_api_data()
         dataTareas = app.getData()
         self.ids.tareas.clear_widgets()
 
         for i in dataTareas: #bucle que recorre el rango que le pasemos como parametro
+            print(i)
             self.ids.tareas.add_widget( #añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
                 ThreeLineIconListItem( #método que nos deja trabajar con 3 lineas que previamente lo hemos importado en la parte superior
                     IconLeftWidget( #método que nos permite agregar un icono
                         icon="clipboard-list"
                     ),
-                    
                     id = f"Tarea {i['id']}",
                     text = f"{i['name']}",
                     # secondary_text=f"Descripcion {i['descripcion']}", #línea 2

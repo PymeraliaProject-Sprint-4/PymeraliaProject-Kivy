@@ -1,3 +1,5 @@
 {
-    "materialkv.pythonFile": "main.py"
+    "materialkv.pythonFile": "main.py",
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": []
 }
