@@ -62,42 +62,42 @@ class PymeApp(MDApp):
         self.title = "Pymeshield"
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
-        self.url = "http://localhost/api/"
+        self.api = "http://localhost/api/"
 
-    # def insert_data(self):
-    #     conn = sqlite3.connect('pymeshield.db')
+    def insert_data(self):
+        conn = sqlite3.connect('pymeshield.db')
 
-    #     cursor = conn.cursor()
+        cursor = conn.cursor()
         
-    #     cursor.execute('DELETE FROM tasks')
+        cursor.execute('DELETE FROM tasks')
         
-    #     for i in self.api_data:
-    #         id = int(i['id'])
-    #         name = i['name']
-    #         recommendation = i['recommendation']
-    #         danger = i['peligro']
-    #         manages = i['manages']
-    #         price = i['price']
-    #         price_customer = i['price_customer']
+        for i in self.api_data:
+            id = int(i['id'])
+            name = i['name']
+            recommendation = i['recommendation']
+            danger = i['peligro']
+            manages = i['manages']
+            price = i['price']
+            price_customer = i['price_customer']
             
-    #         datos = [(id, name, recommendation, danger, manages, price, price_customer)]
+            datos = [(id, name, recommendation, danger, manages, price, price_customer)]
             
-    #         for dato in datos:
-    #             cursor.execute('INSERT INTO tasks (id, name, recommendation, danger, manages, price, price_customer) VALUES (?, ?, ?, ?, ?, ?, ?)', dato)
+            for dato in datos:
+                cursor.execute('INSERT INTO tasks (id, name, recommendation, danger, manages, price, price_customer) VALUES (?, ?, ?, ?, ?, ?, ?)', dato)
 
 
-    #         conn.commit()
+            conn.commit()
             
-    #     conn.close()
+        conn.close()
 
-    # def get_api(self, url):
+    def get_api(self, url):
 
-    #     url = self.api + url
-    #     response = requests.get(url)
-    #     data = json.loads(response.text)
-    #     self.api_data = data['data']
-    #     self.insert_data();
-    #     return self.api_data
+        url = self.api + url
+        response = requests.get(url)
+        data = json.loads(response.text)
+        self.api_data = data['data']
+        self.insert_data();
+        return self.api_data
             
     
     def get_api_data(self):
