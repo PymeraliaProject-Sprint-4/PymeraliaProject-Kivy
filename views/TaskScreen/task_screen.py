@@ -66,7 +66,6 @@ class TaskScreen(MDScreen):
         self.ids.tareas.clear_widgets()
 
         for i in dataTareas: #bucle que recorre el rango que le pasemos como parametro
-            print(i)
             self.ids.tareas.add_widget( #añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
                 ThreeLineIconListItem( #método que nos deja trabajar con 3 lineas que previamente lo hemos importado en la parte superior
                     IconLeftWidget( #método que nos permite agregar un icono
