@@ -74,4 +74,4 @@ class QuestionaryScreen(MDScreen):
     def print(self, row):
         app = MDApp.get_running_app()
         app.setRowDetails(row.id)
-        app.switch_screen('details_questionary')
+        self.manager.current="details_questionary"

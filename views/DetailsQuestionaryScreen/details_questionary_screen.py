@@ -22,8 +22,6 @@ class DetailsQuestionaryScreen(MDScreen):
             response.raise_for_status()
             data = response.json()
 
-            print(f"Pressed {id_informe[8:]}")
-
             img2 = 'views/DetailsQuestionaryScreen/inprogress.gif'
             img3 = 'views/DetailsQuestionaryScreen/done.gif'
 
@@ -33,7 +31,7 @@ class DetailsQuestionaryScreen(MDScreen):
                 if i['id'] == id_informe:
                     status = i['status']
                     self.ids.estatext.text = f"{i['name']} - {status}"
-                    if status == 'InProgress':
+                    if status == 'pending':
                         self.ids.imagen.source = img2
                     elif status == 'done':
                         self.ids.imagen.source = img3
