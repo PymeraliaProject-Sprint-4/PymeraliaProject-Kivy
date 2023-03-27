@@ -13,7 +13,7 @@ import sqlite3
 
 class SplashScreen(MDScreen):
     def on_enter(self, *args):
-        Clock.schedule_once(self.switch_to_home, 2)
+        Clock.schedule_once(self.switch_to_home, 5)
 
     def switch_to_home(self, dt):
         app = MDApp.get_running_app()
@@ -33,18 +33,23 @@ class PymeApp(MDApp):
 
     # Variable global que contendrá self.root
     sm = None
-    # Variable global que contendrá les dades del JSON de presupostos
-    dataJsonPresu = None
-    # Variable global que contendrá les dades del JSON de tasques
+
     api_data = None
     
     data = None
+    
+    # Variable global que contendrá les dades del JSON de dispositius
+    dataJsonDevice = None
+    
     # indicamos donde se encuentra el archivo actual
     rutaPath = None
-
+    
     rowDetails = None
-
+    
     api = None
+    
+    url = None
+
 
     def build(self):
         if platform in ['win', 'linux', 'macosx']:
@@ -57,7 +62,7 @@ class PymeApp(MDApp):
         self.title = "Pymeshield"
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
-        self.api = "http://localhost/api/"
+        self.url = "http://localhost/api/"
 
     # def insert_data(self):
     #     conn = sqlite3.connect('pymeshield.db')
@@ -118,7 +123,7 @@ class PymeApp(MDApp):
             })
 
         self.data = data
-    
+        
         return self.data
 
     def get_api_presu_data(self):
@@ -134,24 +139,37 @@ class PymeApp(MDApp):
         self.dataJsonPresu = data['data']
         return self.dataJsonPresu
 
+    def get_api_devices(self):
+        url = self.url + "devicelist"
+        print(url)
+        response = requests.get(url)
+        data = json.loads(response.text)
+        self.dataJsonDevice = []
+        for i in range(len(data)):
+            self.dataJsonDevice.append(data[i])
+        return self.dataJsonDevice
+      
     def setRowDetails(self, row):
         self.rowDetails = row
         return self.rowDetails
 
     def rowPressed(self):
+        print(self.rowDetails)
         return self.rowDetails
 
     def switch_screen(self, screen_name='login'):
         self.sm.current = screen_name
 
     # Método que utilizaremos para recoger los datos del Json de Tareas y guardarlos
-    def getData(self):
-        return self.data
+    def getTareasData(self):
+        return self.get_api_task_data()
 
     # Método que utilizaremos para recoger los datos del Json de Presupuestos y guardarlos
     def getPresuData(self):
         return self.get_api_presu_data()
 
+    def getDeviceData(self):
+        return self.get_api_devices()
 
 if __name__ == '__main__':
     app = PymeApp()

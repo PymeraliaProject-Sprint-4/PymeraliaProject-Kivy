@@ -16,17 +16,11 @@
                     source: "assets/fondo.jpg" #imatge
 
         MDFloatLayout:
-            size_hint_x: .300
-            size_hint_y: .200
-            pos_hint: {"center_x": .5, "center_y": .7}
-            canvas:
-                Color:
-                    rgb: (1, 1, 1, 1)
-                Ellipse:#ellipse es para darle forma redonda a la imagen
-                    size: self.size
-                    pos: self.pos
-                    source: "assets/imatgeTatiana.png"
-
+            AsyncImage: #cargamos la clase imagen asincrona
+                id: imagen 
+                size_hint_x: .300
+                size_hint_y: .200
+                pos_hint: {"center_x": .5, "center_y": .7}
 
         MDLabel:
             id: name

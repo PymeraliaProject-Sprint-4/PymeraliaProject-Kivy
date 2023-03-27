@@ -1,0 +1,17 @@
+<QuestionaryScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding:0, 70, 0, 0
+        TextInput:
+            id: search
+            hint_text: "Buscar Informe.."
+            halign: "center"
+            size_hint_y: 0.065
+            size_hint_x: 1
+            multiline: False
+            on_text: root.buscar_informe(self.text)
+        MDScrollView:
+            MDList:
+                id: informes
+        
+        
