@@ -161,8 +161,8 @@ class PymeApp(MDApp):
         self.sm.current = screen_name
 
     # Método que utilizaremos para recoger los datos del Json de Tareas y guardarlos
-    def getTareasData(self):
-        return self.get_api_task_data()
+    def getData(self):
+        return self.get_api_data()
 
     # Método que utilizaremos para recoger los datos del Json de Presupuestos y guardarlos
     def getPresuData(self):
