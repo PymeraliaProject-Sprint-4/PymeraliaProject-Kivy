@@ -51,11 +51,15 @@ class InventoryScreen(MDScreen):
         
         app = MDApp.get_running_app()
         dataDispositius = app.getDeviceData()
+        
+        # Asignar los datos recuperados del JSON a una variable
+        self.device_data = dataDispositius
+        
         # Crear el layout principal
         layout = MDBoxLayout()
         layout.add_widget(scroll)
 
-        for result in dataDispositius:
+        for result in self.device_data:
             item = ThreeLineIconListItem(
                 IconLeftWidget(
                     icon="laptop",

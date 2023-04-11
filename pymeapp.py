@@ -49,7 +49,7 @@ class PymeApp(MDApp):
     api = None
     
     url = None
-
+    
 
     def build(self):
         if platform in ['win', 'linux', 'macosx']:
@@ -140,7 +140,8 @@ class PymeApp(MDApp):
         return self.dataJsonPresu
 
     def get_api_devices(self):
-        url = self.url + "devicelist"
+        self.api = "http://localhost"  # Definimos la ruta para la api y la guardamos en una variable
+        url = f"{self.api}/api/devicelist"
         print(url)
         response = requests.get(url)
         data = json.loads(response.text)
@@ -170,7 +171,7 @@ class PymeApp(MDApp):
 
     def getDeviceData(self):
         return self.get_api_devices()
-
+    
 if __name__ == '__main__':
     app = PymeApp()
     app.run()
