@@ -9,6 +9,7 @@ import json  # importamos la libreria de python que nos permite trabajar con jso
 from pathlib import Path  # cargar ruta del script
 import requests
 import sqlite3
+import db
 
 
 class SplashScreen(MDScreen):
@@ -20,7 +21,7 @@ class SplashScreen(MDScreen):
         print('ALEIX: I\'m in switch_to_home')
         app = MDApp.get_running_app()
         print('ALEIX: App saved')
-        app.switch_screen('login')
+        app.switch_screen('tasks')
 
 
 class ContentNavigationDrawer(MDScrollView):
@@ -65,7 +66,7 @@ class Main(MDApp):
         self.title = "Pymeshield"
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
-        self.api = "http://localhost/api/"
+        self.api = "http://192.168.224.241/api/"
 
     def insert_data(self):
         conn = sqlite3.connect('pymeshield.db')
