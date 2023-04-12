@@ -1,0 +1,19 @@
+<DetailsInventoryScreen>
+    MDTopAppBar:
+        title: "PymeShield"
+        elevation: 1
+        pos_hint: {"top": 1}
+        md_bg_color: "#ff6720"
+        specific_text_color: "black"
+        left_action_items: [["keyboard-backspace", lambda x: root.inici()]]
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding:0, 70, 0, 0
+        MDLabel:
+            id: desc
+            text:""
+            halign: "center"
+            font_style: "H3"
+        MDScrollView:
+            MDList:
+                id: detalles

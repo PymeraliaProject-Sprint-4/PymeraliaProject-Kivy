@@ -82,6 +82,12 @@ class InventoryScreen(MDScreen):
         # retornem la llista de dispositius
         return layout
     
+    def detalles(self, row):  # inicializamos una función con el parametro row
+        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
+        # app = MDApp.get_running_app()
+        self.app.setRowDetails(row.id)
+        self.app.switch_screen('details_inventory')  # mostrar detalles de la tarea.
+    
     def open_camera(self, *args):
-        app = MDApp.get_running_app()
-        app.root.current = "QR"
+        # app = MDApp.get_running_app()
+        self.app.root.current = "QR"

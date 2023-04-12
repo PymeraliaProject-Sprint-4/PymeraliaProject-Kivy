@@ -6,6 +6,7 @@
 #:import DetailsTaskScreen views.DetailsTaskScreen
 #:import BudgetScreen views.BudgetScreen
 #:import DetailsBudgetScreen views.DetailsBudgetScreen
+#:import DetailsInventoryScreen views.DetailsInventoryScreen
 #:import ProfileScreen views.ProfileScreen
 #:import CourseScreen views.CourseScreen
 #:import Window kivy.core.window.Window
@@ -37,6 +38,9 @@ ScreenManager:
 
     DetailsQuestionaryScreen:
         name: 'details_questionary'
+
+    DetailsInventoryScreen:
+        name: 'details_inventory'
 
     BudgetScreen:
         name: 'budgets'
@@ -99,6 +103,9 @@ ScreenManager:
 
             DetailsBudgetScreen:
                 name: "details_budgets"
+            
+            DetailsInventoryScreen:
+                name: "details_inventory"
 
             QuestionaryScreen:
                 name: "questionary"
