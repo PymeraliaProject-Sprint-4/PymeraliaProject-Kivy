@@ -35,7 +35,7 @@ class BudgetScreen(MDScreen):
 
         # Filtramos los datos según el texto de búsqueda
         search_results = [search_text for search_text in data if item.lower(
-        ) in search_text['first_name'].lower()]
+        ) in search_text['price'].lower()]
 
         # Actualizamos la lista de resultados de búsqueda en la interfaz de usuario
         search_results_list = self.ids.presupuesto
