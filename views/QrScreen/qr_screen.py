@@ -9,6 +9,7 @@ import bcrypt
 load_kv(__name__)
 
 class QrScreen(MDScreen):
+
     def calc(self, instance):
         text = self.ids['qrlabel'].text
         text = text[2:]
@@ -23,4 +24,16 @@ class QrScreen(MDScreen):
                         theme_text_color="Custom"
                     )
                 ]
-            ).open()
+            )
+            self.dialog.open()
+            
+    #cierra el mensaje de la ventana emergente
+    def close_dialog(self, instance):
+        self.dialog.dismiss()
+
+    # método que nos lleva a la pantalla "home"
+    def goHome(self):
+        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
+        app = MDApp.get_running_app()
+        app.switch_screen('home')
+

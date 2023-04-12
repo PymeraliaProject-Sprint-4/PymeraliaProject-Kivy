@@ -6,6 +6,7 @@ from views.TaskScreen.task_screen import TaskScreen
 from views.DetailsTaskScreen.details_task_screen import DetailsTaskScreen
 from views.BudgetScreen.budget_screen import BudgetScreen
 from views.DetailsBudgetScreen.details_budget_screen import DetailsBudgetScreen
+from views.DetailsInventoryScreen.details_inventory_screen import DetailsInventoryScreen
 from views.ProfileScreen.profile_screen import ProfileScreen
 from views.QuestionaryScreen.questionary_screen import QuestionaryScreen
 from views.DetailsQuestionaryScreen.details_questionary_screen import DetailsQuestionaryScreen
