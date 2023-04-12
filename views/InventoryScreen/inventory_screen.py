@@ -37,8 +37,9 @@ class InventoryScreen(MDScreen):
                     
                     text=f"Dispositiu: {result['brand']} {result['model']}",
                     secondary_text=f"Estat dispositiu: {result['state']}",
-                    tertiary_text=f"ID Disp: {result['id']}"
-                    
+                    tertiary_text=f"ID Disp: {result['id']}",
+                    id = f"{result['id']}",
+                    on_press=self.detalles
                 )
             )
 
@@ -66,28 +67,31 @@ class InventoryScreen(MDScreen):
                 ),
                 text=f"Dispositiu: {result['brand']} {result['model']}",
                 secondary_text=f"Estat dispositiu: {result['state']}",
-                tertiary_text=f"ID Disp: {result['id']}"
+                tertiary_text=f"ID Disp: {result['id']}",
+                id = f"{result['id']}",
+                on_press=self.detalles
             )
 
-            print(self)
-            print(self.ids)
             app = MDApp.get_running_app()
             self.ids.list.add_widget(item)
 
         # obtenir la pantalla inventari
         current_screen = app.sm.get_screen("inventory")
-        print('CURRENT SCREEN')
-        print(current_screen)
+        # print('CURRENT SCREEN')
+        # print(current_screen)
 
         # retornem la llista de dispositius
         return layout
     
     def detalles(self, row):  # inicializamos una función con el parametro row
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
-        # app = MDApp.get_running_app()
-        self.app.setRowDetails(row.id)
-        self.app.switch_screen('details_inventory')  # mostrar detalles de la tarea.
+        app = MDApp.get_running_app()
+        app.setRowDetails(row.id)
+        # app.switch_screen('details_inventory')  # mostrar detalles de la tarea.
+        self.manager.current="details_inventory"
+        
     
     def open_camera(self, *args):
-        # app = MDApp.get_running_app()
-        self.app.root.current = "QR"
+        app = MDApp.get_running_app()
+        app.root.current = "QR"
+        

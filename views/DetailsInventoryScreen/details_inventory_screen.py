@@ -12,6 +12,8 @@ from kivymd.uix.screen import MDScreen
 from kivy.properties import ObjectProperty
 from kivymd.uix.scrollview import MDScrollView
 from kivy.clock import Clock
+from utils import Notify
+import requests
 # import para crear listas (cambia dependiendo de los campos que queremos que tenga la lista), le pasamos diferentes imports de la misma biblioteca
 from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget
 import json  # importamos la libreria de python que nos permite trabajar con json
@@ -23,33 +25,35 @@ load_kv(__name__)
 
 class DetailsInventoryScreen(MDScreen):
 
-    def inici(self):
-        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
+    def index(self):
         app = MDApp.get_running_app()
-        app.switch_screen('home')  # mostrar pantalla detalles tareas.
-
-    def open(self):
-        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
-        app = MDApp.get_running_app()
-        # mostrar pantalla detalles presupuestos.
-        app.switch_screen('details_budgets')
-
-    id_presu = ""  # creamos una variable vacia
+        app.switch_screen('dashboard') #mostrar detalles de la tarea.
 
     def on_enter(self):
-        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
-        app = MDApp.get_running_app()
-        id_presu = app.rowPressed()
-        print(f"Pressed {id_presu}")  # imprimimos el valor
-        dataPresu = app.getPresuData()
-        id_presu = int(id_presu[12:])
-        print(id_presu)
+        try:
+            # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
+            app = MDApp.get_running_app()
+            id_inventory = app.rowPressed()
+            url = "http://localhost/api/devicelist"
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
+            id_inventory = int(id_inventory)       
+            
 
-        for i in dataPresu:
-            id = i['id']
-            text = f"{i['first_name']} - {i['last_name']}"
+            for i in data:
+                if i['id'] == id_inventory:
+                    status = i['brand']
+                    self.ids.text1.text = f"{i['brand']}"
+                    self.ids.text2.text = f"{i['model']}"
+                    self.ids.text3.text = f"{i['description']}"
+                    self.ids.text4.text = f"{i['state']}"
+                    self.ids.text5.text = f"{i['serial_number']}"
+                    self.ids.text6.text = f"{i['mac_ethernet']}"
+                    self.ids.text7.text = f"{i['mac_wifi']}"
+                    break
 
-            self.ids.desc.text = text
-
-            if id == id_presu:
-                break
+        except Exception as e:
+            # Handle any exceptions that may have occurred during the request.
+            print(f"An error occurred: {e}")
+            Notify(text="Error al recuperar los datos", snack_type='error').open()
