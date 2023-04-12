@@ -15,12 +15,18 @@ class QrScreen(MDScreen):
         text = text[:-1]
         print(text)
         if (text != ''):
-            MDDialog(
+            self.dialog = MDDialog(
                 text=text,
                 buttons=[
                     MDFlatButton(
                         text="OK",
-                        theme_text_color="Custom"
+                        theme_text_color="Custom",
+                        on_release=self.close_dialog
                     )
                 ]
-            ).open()
+            )
+            self.dialog.open()
+            
+    #cierra el mensaje de la ventana emergente
+    def close_dialog(self, instance):
+        self.dialog.dismiss()
