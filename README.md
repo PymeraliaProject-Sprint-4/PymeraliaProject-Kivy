@@ -1,5 +1,5 @@
 # PymeraliaProject-Kivy
-Prova
+Prova2
 
 Requerimientos de la app: 
 
