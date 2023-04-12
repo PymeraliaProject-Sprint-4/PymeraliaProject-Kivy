@@ -88,9 +88,13 @@ class TaskScreen(MDScreen):
         print('[*ALEIX*]: For finalitzat')
             
     def detalles(self,row): #inicializamos una función con el parametro row
-        print('[*ALEIX*]: S\'ha fet clic a alguna fila')
+        print('[*ALEIX*]: S\'ha fet clic a alguna fila, en concret aquesta: {}'.format(row.id))
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
+        print('[*ALEIX*]: App getted correctly')
+        print('[*ALEIX*]: app.setRowDetails')
         app.setRowDetails(row.id)
+        print('[*ALEIX*]: Method passed, let\'s try to change to details_tasks')
         app.switch_screen('details_tasks') #mostrar detalles de la tarea.
+        print('[*ALEIX*]: Called app.switch_screen')
         

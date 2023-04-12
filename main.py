@@ -162,7 +162,9 @@ class Main(MDApp):
         return self.rowDetails
 
     def switch_screen(self, screen_name='login'):
+        print('[*ALEIX*]: App.switch_screen called, screen: {}'.format(screen_name))
         self.sm.current = screen_name
+        print('[*ALEIX*]: Setted the new screen')
 
     # Método que utilizaremos para recoger los datos del Json de Tareas y guardarlos
     def getData(self):
