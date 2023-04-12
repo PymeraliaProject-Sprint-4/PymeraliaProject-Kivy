@@ -36,6 +36,7 @@ class DetailsTaskScreen(MDScreen):
     id_tasca = ""  # creamos una variable vacia
 
     def on_enter(self):
+        print('[*ALEIX*]: TasksDetail')
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         id_tasca = app.rowPressed()

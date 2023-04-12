@@ -14,13 +14,13 @@ import db
 
 class SplashScreen(MDScreen):
     def on_enter(self, *args):
-        print('ALEIX: Entering')
+        print('[*ALEIX*]: Entering')
         Clock.schedule_once(self.switch_to_home, 5)
 
     def switch_to_home(self, dt):
-        print('ALEIX: I\'m in switch_to_home')
+        print('[*ALEIX*]: I\'m in switch_to_home')
         app = MDApp.get_running_app()
-        print('ALEIX: App saved')
+        print('[*ALEIX*]: App saved')
         app.switch_screen('tasks')
 
 
@@ -100,7 +100,7 @@ class Main(MDApp):
         response = requests.get(url)
         data = json.loads(response.text)
         self.api_data = data['data']
-        self.insert_data();
+        self.insert_data()
         return self.api_data
             
     

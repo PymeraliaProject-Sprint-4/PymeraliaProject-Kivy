@@ -59,14 +59,20 @@ class TaskScreen(MDScreen):
         app.switch_screen('tasks') #mostrar pantalla tareas.
     
     def on_enter(self):
+        print('[*ALEIX*]: We are on task_screen, on_enter')
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
+        print('[*ALEIX*]: Let\'s try to get the data from the API')
         app.get_api('all-data')
+        print('[*ALEIX*]: Another method')
         app.get_api_data()
+        print('[*ALEIX*]: Calling app.getData()')
         dataTareas = app.getData()
         self.ids.tareas.clear_widgets()
 
+        print('[*ALEIX*]: Let\'s gonna do the for NOW')
         for i in dataTareas: #bucle que recorre el rango que le pasemos como parametro
+            #print('[*ALEIX*]: Item {}'.format(i)) 
             self.ids.tareas.add_widget( #añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
                 ThreeLineIconListItem( #método que nos deja trabajar con 3 lineas que previamente lo hemos importado en la parte superior
                     IconLeftWidget( #método que nos permite agregar un icono
@@ -79,7 +85,10 @@ class TaskScreen(MDScreen):
                 )
             )# Lista que muestra las tareas
             
+        print('[*ALEIX*]: For finalitzat')
+            
     def detalles(self,row): #inicializamos una función con el parametro row
+        print('[*ALEIX*]: S\'ha fet clic a alguna fila')
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         app.setRowDetails(row.id)

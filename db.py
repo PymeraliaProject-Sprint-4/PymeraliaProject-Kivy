@@ -4,6 +4,8 @@ import requests
 import sqlite3
 import threading
 import time
+
+print('[*ALEIX*]: Creating DB if not exists')
 conn = sqlite3.connect('pymeshield.db')
 
 cursor = conn.cursor()

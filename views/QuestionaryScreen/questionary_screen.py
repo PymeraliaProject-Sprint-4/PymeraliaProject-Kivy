@@ -26,7 +26,7 @@ class QuestionaryScreen(MDScreen):
         self.update_list()
 
     def get_reports(self):
-        url = "http://localhost/api/kivy/report"
+        url = "http://192.168.224.241/api/kivy/report"
         try:
             response = requests.get(url)
             response.raise_for_status()
