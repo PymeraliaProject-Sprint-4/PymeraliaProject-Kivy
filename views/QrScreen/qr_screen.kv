@@ -3,6 +3,13 @@
 
 <QrScreen>:
     # md_bg_color: app.theme_cls.bg_dark
+    MDTopAppBar:
+        title: "PymeShield"
+        elevation: 1
+        pos_hint: {"top": 1}
+        md_bg_color: "#ff6720"
+        specific_text_color: "black"
+        left_action_items: [["keyboard-backspace", lambda x: root.goHome()]]
     MDBoxLayout:
         orientation: 'vertical'
         # TODO: La càmera s'obre per defecte...
