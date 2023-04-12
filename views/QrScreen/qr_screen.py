@@ -16,13 +16,12 @@ class QrScreen(MDScreen):
         text = text[:-1]
         print(text)
         if (text != ''):
-            self.dialog = MDDialog(
+            MDDialog(
                 text=text,
                 buttons=[
                     MDFlatButton(
                         text="OK",
-                        theme_text_color="Custom",
-                        on_release=self.close_dialog
+                        theme_text_color="Custom"
                     )
                 ]
             )
@@ -37,3 +36,4 @@ class QrScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         app.switch_screen('home')
+
