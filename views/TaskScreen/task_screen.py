@@ -27,10 +27,10 @@ class SearchE4(MDTextField):
 class TaskScreen(MDScreen):
     def calc(self, item):
         #variable que guarda el resultado el método getTareasData()
-        dataTareas = self.get_data_sqlite()
+        data = self.get_data_sqlite()
             
         # Filtramos los datos según el texto de búsqueda
-        search_results = [search_text for search_text in dataTareas if item.lower() in search_text['name'].lower()]
+        search_results = [search_text for search_text in data if item.lower() in search_text['name'].lower()]
 
         # Actualizamos la lista de resultados de búsqueda en la interfaz de usuario
         search_results_list = self.ids.tareas
