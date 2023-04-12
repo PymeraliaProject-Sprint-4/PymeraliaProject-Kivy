@@ -109,12 +109,12 @@ class TaskScreen(MDScreen):
         
     def on_enter(self):
         app = MDApp.get_running_app()
-        data = app.get_api('all-data')
-        self.insert_data(data)
-        dataTareas = self.get_data_sqlite()
+        ddbb = app.get_api('all-data')
+        self.insert_data(ddbb)
+        data = self.get_data_sqlite()
         self.ids.tareas.clear_widgets()
 
-        for i in dataTareas: #bucle que recorre el rango que le pasemos como parametro
+        for i in data: #bucle que recorre el rango que le pasemos como parametro
             self.ids.tareas.add_widget( #añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
                 ThreeLineIconListItem( #método que nos deja trabajar con 3 lineas que previamente lo hemos importado en la parte superior
                     IconLeftWidget( #método que nos permite agregar un icono
