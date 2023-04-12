@@ -33,9 +33,8 @@ class BudgetScreen(MDScreen):
         # variable que guarda el resultado el método getTareasData()
         data = self.get_data_sqlite()
 
-        # Filtramos los datos según el texto de búsqueda
-        search_results = [search_text for search_text in data if item.lower(
-        ) in search_text['price'].lower()]
+        # Filtramos los datos según el precio de búsqueda
+        search_results = [search_text for search_text in data if str(item) in str(search_text['price'])]
 
         # Actualizamos la lista de resultados de búsqueda en la interfaz de usuario
         search_results_list = self.ids.presupuesto
