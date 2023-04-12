@@ -16,7 +16,7 @@ from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget #import para c
 import json #importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path
 from utils import load_kv #cargar ruta del script
-
+import sqlite3
 
 load_kv(__name__)
 
@@ -26,10 +26,8 @@ class SearchE4(MDTextField):
 
 class TaskScreen(MDScreen):
     def calc(self, item):
-        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
-        app = MDApp.get_running_app()
         #variable que guarda el resultado el método getTareasData()
-        dataTareas = app.getData()
+        dataTareas = self.get_data_sqlite()
             
         # Filtramos los datos según el texto de búsqueda
         search_results = [search_text for search_text in dataTareas if item.lower() in search_text['name'].lower()]
@@ -53,17 +51,67 @@ class TaskScreen(MDScreen):
                 )
             )
             
+    def get_data_sqlite(self):
+        conn = sqlite3.connect('pymeshield.db')
+
+        cursor = conn.cursor()
+    
+        cursor.execute('SELECT * FROM tasks')
+        
+        rows = cursor.fetchall()
+        
+        data = []
+        
+        for row in rows:
+            data.append({
+            'id': row[0],
+            'name': row[1],
+            'recommendation': row[2],
+            'danger': row[3],
+            'manages': row[4],
+            'price': row[5],
+            'price_customer': row[6]
+            })
+
+        self.data = data
+        
+        return self.data        
+            
+    def insert_data(self, data):
+        conn = sqlite3.connect('pymeshield.db')
+
+        cursor = conn.cursor()
+        
+        cursor.execute('DELETE FROM tasks')
+        
+        for i in data:
+            id = int(i['id'])
+            name = i['name']
+            recommendation = i['recommendation']
+            danger = i['peligro']
+            manages = i['manages']
+            price = i['price']
+            price_customer = i['price_customer']
+            
+            datos = [(id, name, recommendation, danger, manages, price, price_customer)]
+            
+            for dato in datos:
+                cursor.execute('INSERT INTO tasks (id, name, recommendation, danger, manages, price, price_customer) VALUES (?, ?, ?, ?, ?, ?, ?)', dato)
+                
+                conn.commit()
+            
+        conn.close()
+                
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         app.switch_screen('tasks') #mostrar pantalla tareas.
-    
+        
     def on_enter(self):
-        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
-        app.get_api('all-data')
-        app.get_api_data()
-        dataTareas = app.getData()
+        data = app.get_api('all-data')
+        self.insert_data(data)
+        dataTareas = self.get_data_sqlite()
         self.ids.tareas.clear_widgets()
 
         for i in dataTareas: #bucle que recorre el rango que le pasemos como parametro
