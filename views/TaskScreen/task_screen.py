@@ -27,10 +27,10 @@ class SearchE4(MDTextField):
 class TaskScreen(MDScreen):
     def calc(self, item):
         #variable que guarda el resultado el método getTareasData()
-        dataTareas = self.get_data_sqlite()
+        data = self.get_data_sqlite()
             
         # Filtramos los datos según el texto de búsqueda
-        search_results = [search_text for search_text in dataTareas if item.lower() in search_text['name'].lower()]
+        search_results = [search_text for search_text in data if item.lower() in search_text['name'].lower()]
 
         # Actualizamos la lista de resultados de búsqueda en la interfaz de usuario
         search_results_list = self.ids.tareas
@@ -109,12 +109,12 @@ class TaskScreen(MDScreen):
         
     def on_enter(self):
         app = MDApp.get_running_app()
-        data = app.get_api('all-data')
-        self.insert_data(data)
-        dataTareas = self.get_data_sqlite()
+        ddbb = app.get_api('all-data')
+        self.insert_data(ddbb)
+        data = self.get_data_sqlite()
         self.ids.tareas.clear_widgets()
 
-        for i in dataTareas: #bucle que recorre el rango que le pasemos como parametro
+        for i in data: #bucle que recorre el rango que le pasemos como parametro
             self.ids.tareas.add_widget( #añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
                 ThreeLineIconListItem( #método que nos deja trabajar con 3 lineas que previamente lo hemos importado en la parte superior
                     IconLeftWidget( #método que nos permite agregar un icono

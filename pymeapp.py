@@ -70,6 +70,17 @@ class PymeApp(MDApp):
         response = requests.get(url)
         data = json.loads(response.text)
         self.api_data = data['data']
+        print(self.api_data)
+        # self.insert_data();
+        return self.api_data
+    
+    def get_api_data(self, url):
+    
+        url = self.api + url
+        response = requests.get(url)
+        data = json.loads(response.text)
+        self.api_data = data
+        print(self.api_data)
         # self.insert_data();
         return self.api_data
 

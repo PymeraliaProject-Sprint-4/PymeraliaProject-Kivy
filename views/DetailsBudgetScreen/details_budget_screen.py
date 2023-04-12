@@ -17,6 +17,7 @@ from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget
 import json  # importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path
 from utils import load_kv  # cargar ruta del script
+import sqlite3
 
 load_kv(__name__)
 
@@ -27,6 +28,28 @@ class DetailsBudgetScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         app.switch_screen('dashboard')  # mostrar pantalla detalles tareas.
+
+    def get_data_sqlite(self):
+        conn = sqlite3.connect('pymeshield.db')
+
+        cursor = conn.cursor()
+    
+        cursor.execute('SELECT * FROM budgets')
+        
+        rows = cursor.fetchall()
+        
+        data = []
+        
+        for row in rows:
+            data.append({
+            'id': row[0],
+            'price': row[1],
+            'accepted': row[2],
+            })
+
+        self.data = data
+        
+        return self.data   
 
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
@@ -41,13 +64,13 @@ class DetailsBudgetScreen(MDScreen):
         app = MDApp.get_running_app()
         id_presu = app.rowPressed()
         print(f"Pressed {id_presu}")  # imprimimos el valor
-        dataPresu = app.getPresuData()
+        dataPresu = self.get_data_sqlite()
         id_presu = int(id_presu[12:])
         print(id_presu)
 
         for i in dataPresu:
             id = i['id']
-            text = f"{i['first_name']} - {i['last_name']}"
+            text = f"{i['price']}€ - {i['accepted']}"
 
             self.ids.desc.text = text
 

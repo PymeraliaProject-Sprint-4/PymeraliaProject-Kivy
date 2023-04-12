@@ -1,5 +1,5 @@
-#:import ZBarCam kivy_garden.zbarcam.ZBarCam
-#:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
+# #:import ZBarCam kivy_garden.zbarcam.ZBarCam
+# #:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
 
 <InventoryScreen>:
     id: inventory
@@ -23,7 +23,7 @@
 
     MDRectangleFlatButton:
         pos_hint: {'center_y': 0.88, 'x': 0.83}
-        on_release: root.open_camera()
+        # on_release: root.open_camera()
         MDIcon:
             icon: 'camera'
             halign: 'center'
