@@ -19,6 +19,7 @@ class CourseScreen(MDScreen):
 
     def on_enter(self, *args):
         # Obtener la lista completa de cursos
+        print('ALEIX: on_enter cursos')
         self.cursos_completos = self.get_cursos()
         self.mostrar_cursos(self.cursos_completos)
 

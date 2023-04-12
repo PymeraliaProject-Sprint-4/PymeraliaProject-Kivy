@@ -1,4 +1,10 @@
 __pycache__/
- *.pyc
- .vscode
- session.json
+*.pyc
+.vscode
+session.json
+.buildozer/
+.buildozer/*
+.idea/
+.idea/*
+bin/
+.bin/*
