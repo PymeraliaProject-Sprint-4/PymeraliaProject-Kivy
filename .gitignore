@@ -2,4 +2,5 @@ __pycache__/
  *.pyc
  .vscode
  session.json
- pymeshield.db
+
+pymeshield.db
