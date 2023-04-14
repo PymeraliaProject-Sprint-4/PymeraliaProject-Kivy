@@ -49,7 +49,7 @@ class PymeApp(MDApp):
     api = None
     
     url = None
-
+    
 
     def build(self):
         if platform in ['win', 'linux', 'macosx']:
@@ -64,52 +64,18 @@ class PymeApp(MDApp):
         self.rutaPath = Path(__file__).absolute().parent
         self.api = "http://localhost/api/"
 
-    def insert_data(self):
-        conn = sqlite3.connect('pymeshield.db')
-
-        cursor = conn.cursor()
-        
-        cursor.execute('DELETE FROM tasks')
-        
-        for i in self.api_data:
-            id = int(i['id'])
-            name = i['name']
-            recommendation = i['recommendation']
-            danger = i['peligro']
-            manages = i['manages']
-            price = i['price']
-            price_customer = i['price_customer']
-            
-            datos = [(id, name, recommendation, danger, manages, price, price_customer)]
-            
-            for dato in datos:
-                cursor.execute('INSERT INTO tasks (id, name, recommendation, danger, manages, price, price_customer) VALUES (?, ?, ?, ?, ?, ?, ?)', dato)
-
-
-            conn.commit()
-            
-        conn.close()
-
     def get_api(self, url):
 
         url = self.api + url
         response = requests.get(url)
         data = json.loads(response.text)
         self.api_data = data['data']
-        self.insert_data();
-        return self.api_data
-    
-    def get_api_data(self, url):
-    
-        url = self.api + url
-        response = requests.get(url)
-        data = json.loads(response.text)
-        self.api_data = data
         # self.insert_data();
         return self.api_data
 
     def get_api_devices(self):
-        url = self.url + "devicelist"
+        self.api = "http://localhost"  # Definimos la ruta para la api y la guardamos en una variable
+        url = f"{self.api}/api/devicelist"
         print(url)
         response = requests.get(url)
         data = json.loads(response.text)
@@ -129,17 +95,9 @@ class PymeApp(MDApp):
     def switch_screen(self, screen_name='login'):
         self.sm.current = screen_name
 
-    # Método que utilizaremos para recoger los datos del Json de Tareas y guardarlos
-    def getData(self):
-        return self.get_api_data()
-
-    # Método que utilizaremos para recoger los datos del Json de Presupuestos y guardarlos
-    def getPresuData(self):
-        return self.get_api_presu_data()
-
     def getDeviceData(self):
         return self.get_api_devices()
-
+    
 if __name__ == '__main__':
     app = PymeApp()
     app.run()
