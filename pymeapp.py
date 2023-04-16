@@ -82,6 +82,7 @@ class PymeApp(MDApp):
         # self.insert_data();
         return self.api_data
 
+
     def get_api_devices(self):
         self.api = "http://localhost"  # Definimos la ruta para la api y la guardamos en una variable
         url = f"{self.api}/api/devicelist"
