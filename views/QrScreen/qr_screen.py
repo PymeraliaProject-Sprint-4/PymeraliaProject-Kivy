@@ -35,5 +35,5 @@ class QrScreen(MDScreen):
     def goHome(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
-        app.switch_screen('home')
+        self.manager.current = 'Inicio'
 

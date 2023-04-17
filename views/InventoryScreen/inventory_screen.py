@@ -84,10 +84,10 @@ class InventoryScreen(MDScreen):
         app = MDApp.get_running_app()
         app.setRowDetails(row.id)
         # app.switch_screen('details_inventory')  # mostrar detalles de la tarea.
-        self.manager.current="details_inventory"
+        self.manager.current = "details_inventory"
         
     
     def open_camera(self, *args):
         app = MDApp.get_running_app()
-        app.root.current = "QR"
+        self.manager.current = "QR"
         
