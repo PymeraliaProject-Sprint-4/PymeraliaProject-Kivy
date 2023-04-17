@@ -6,7 +6,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.list import IconLeftWidget
 from kivymd.uix.list import ThreeLineIconListItem
 from kivy.clock import Clock
-
+import sqlite3
 from utils import load_kv
 import json
 
@@ -17,6 +17,52 @@ load_kv(__name__)
 
 class CourseScreen(MDScreen):
 
+    def get_data_sqlite(self):
+        conn = sqlite3.connect('pymeshield.db')
+
+        cursor = conn.cursor()
+    
+        cursor.execute('SELECT * FROM courses')
+        
+        rows = cursor.fetchall()
+        
+        data = []
+        
+        for row in rows:
+            data.append({
+            'id': row[0],
+            'name': row[1],
+            'description': row[2],
+            'date': row[3]
+            })
+
+        self.data = data
+        
+        return self.data        
+            
+    def insert_data(self, data):
+        conn = sqlite3.connect('pymeshield.db')
+
+        cursor = conn.cursor()
+        
+        cursor.execute('DELETE FROM courses')
+        
+        for i in data:
+            id = int(i['id'])
+            name = i['name']
+            description = i['description']
+            date = i['date']
+            
+            datos = [(id, name, description, date)]
+            
+            for dato in datos:
+                cursor.execute('INSERT INTO courses (id, name, description, date) VALUES (?, ?, ?, ?)', dato)
+                
+                conn.commit()
+            
+        conn.close()
+
+
     def on_enter(self, *args):
         # Obtener la lista completa de cursos
         self.cursos_completos = self.get_cursos()
@@ -24,9 +70,10 @@ class CourseScreen(MDScreen):
 
     def get_cursos(self):
         # Obtener la lista completa de cursos
-        url = f"{API_URL}/api/CursosCalificar-datos"
-        response = requests.get(url)
-        data = response.json()
+        app = MDApp.get_running_app()
+        ddbb = app.get_api_data('couser-user-data')
+        self.insert_data(ddbb)
+        data = self.get_data_sqlite()
 
         cursos = []
         for course in data:
@@ -34,8 +81,8 @@ class CourseScreen(MDScreen):
                 IconLeftWidget(
                     icon="book",
                 ),
-                text=f"curso-{course['id']}",
-                secondary_text=f"{course['name']}"
+                text=f"Curso- {course['name']}",
+                secondary_text=f"{course['description']}"
             )
             cursos.append(item)
 
