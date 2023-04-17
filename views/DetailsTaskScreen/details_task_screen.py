@@ -17,6 +17,7 @@ from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget
 import json  # importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path
 from utils import load_kv  # cargar ruta del script
+import sqlite3
 
 load_kv(__name__)
 
@@ -27,6 +28,32 @@ class DetailsTaskScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         app.switch_screen('dashboard')  # mostrar pantalla detalles tareas.
+
+    def get_data_sqlite(self):
+        conn = sqlite3.connect('pymeshield.db')
+
+        cursor = conn.cursor()
+    
+        cursor.execute('SELECT * FROM tasks')
+        
+        rows = cursor.fetchall()
+        
+        data = []
+        
+        for row in rows:
+            data.append({
+            'id': row[0],
+            'name': row[1],
+            'recommendation': row[2],
+            'danger': row[3],
+            'manages': row[4],
+            'price': row[5],
+            'price_customer': row[6]
+            })
+
+        self.data = data
+        
+        return self.data        
 
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
@@ -39,7 +66,7 @@ class DetailsTaskScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         id_tasca = app.rowPressed()
-        dataTareas = app.getData()
+        dataTareas = self.get_data_sqlite()
         # asignamos un valor a id_tasca accediendo con el parametro row y con id que es un campo del json
         id_tasca = int(id_tasca[6:])
 
