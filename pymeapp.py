@@ -98,7 +98,6 @@ class PymeApp(MDApp):
         return self.rowDetails
 
     def rowPressed(self):
-        print(self.rowDetails)
         return self.rowDetails
 
     def switch_screen(self, screen_name='login'):

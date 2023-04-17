@@ -73,8 +73,6 @@ class InventoryScreen(MDScreen):
 
         # obtenir la pantalla inventari
         current_screen = app.sm.get_screen("inventory")
-        # print('CURRENT SCREEN')
-        # print(current_screen)
 
         # retornem la llista de dispositius
         return layout
