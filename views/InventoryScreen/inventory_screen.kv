@@ -1,5 +1,5 @@
-#:import ZBarCam kivy_garden.zbarcam.ZBarCam
-#:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
+# #:import ZBarCam kivy_garden.zbarcam.ZBarCam
+# #:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
 
 <InventoryScreen>:
     id: inventory
@@ -19,6 +19,20 @@
             MDList:
                 id: list
 
+
+    MDTextField:
+        id: search_field
+        hint_text: 'Buscar dipositivo'
+        icon_right: "magnify"
+        helper_text_mode: "on_error"
+        helper_text: "Introduce un nombre valido"
+        mode: "fill"
+        pos_hint: {'center_x': 0.5}
+        fill_color: 0, 0, 0, .5
+        on_text: root.buscar(self.text)
+    MDRectangleFlatButton:
+        pos_hint: {'center_y': 0.88, 'x': 0.83}
+        # on_release: root.open_camera()
     MDFloatingActionButton:
         pos_hint: {'center_y': 0.09, 'x': 0.83}
         on_release: root.open_camera()
