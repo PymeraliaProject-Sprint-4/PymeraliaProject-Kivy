@@ -76,7 +76,6 @@ class PymeApp(MDApp):
     def get_api_devices(self):
         self.api = "http://localhost"  # Definimos la ruta para la api y la guardamos en una variable
         url = f"{self.api}/api/devicelist"
-        print(url)
         response = requests.get(url)
         data = json.loads(response.text)
         self.dataJsonDevice = []
