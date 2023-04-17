@@ -15,7 +15,7 @@ import db
 class SplashScreen(MDScreen):
     def on_enter(self, *args):
         print('[*ALEIX*]: Entering')
-        Clock.schedule_once(self.switch_to_home, 5)
+        Clock.schedule_once(self.switch_to_home, 1)
 
     def switch_to_home(self, dt):
         print('[*ALEIX*]: I\'m in switch_to_home')
