@@ -6,25 +6,25 @@
     MDBoxLayout:
         orientation:"vertical"
         padding:0, 70, 0, 0
+
+        TextInput:
+            id: search_field
+            hint_text: "Buscar Dispositivo..."
+            halign: "center"
+            size_hint_y: 0.065
+            size_hint_x: 1
+            multiline: False
+            on_text: root.buscar(self.text)
         MDScrollView:
             MDList:
                 id: list
 
-    MDTextField:
-        id: search_field
-        hint_text: 'Buscar dipositivo'
-        icon_right: "magnify"
-        helper_text_mode: "on_error"
-        helper_text: "Introduce un nombre valido"
-        mode: "fill"
-        pos_hint: {'center_x': 0.5}
-        fill_color: 0, 0, 0, .5
-        on_text: root.buscar(self.text)
-
-    MDRectangleFlatButton:
-        pos_hint: {'center_y': 0.88, 'x': 0.83}
+    MDFloatingActionButton:
+        pos_hint: {'center_y': 0.09, 'x': 0.83}
         on_release: root.open_camera()
+        md_bg_color: app.theme_cls.primary_color
         MDIcon:
-            icon: 'camera'
+            icon: 'qrcode-scan'
             halign: 'center'
+            
 
