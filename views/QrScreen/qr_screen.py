@@ -11,28 +11,27 @@ load_kv(__name__)
 class QrScreen(MDScreen):
 
     def calc(self, instance):
-        text = self.ids['qrlabel'].text
-        text = text[2:]
-        text = text[:-1]
-        print(text)
-        if (text != ''):
+        readQR = self.ids['qrlabel'].text
+        readQR = readQR[2:]
+        readQR = readQR[:-1]
+        if (readQR != ''): #TO DO que compruebe también que es un número, si no que no entre
             self.dialog = MDDialog(
-                text=text,
+                text=readQR,
                 buttons=[
                     MDFlatButton(
                         text="ver detalles",
                         theme_text_color="Custom",
-                        on_release=lambda x: self.close_dialog(x, text)
+                        on_release=lambda x: self.detailsQr(x, readQR)
                     )
                 ]
             )
             self.dialog.open()
             
     #cierra el mensaje de la ventana emergente
-    def close_dialog(self, instance, text):
+    def detailsQr(self, instance, readQR):
         self.dialog.dismiss()
         app = MDApp.get_running_app()
-        app.setRowDetails(text)
+        app.setRowDetails(readQR)
         self.manager.current = 'details_inventory'
         
 
