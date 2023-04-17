@@ -16,20 +16,25 @@ class QrScreen(MDScreen):
         text = text[:-1]
         print(text)
         if (text != ''):
-            MDDialog(
+            self.dialog = MDDialog(
                 text=text,
                 buttons=[
                     MDFlatButton(
-                        text="OK",
-                        theme_text_color="Custom"
+                        text="ver detalles",
+                        theme_text_color="Custom",
+                        on_release=lambda x: self.close_dialog(x, text)
                     )
                 ]
             )
             self.dialog.open()
             
     #cierra el mensaje de la ventana emergente
-    def close_dialog(self, instance):
+    def close_dialog(self, instance, text):
         self.dialog.dismiss()
+        app = MDApp.get_running_app()
+        app.setRowDetails(text)
+        self.manager.current = 'details_inventory'
+        
 
     # método que nos lleva a la pantalla "home"
     def goHome(self):

@@ -31,6 +31,16 @@ class DetailsInventoryScreen(MDScreen):
 
     def on_enter(self):
         try:
+
+            # Clear the text of the TextInput widgets
+            self.ids.text1.text = ''
+            self.ids.text2.text = ''
+            self.ids.text3.text = ''
+            self.ids.text4.text = ''
+            self.ids.text5.text = ''
+            self.ids.text6.text = ''
+            self.ids.text7.text = ''
+
             # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
             app = MDApp.get_running_app()
             id_inventory = app.rowPressed()
