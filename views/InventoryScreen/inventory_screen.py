@@ -60,16 +60,8 @@ class InventoryScreen(MDScreen):
                 on_press=self.detalles
             )
 
-<<<<<<< HEAD
-            app = MDApp.get_running_app()
-            self.ids.list.add_widget(item)
-
-        # obtenir la pantalla inventari
-        current_screen = app.sm.get_screen("inventory")
-=======
             #Pinta los widgets de cada dispositivo en una lista
             self.ids.listaDispositivos.add_widget(item)
->>>>>>> 95bf455f3eadea4afbede76f558613e18a37b792
 
         # retornem la llista de dispositius
         return layout
