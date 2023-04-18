@@ -39,5 +39,4 @@ class DetailsQuestionaryScreen(MDScreen):
 
         except Exception as e:
             # Handle any exceptions that may have occurred during the request.
-            print(f"An error occurred: {e}")
             Notify(text="Error al recuperar los datos", snack_type='error').open()

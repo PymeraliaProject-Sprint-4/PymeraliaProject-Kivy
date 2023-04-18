@@ -7,6 +7,7 @@ from kivymd.uix.scrollview import MDScrollView
 from kivy.clock import Clock
 import json  # importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path  # cargar ruta del script
+from updates import Update
 import requests
 import sqlite3
 
@@ -60,7 +61,10 @@ class PymeApp(MDApp):
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
         self.api = "http://localhost/api/"
-
+        
+    def update(self):
+        Update()
+        
     def get_api(self, url):
 
         url = self.api + url
@@ -84,7 +88,6 @@ class PymeApp(MDApp):
         return self.rowDetails
 
     def rowPressed(self):
-        print(self.rowDetails)
         return self.rowDetails
 
     def switch_screen(self, screen_name='login'):
