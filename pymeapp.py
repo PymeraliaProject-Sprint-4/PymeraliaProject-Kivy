@@ -8,6 +8,7 @@ from kivy.clock import Clock
 import json  # importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path  # cargar ruta del script
 from updates import Update
+from db import CreateDB
 import requests
 import sqlite3
 
@@ -50,6 +51,8 @@ class PymeApp(MDApp):
     
 
     def build(self):
+        CreateDB()
+        Update()
         if platform in ['win', 'linux', 'macosx']:
             # resolución más común móvil
             Window.size = (414, 750)
