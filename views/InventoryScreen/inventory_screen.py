@@ -44,7 +44,8 @@ class InventoryScreen(MDScreen):
 
     
     def on_enter(self, *args):
-        Clock.schedule_once(self.load_data)
+        #Clock.schedule_once(self.load_data)
+        pass
     
     def load_data(self, dt):
         scroll = ScrollView()

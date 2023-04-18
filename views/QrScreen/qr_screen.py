@@ -14,13 +14,13 @@ class QrScreen(MDScreen):
         text = text[2:]
         text = text[:-1]
         print(text)
-        if (text != ''):
-            MDDialog(
-                text=text,
-                buttons=[
-                    MDFlatButton(
-                        text="OK",
-                        theme_text_color="Custom"
-                    )
-                ]
-            ).open()
+        # if (text != ''):
+        #     MDDialog(
+        #         text=text,
+        #         buttons=[
+        #             MDFlatButton(
+        #                 text="OK",
+        #                 theme_text_color="Custom"
+        #             )
+        #         ]
+        #     ).open()

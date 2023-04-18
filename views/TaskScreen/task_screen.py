@@ -30,6 +30,7 @@ class TaskScreen(MDScreen):
         app = MDApp.get_running_app()
         #variable que guarda el resultado el método getTareasData()
         dataTareas = app.getData()
+        print(dataTareas)
             
         # Filtramos los datos según el texto de búsqueda
         search_results = [search_text for search_text in dataTareas if item.lower() in search_text['name'].lower()]
@@ -64,10 +65,12 @@ class TaskScreen(MDScreen):
         app = MDApp.get_running_app()
         print('[*ALEIX*]: Let\'s try to get the data from the API')
         app.get_api('all-data')
-        print('[*ALEIX*]: Another method')
-        app.get_api_data()
         print('[*ALEIX*]: Calling app.getData()')
         dataTareas = app.getData()
+        print('-------------------------')
+        print('[***ALEIX***]: DATA')
+        print(dataTareas)
+        print('-------------------------')
         self.ids.tareas.clear_widgets()
 
         print('[*ALEIX*]: Let\'s gonna do the for NOW')

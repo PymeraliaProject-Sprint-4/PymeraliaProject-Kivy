@@ -10,6 +10,7 @@ from pathlib import Path  # cargar ruta del script
 import requests
 import sqlite3
 import db
+import kivy
 
 
 class SplashScreen(MDScreen):
@@ -21,8 +22,7 @@ class SplashScreen(MDScreen):
         print('[*ALEIX*]: I\'m in switch_to_home')
         app = MDApp.get_running_app()
         print('[*ALEIX*]: App saved')
-        app.switch_screen('tasks')
-
+        app.switch_screen('home')
 
 class ContentNavigationDrawer(MDScrollView):
     manager = ObjectProperty()
@@ -84,18 +84,15 @@ class Main(MDApp):
             price = i['price']
             price_customer = i['price_customer']
             
-            datos = [(id, name, recommendation, danger, manages, price, price_customer)]
+            dato = (id, name, recommendation, danger, manages, price, price_customer)
             
-            for dato in datos:
-                cursor.execute('INSERT INTO tasks (id, name, recommendation, danger, manages, price, price_customer) VALUES (?, ?, ?, ?, ?, ?, ?)', dato)
-
+            cursor.execute('INSERT INTO tasks (id, name, recommendation, danger, manages, price, price_customer) VALUES (?, ?, ?, ?, ?, ?, ?)', dato)
 
             conn.commit()
             
         conn.close()
 
     def get_api(self, url):
-
         url = self.api + url
         response = requests.get(url)
         data = json.loads(response.text)
@@ -112,6 +109,9 @@ class Main(MDApp):
         cursor.execute('SELECT * FROM tasks')
         
         rows = cursor.fetchall()
+        
+        print('[***ALEIX***]: CURSOR')
+        print(rows)
         
         data = []
         
@@ -144,7 +144,7 @@ class Main(MDApp):
         return self.dataJsonPresu
 
     def get_api_devices(self):
-        url = self.url + "devicelist"
+        url = self.api + "devicelist"
         print(url)
         response = requests.get(url)
         data = json.loads(response.text)
@@ -162,9 +162,16 @@ class Main(MDApp):
         return self.rowDetails
 
     def switch_screen(self, screen_name='login'):
-        print('[*ALEIX*]: App.switch_screen called, screen: {}'.format(screen_name))
-        self.sm.current = screen_name
-        print('[*ALEIX*]: Setted the new screen')
+        try:
+            print('[*ALEIX*]: App.switch_screen called, screen: {}'.format(screen_name))
+            self.sm.current = screen_name
+            print('[*ALEIX*]: Setted the new screen')
+        except:
+            print('ERROR')
+        else:
+            print('success')
+        finally:
+            print('APPEAR')
 
     # Método que utilizaremos para recoger los datos del Json de Tareas y guardarlos
     def getData(self):
