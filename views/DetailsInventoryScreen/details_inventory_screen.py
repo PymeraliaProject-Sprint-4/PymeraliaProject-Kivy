@@ -58,6 +58,9 @@ class DetailsInventoryScreen(MDScreen):
                     self.ids.text6.text = f"MAC Ethernet: {i['mac_ethernet']}"
                     self.ids.text7.text = f"MAC Wifi: {i['mac_wifi']}"
                     break
+                else:
+                    self.ids.text1.text = "Este dispositivo aún no está registrado."
+                
 
         except Exception as e:
             # Handle any exceptions that may have occurred during the request.
