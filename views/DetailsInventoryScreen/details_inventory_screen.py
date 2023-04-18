@@ -54,13 +54,13 @@ class DetailsInventoryScreen(MDScreen):
             for i in data:
                 if i['id'] == id_inventory:
                     status = i['brand']
-                    self.ids.text1.text = f"{i['brand']}"
-                    self.ids.text2.text = f"{i['model']}"
-                    self.ids.text3.text = f"{i['description']}"
-                    self.ids.text4.text = f"{i['state']}"
-                    self.ids.text5.text = f"{i['serial_number']}"
-                    self.ids.text6.text = f"{i['mac_ethernet']}"
-                    self.ids.text7.text = f"{i['mac_wifi']}"
+                    self.ids.text1.text = f"Marca: {i['brand']}"
+                    self.ids.text2.text = f"Modelo: {i['model']}"
+                    self.ids.text3.text = f"Descripción del dispositivo: {i['description']}"
+                    self.ids.text4.text = f"Estado del dispositivo: {i['state']}"
+                    self.ids.text5.text = f"Número de serie: {i['serial_number']}"
+                    self.ids.text6.text = f"MAC Ethernet: {i['mac_ethernet']}"
+                    self.ids.text7.text = f"MAC Wifi: {i['mac_wifi']}"
                     break
 
         except Exception as e:
