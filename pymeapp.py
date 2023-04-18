@@ -52,6 +52,7 @@ class PymeApp(MDApp):
 
     def build(self):
         CreateDB()
+        Update()
         if platform in ['win', 'linux', 'macosx']:
             # resolución más común móvil
             Window.size = (414, 750)
