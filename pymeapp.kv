@@ -78,6 +78,7 @@ ScreenManager:
         md_bg_color: "#ff6720"
         specific_text_color: "black"
         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+        right_action_items: [["refresh", lambda x: app.update()]]
         
     MDNavigationLayout:
 
