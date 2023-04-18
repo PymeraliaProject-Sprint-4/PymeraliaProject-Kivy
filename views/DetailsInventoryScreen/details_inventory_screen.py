@@ -14,6 +14,7 @@ from kivymd.uix.scrollview import MDScrollView
 from kivy.clock import Clock
 from utils import Notify
 import requests
+from views.InventoryScreen.inventory_screen import get_data_sqlite
 # import para crear listas (cambia dependiendo de los campos que queremos que tenga la lista), le pasamos diferentes imports de la misma biblioteca
 from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget
 import json  # importamos la libreria de python que nos permite trabajar con json
@@ -40,10 +41,7 @@ class DetailsInventoryScreen(MDScreen):
             # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
             app = MDApp.get_running_app()
             id_inventory = app.rowPressed()
-            url = "http://localhost/api/devicelist"
-            response = requests.get(url)
-            response.raise_for_status()
-            data = response.json()
+            data = get_data_sqlite()
             id_inventory = int(id_inventory)       
             
 

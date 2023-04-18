@@ -8,6 +8,7 @@ from kivy.uix.scrollview import ScrollView
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.list import MDList, IconLeftWidget
 from kivymd.uix.list import TwoLineIconListItem
+import sqlite3
 
 from utils import load_kv
 import json
@@ -15,10 +16,40 @@ import bcrypt
 
 load_kv(__name__)
 
+
+data = []
+def get_data_sqlite():
+    conn = sqlite3.connect('pymeshield.db')
+
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT * FROM inventories')
+    
+    rows = cursor.fetchall()
+    
+    data = []
+    
+    for row in rows:
+        data.append({
+        'id': row[0],
+        'brand': row[1],
+        'model': row[2],
+        'state': row[3],
+        'serial_number': row[4],
+        'mac_ethernet': row[5],
+        'mac_wifi': row[6],
+        'description': row[7]
+        })
+
+    data = data
+    return data
+
+
 class InventoryScreen(MDScreen):
     def buscar(self, item):
-
-        searchDevice = [search_field for search_field in self.datosDevices if (item.lower() in search_field['brand'].lower()) or (item.isdigit() and int(item) == search_field['id'])]
+        data = get_data_sqlite()
+        
+        searchDevice = [search_field for search_field in data if (item.lower() in search_field['brand'].lower()) or (item.lower() in search_field['state'].lower()) or (item.isdigit() and int(item) == search_field['id'])]
         
         #actualitzar la llista filtrada
         searchDeviceList = self.ids.listaDispositivos
@@ -42,9 +73,9 @@ class InventoryScreen(MDScreen):
     def on_enter(self, *args):
         self.ids.listaDispositivos.clear_widgets()
 
-        app = MDApp.get_running_app()
-        datosDevices = app.get_api_data('devicelist')
-        self.datosDevices = datosDevices
+        # app = MDApp.get_running_app()
+        datosDevices = get_data_sqlite()
+        # self.datosDevices = datosDevices
 
         # Crear el layout principal
         layout = MDBoxLayout()
