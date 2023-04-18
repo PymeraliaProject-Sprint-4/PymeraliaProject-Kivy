@@ -17,7 +17,7 @@ from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget
 import json  # importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path
 from utils import load_kv  # cargar ruta del script
-from views.TaskScreen.task_screen import TaskScreen
+from views.TaskScreen.task_screen import get_data_sqlite
 import sqlite3
 
 load_kv(__name__)
@@ -41,7 +41,7 @@ class DetailsTaskScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         id_tasca = app.rowPressed()
-        dataTareas = TaskScreen.get_data_sqlite()
+        dataTareas = get_data_sqlite()
         # asignamos un valor a id_tasca accediendo con el parametro row y con id que es un campo del json
         id_tasca = int(id_tasca[6:])
 

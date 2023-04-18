@@ -42,7 +42,7 @@ class DetailsBudgetScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         id_presu = app.rowPressed()
-        dataPresu = BudgetScreen.get_data_sqlite()
+        dataPresu = get_data_sqlite()
         id_presu = int(id_presu[12:])
 
         for i in dataPresu:

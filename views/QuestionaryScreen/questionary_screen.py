@@ -9,30 +9,32 @@ import sqlite3
 
 load_kv(__name__)
 
+data = []
+
+def get_data_sqlite():
+    conn = sqlite3.connect('pymeshield.db')
+
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT * FROM reports')
+    
+    rows = cursor.fetchall()
+    
+    data = []
+    
+    for row in rows:
+        data.append({
+        'id': row[0],
+        'name': row[1],
+        'status': row[2],
+        'date': row[3]
+        })
+
+    data = data
+    
+    return data    
 
 class QuestionaryScreen(MDScreen):
-    def get_data_sqlite(self):
-        conn = sqlite3.connect('pymeshield.db')
-
-        cursor = conn.cursor()
-    
-        cursor.execute('SELECT * FROM reports')
-        
-        rows = cursor.fetchall()
-        
-        data = []
-        
-        for row in rows:
-            data.append({
-            'id': row[0],
-            'name': row[1],
-            'status': row[2],
-            'date': row[3]
-            })
-
-        self.data = data
-        
-        return self.data        
             
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
@@ -40,7 +42,7 @@ class QuestionaryScreen(MDScreen):
         app.switch_screen('questionary')
 
     def on_enter(self):
-        data = self.get_data_sqlite()
+        data = get_data_sqlite()
         self.ids.informes.clear_widgets()
         
         for report in data:

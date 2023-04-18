@@ -23,6 +23,29 @@ load_kv(__name__)
 
 # Esta clase es la clase que se encarga de las acciones que va a realizar el buscador.
 
+data = []
+
+def get_data_sqlite():
+    conn = sqlite3.connect('pymeshield.db')
+
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT * FROM budgets')
+    
+    rows = cursor.fetchall()
+    
+    data = []
+    
+    for row in rows:
+        data.append({
+        'id': row[0],
+        'price': row[1],
+        'accepted': row[2],
+        })
+
+    data = data
+    
+    return data    
 
 class SearchE4(MDTextField):
     pass
@@ -31,7 +54,7 @@ class SearchE4(MDTextField):
 class BudgetScreen(MDScreen):
     def calc(self, item):
         # variable que guarda el resultado el método getTareasData()
-        data = self.get_data_sqlite()
+        data = get_data_sqlite()
 
         # Filtramos los datos según el precio de búsqueda
         search_results = [search_text for search_text in data if str(item) in str(search_text['price'])]
@@ -53,29 +76,7 @@ class BudgetScreen(MDScreen):
                     secondary_text=f"{result['accepted']}",  # línea 2
                     on_press=self.detalles
                 )
-            )
-    
-    def get_data_sqlite(self):
-        conn = sqlite3.connect('pymeshield.db')
-
-        cursor = conn.cursor()
-    
-        cursor.execute('SELECT * FROM budgets')
-        
-        rows = cursor.fetchall()
-        
-        data = []
-        
-        for row in rows:
-            data.append({
-            'id': row[0],
-            'price': row[1],
-            'accepted': row[2],
-            })
-
-        self.data = data
-        
-        return self.data          
+            )      
         
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
@@ -83,7 +84,7 @@ class BudgetScreen(MDScreen):
         app.switch_screen('budgets')  # mostrar pantalla tareas.
 
     def on_enter(self):
-        data = self.get_data_sqlite()
+        data = get_data_sqlite()
 
         self.ids.presupuesto.clear_widgets()
 
