@@ -19,7 +19,7 @@ class QrScreen(MDScreen):
                 text=readQR,
                 buttons=[
                     MDFlatButton(
-                        text="ver detalles",
+                        text="Ver Detalles",
                         theme_text_color="Custom",
                         on_release=lambda x: self.detailsQr(x, readQR)
                     )
@@ -27,7 +27,7 @@ class QrScreen(MDScreen):
             )
             self.dialog.open()
             
-    #cierra el mensaje de la ventana emergente
+    #cierra el mensaje de la ventana emergente y nos dirige a la pantalla de detalles del dispositivo
     def detailsQr(self, instance, readQR):
         self.dialog.dismiss()
         app = MDApp.get_running_app()

@@ -1,60 +1,56 @@
 <DetailsInventoryScreen>
-    # MDTopAppBar:
-    #     title: "PymeShield"
-    #     elevation: 1
-    #     pos_hint: {"top": 1}
-    #     md_bg_color: "#ff6720"
-    #     specific_text_color: "black"
-    #     left_action_items: [["keyboard-backspace", lambda x: root.index()]]
     MDBoxLayout:
-        # padding:0, 50, 0, 0
+        # padding:0, 100, 0, 0
         orientation: "vertical"
+        size_hint_y: None
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        spacing: dp(50)
         MDLabel:
             id: text1
-            text:"Hola"
-            pos_hint: {"center_y": .48}
+            text:""
             halign: "center"
+            height: "50dp"
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
         MDLabel:
             id: text2
             text:""
-            pos_hint: {"center_y": .41}
             halign: "center"
+            height: "50dp"
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
         MDLabel:
             id: text3
             text:""
-            pos_hint: {"center_y": .34}
+            height: "50dp"
             halign: "center"
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
         MDLabel:
             id: text4
             text:""
-            pos_hint: {"center_y": .34}
+            height: "50dp"
             halign: "center"
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
         MDLabel:
             id: text5
             text:""
-            pos_hint: {"center_y": .34}
+            height: "50dp"
             halign: "center"
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
         MDLabel:
             id: text6
             text:""
-            pos_hint: {"center_y": .34}
+            height: "50dp"
             halign: "center"
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
         MDLabel:
             id: text7
             text:""
-            pos_hint: {"center_y": .34}
+            height: "50dp"
             halign: "center"
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1

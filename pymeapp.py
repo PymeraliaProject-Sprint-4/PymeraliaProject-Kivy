@@ -38,9 +38,6 @@ class PymeApp(MDApp):
     
     data = None
     
-    # Variable global que contendrá les dades del JSON de dispositius
-    dataJsonDevice = None
-    
     # indicamos donde se encuentra el archivo actual
     rutaPath = None
     
@@ -82,17 +79,6 @@ class PymeApp(MDApp):
         # self.insert_data();
         return self.api_data
 
-
-    def get_api_devices(self):
-        self.api = "http://localhost"  # Definimos la ruta para la api y la guardamos en una variable
-        url = f"{self.api}/api/devicelist"
-        response = requests.get(url)
-        data = json.loads(response.text)
-        self.dataJsonDevice = []
-        for i in range(len(data)):
-            self.dataJsonDevice.append(data[i])
-        return self.dataJsonDevice
-      
     def setRowDetails(self, row):
         self.rowDetails = row
         return self.rowDetails
@@ -104,8 +90,6 @@ class PymeApp(MDApp):
     def switch_screen(self, screen_name='login'):
         self.sm.current = screen_name
 
-    def getDeviceData(self):
-        return self.get_api_devices()
     
 if __name__ == '__main__':
     app = PymeApp()
