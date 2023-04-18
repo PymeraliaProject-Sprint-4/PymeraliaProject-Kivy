@@ -76,31 +76,6 @@ class TaskScreen(MDScreen):
         self.data = data
         
         return self.data        
-            
-    def insert_data(self, data):
-        conn = sqlite3.connect('pymeshield.db')
-
-        cursor = conn.cursor()
-        
-        cursor.execute('DELETE FROM tasks')
-        
-        for i in data:
-            id = int(i['id'])
-            name = i['name']
-            recommendation = i['recommendation']
-            danger = i['peligro']
-            manages = i['manages']
-            price = i['price']
-            price_customer = i['price_customer']
-            
-            datos = [(id, name, recommendation, danger, manages, price, price_customer)]
-            
-            for dato in datos:
-                cursor.execute('INSERT INTO tasks (id, name, recommendation, danger, manages, price, price_customer) VALUES (?, ?, ?, ?, ?, ?, ?)', dato)
-                
-                conn.commit()
-            
-        conn.close()
                 
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
@@ -108,9 +83,6 @@ class TaskScreen(MDScreen):
         app.switch_screen('tasks') #mostrar pantalla tareas.
         
     def on_enter(self):
-        app = MDApp.get_running_app()
-        ddbb = app.get_api('all-data')
-        self.insert_data(ddbb)
         data = self.get_data_sqlite()
         self.ids.tareas.clear_widgets()
 

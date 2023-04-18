@@ -75,28 +75,7 @@ class BudgetScreen(MDScreen):
 
         self.data = data
         
-        return self.data   
-            
-    def insert_data(self, data):
-        conn = sqlite3.connect('pymeshield.db')
-
-        cursor = conn.cursor()
-        
-        cursor.execute('DELETE FROM budgets')
-        
-        for i in data:
-            id = int(i['id'])
-            price = i['price']
-            accepted = i['accepted']
-            
-            datos = [(id, price, accepted)]
-            
-            for dato in datos:
-                cursor.execute('INSERT INTO budgets (id, price, accepted) VALUES (?, ?, ?)', dato)
-                
-                conn.commit()
-            
-        conn.close()
+        return self.data          
         
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
@@ -104,10 +83,6 @@ class BudgetScreen(MDScreen):
         app.switch_screen('budgets')  # mostrar pantalla tareas.
 
     def on_enter(self):
-        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
-        app = MDApp.get_running_app()
-        ddbb = app.get_api_data('budgets-data')
-        self.insert_data(ddbb)
         data = self.get_data_sqlite()
 
         self.ids.presupuesto.clear_widgets()
