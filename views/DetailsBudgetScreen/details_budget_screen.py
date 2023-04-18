@@ -17,7 +17,7 @@ from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget
 import json  # importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path
 from utils import load_kv  # cargar ruta del script
-from views.BudgetScreen.budget_screen import BudgetScreen
+from views.BudgetScreen.budget_screen import get_data_sqlite
 import sqlite3
 
 load_kv(__name__)
