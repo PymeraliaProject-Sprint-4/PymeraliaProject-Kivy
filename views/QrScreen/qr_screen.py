@@ -14,7 +14,7 @@ class QrScreen(MDScreen):
         readQR = self.ids['qrlabel'].text
         readQR = readQR[2:]
         readQR = readQR[:-1]
-        if (readQR != ''): #TO DO que compruebe también que es un número, si no que no entre
+        if (readQR.isdigit()): #TO DO que compruebe también que es un número, si no que no entre
             self.dialog = MDDialog(
                 text=readQR,
                 buttons=[
@@ -26,6 +26,8 @@ class QrScreen(MDScreen):
                 ]
             )
             self.dialog.open()
+        else:
+            print('No entro porque no soy un número')
             
     #cierra el mensaje de la ventana emergente y nos dirige a la pantalla de detalles del dispositivo
     def detailsQr(self, instance, readQR):
