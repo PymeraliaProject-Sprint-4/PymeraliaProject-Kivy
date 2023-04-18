@@ -20,6 +20,34 @@ import sqlite3
 
 load_kv(__name__)
 
+data = []
+
+def get_data_sqlite():
+    conn = sqlite3.connect('pymeshield.db')
+
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT * FROM tasks')
+    
+    rows = cursor.fetchall()
+    
+    data = []
+    
+    for row in rows:
+        data.append({
+        'id': row[0],
+        'name': row[1],
+        'recommendation': row[2],
+        'danger': row[3],
+        'manages': row[4],
+        'price': row[5],
+        'price_customer': row[6]
+        })
+
+    data = data
+    
+    return data     
+
 # Esta clase es la clase que se encarga de las acciones que va a realizar el buscador.
 class SearchE4(MDTextField): 
     pass
@@ -27,7 +55,7 @@ class SearchE4(MDTextField):
 class TaskScreen(MDScreen):
     def calc(self, item):
         #variable que guarda el resultado el método getTareasData()
-        data = self.get_data_sqlite()
+        data = get_data_sqlite()
             
         # Filtramos los datos según el texto de búsqueda
         search_results = [search_text for search_text in data if item.lower() in search_text['name'].lower()]
@@ -50,68 +78,14 @@ class TaskScreen(MDScreen):
                     # secondary_text=f"Descripcion {result['descripcion']}",
                 )
             )
-            
-    def get_data_sqlite(self):
-        conn = sqlite3.connect('pymeshield.db')
-
-        cursor = conn.cursor()
-    
-        cursor.execute('SELECT * FROM tasks')
-        
-        rows = cursor.fetchall()
-        
-        data = []
-        
-        for row in rows:
-            data.append({
-            'id': row[0],
-            'name': row[1],
-            'recommendation': row[2],
-            'danger': row[3],
-            'manages': row[4],
-            'price': row[5],
-            'price_customer': row[6]
-            })
-
-        self.data = data
-        
-        return self.data        
-            
-    def insert_data(self, data):
-        conn = sqlite3.connect('pymeshield.db')
-
-        cursor = conn.cursor()
-        
-        cursor.execute('DELETE FROM tasks')
-        
-        for i in data:
-            id = int(i['id'])
-            name = i['name']
-            recommendation = i['recommendation']
-            danger = i['peligro']
-            manages = i['manages']
-            price = i['price']
-            price_customer = i['price_customer']
-            
-            datos = [(id, name, recommendation, danger, manages, price, price_customer)]
-            
-            for dato in datos:
-                cursor.execute('INSERT INTO tasks (id, name, recommendation, danger, manages, price, price_customer) VALUES (?, ?, ?, ?, ?, ?, ?)', dato)
-                
-                conn.commit()
-            
-        conn.close()
-                
+                   
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         app.switch_screen('tasks') #mostrar pantalla tareas.
         
     def on_enter(self):
-        app = MDApp.get_running_app()
-        ddbb = app.get_api('all-data')
-        self.insert_data(ddbb)
-        data = self.get_data_sqlite()
+        data = get_data_sqlite()
         self.ids.tareas.clear_widgets()
 
         for i in data: #bucle que recorre el rango que le pasemos como parametro

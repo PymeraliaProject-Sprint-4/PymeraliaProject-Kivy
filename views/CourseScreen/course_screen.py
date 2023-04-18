@@ -39,29 +39,6 @@ class CourseScreen(MDScreen):
         self.data = data
         
         return self.data        
-            
-    def insert_data(self, data):
-        conn = sqlite3.connect('pymeshield.db')
-
-        cursor = conn.cursor()
-        
-        cursor.execute('DELETE FROM courses')
-        
-        for i in data:
-            id = int(i['id'])
-            name = i['name']
-            description = i['description']
-            date = i['date']
-            
-            datos = [(id, name, description, date)]
-            
-            for dato in datos:
-                cursor.execute('INSERT INTO courses (id, name, description, date) VALUES (?, ?, ?, ?)', dato)
-                
-                conn.commit()
-            
-        conn.close()
-
 
     def on_enter(self, *args):
         # Obtener la lista completa de cursos
@@ -69,10 +46,6 @@ class CourseScreen(MDScreen):
         self.mostrar_cursos(self.cursos_completos)
 
     def get_cursos(self):
-        # Obtener la lista completa de cursos
-        app = MDApp.get_running_app()
-        ddbb = app.get_api_data('couser-user-data')
-        self.insert_data(ddbb)
         data = self.get_data_sqlite()
 
         cursos = []
