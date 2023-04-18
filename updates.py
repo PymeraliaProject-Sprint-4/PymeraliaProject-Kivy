@@ -22,6 +22,32 @@ def dataBudgets(data):
             conn.commit()
         
     conn.close()
+   
+def dataInventory(data):
+    conn = sqlite3.connect('pymeshield.db')
+
+    cursor = conn.cursor()
+    
+    cursor.execute('DELETE FROM inventories')
+    
+    for i in data:
+        id = int(i['id'])
+        brand = i['brand']
+        model = i['model']
+        description = i['description']
+        state = i['state']
+        serial_number = i['serial_number']
+        mac_ethernet = i['mac_ethernet']
+        mac_wifi = i['mac_wifi']
+        
+        datos = [(id, brand, model, description, state, serial_number, mac_ethernet, mac_wifi)]
+        
+        for dato in datos:
+            cursor.execute('INSERT INTO inventories (id, brand, model, description, state, serial_number, mac_ethernet, mac_wifi) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', dato)
+            
+            conn.commit()
+        
+    conn.close()
     
 def dataReports(data):
     conn = sqlite3.connect('pymeshield.db')
@@ -121,7 +147,9 @@ def Update():
     databudgets = get_api_data('budgets-data')
     datareports = get_api_data('kivy/report')
     datacourses = get_api_data('couser-user-data')
+    datainventories = get_api_data('devicelist')
     dataTasks(datatasks)
     dataBudgets(databudgets)
     dataReports(datareports)
     dataCourses(datacourses)
+    dataInventory(datainventories)

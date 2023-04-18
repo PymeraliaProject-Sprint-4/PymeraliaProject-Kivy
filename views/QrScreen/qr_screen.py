@@ -18,13 +18,10 @@ class QrScreen(MDScreen):
         
     def leerQR(self, instance):
         readQR = self.ids['qrlabel'].text
-        # print(readQR)
         readQR = readQR[2:-1]
-        # print(readQR)
 
         if (self.contador == False):
             if not readQR.isnumeric():
-                print('No entro porque no soy un número')
                 Notify(text="¡QR no válido!", snack_type='error').open()
             else:
                 self.detailsQr(None, readQR)
@@ -43,5 +40,4 @@ class QrScreen(MDScreen):
 
     def goHome(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
-        app = MDApp.get_running_app()
         self.manager.current = 'Inicio'
