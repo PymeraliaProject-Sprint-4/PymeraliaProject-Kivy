@@ -35,7 +35,8 @@ def get_data_sqlite():
     return data    
 
 class QuestionaryScreen(MDScreen):
-            
+    reports = []
+    
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
@@ -46,6 +47,7 @@ class QuestionaryScreen(MDScreen):
         self.ids.informes.clear_widgets()
         
         for report in data:
+            self.reports.append(report)
             self.ids.informes.add_widget(
                 OneLineIconListItem(
                     IconLeftWidget(
