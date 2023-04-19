@@ -3,6 +3,8 @@ from kivymd.uix.screen import MDScreen
 from utils import Notify, load_kv
 import requests
 from kivy.storage.jsonstore import JsonStore # libreria para las sessiones
+from updates import Update
+from db import CreateDB
 
 load_kv(__name__)
 
@@ -34,13 +36,17 @@ class LoginScreen(MDScreen):
             # Redireccionar al login si la respuesta del servidor es correcta
             Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
             app.switch_screen('dashboard')
-            # Recuperamos el token de sessión y el company_id para poder filtrar
+            # Recuperamos el token de sessión, el company_id para poder filtrar y el tipo de usuario
             token = response.json().get('token')
             company_id = response.json().get('company_id')
-            print(response.json())
-            # Guardamos el token en la session y el company_id
+            type = response.json().get('user_type')
+            # print(response.json())
+            # Guardamos el token, el company_id y el tipo de usuario en la session
             self.session.put('token',token=token)
             self.session.put('company_id', company_id=company_id)
+            self.session.put('type', type=type)
+            CreateDB()
+            Update()
 
         else:
             # Si la respuesta es incorrecta, se muestra el mensaje de error
