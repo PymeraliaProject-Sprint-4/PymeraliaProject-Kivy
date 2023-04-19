@@ -7,6 +7,9 @@ from kivy.storage.jsonstore import JsonStore # libreria para las sessiones
 load_kv(__name__)
 
 class LoginScreen(MDScreen):
+    def on_enter(self, *args):
+        print('[*ALEIX*]: On enter login')
+        
     def open(self):
         app = MDApp.get_running_app()
         self.ids.email.focus = True
@@ -27,7 +30,7 @@ class LoginScreen(MDScreen):
         app.switch_screen('dashboard')
 
         # Envía la solicitud POST con los datos de email y password
-        response = requests.post('http://localhost/api/loginPhone', data={'email': email, 'password': password})
+        response = requests.post('http://192.168.224.241/api/loginPhone', data={'email': email, 'password': password})
 
         if response.status_code == 200:
             # Redireccionar al login si la respuesta del servidor es correcta

@@ -19,7 +19,7 @@ class ProfileScreen(MDScreen):
         headers = {'Authorization': 'Bearer ' + session_token}
 
         # Realizar la solicitud GET a la API
-        response = requests.get('http://localhost/api/user', headers=headers)
+        response = requests.get('http://192.168.224.241/api/user', headers=headers)
         
         
 
@@ -38,7 +38,7 @@ class ProfileScreen(MDScreen):
 
             #comprueba si el dato que recoge existe o no
             if data['profile_image'] is not None:
-                image_url = "http://localhost/img/profile_images/" + data['profile_image'] #guarda la url donde se encuentra la imagen
+                image_url = "http://192.168.224.241/img/profile_images/" + data['profile_image'] #guarda la url donde se encuentra la imagen
                 image_path = os.path.join(os.getcwd(), "./PymeraliaProject-Kivy/profile_images", data['profile_image']) #os.path.join() une varias rutas, os.getcwd() obtiene el directorio actual
                 response = requests.get(image_url) #solicitud HTTP GET a la url
                 with open(image_path, "wb") as f: #abre el archivo de forma binaria para no perder memoria
