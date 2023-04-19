@@ -57,10 +57,14 @@ class DetailsInventoryScreen(MDScreen):
                     self.ids.text7.text = f"MAC Wifi: {i['mac_wifi']}"
                     break
                 else:
-                    self.ids.text1.text = "Este dispositivo aún no está registrado."
+                    self.ids.text1.text = "Este dispositivo aún no está registrado o NO le pertenece, porfavor pruebe de escanear un código QR válido."
                 
 
         except Exception as e:
             # Handle any exceptions that may have occurred during the request.
             print(f"An error occurred: {e}")
             Notify(text="Error al recuperar los datos", snack_type='error').open()
+    
+    def open_camera(self, *args):
+        app = MDApp.get_running_app()
+        self.manager.current = "QR"
