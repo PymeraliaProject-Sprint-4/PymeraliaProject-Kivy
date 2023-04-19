@@ -11,16 +11,20 @@ from updates import Update
 from db import CreateDB
 import requests
 import sqlite3
+import db
+import kivy
 
 
 class SplashScreen(MDScreen):
     def on_enter(self, *args):
-        Clock.schedule_once(self.switch_to_home, 5)
+        print('[*ALEIX*]: Entering')
+        Clock.schedule_once(self.switch_to_home, 1)
 
     def switch_to_home(self, dt):
+        print('[*ALEIX*]: I\'m in switch_to_home')
         app = MDApp.get_running_app()
+        print('[*ALEIX*]: App saved')
         app.switch_screen('login')
-
 
 class ContentNavigationDrawer(MDScrollView):
     manager = ObjectProperty()
@@ -31,7 +35,7 @@ class Dashboard(MDScreen):
     pass
 
 
-class PymeApp(MDApp):
+class Main(MDApp):
 
     # Variable global que contendrá self.root
     sm = None
@@ -63,13 +67,12 @@ class PymeApp(MDApp):
         self.title = "Pymeshield"
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
-        self.api = "http://localhost/api/"
+        self.api = "http://192.168.224.241/api/"
         
     def update(self):
         Update()
         
     def get_api(self, url):
-
         url = self.api + url
         response = requests.get(url)
         data = json.loads(response.text)
@@ -94,9 +97,18 @@ class PymeApp(MDApp):
         return self.rowDetails
 
     def switch_screen(self, screen_name='login'):
-        self.sm.current = screen_name
+        try:
+            print('[*ALEIX*]: App.switch_screen called, screen: {}'.format(screen_name))
+            self.sm.current = screen_name
+            print('[*ALEIX*]: Setted the new screen')
+        except:
+            print('ERROR')
+        else:
+            print('success')
+        finally:
+            print('APPEAR')
 
     
 if __name__ == '__main__':
-    app = PymeApp()
+    app = Main()
     app.run()

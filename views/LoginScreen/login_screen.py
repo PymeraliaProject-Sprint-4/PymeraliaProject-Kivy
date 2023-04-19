@@ -9,6 +9,9 @@ from db import CreateDB
 load_kv(__name__)
 
 class LoginScreen(MDScreen):
+    def on_enter(self, *args):
+        print('[*ALEIX*]: On enter login')
+        
     def open(self):
         app = MDApp.get_running_app()
         self.ids.email.focus = True
