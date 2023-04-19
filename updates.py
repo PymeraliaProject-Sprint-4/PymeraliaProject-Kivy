@@ -1,6 +1,7 @@
 import json  # importamos la libreria de python que nos permite trabajar con json
 import requests
 import sqlite3
+from kivy.storage.jsonstore import JsonStore # libreria para las sesiones
 
 def dataBudgets(data):
     conn = sqlite3.connect('pymeshield.db')
@@ -143,11 +144,16 @@ def get_api_data(url):
     return api_data2
 
 def Update():
+    #Recuperar company_id session y transformar en string para poder hacer la petición a la Api
+    session = JsonStore('session.json')
+    session_companyID = str(session.get('company_id')['company_id'])
+
+    
     datatasks = get_api('all-data')
     databudgets = get_api_data('budgets-data')
     datareports = get_api_data('kivy/report')
     datacourses = get_api_data('couser-user-data')
-    datainventories = get_api_data('devicelist')
+    datainventories = get_api_data('devicelist/' + session_companyID)
     dataTasks(datatasks)
     dataBudgets(databudgets)
     dataReports(datareports)

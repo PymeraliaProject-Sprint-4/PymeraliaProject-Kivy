@@ -28,15 +28,19 @@ class LoginScreen(MDScreen):
 
         # Envía la solicitud POST con los datos de email y password
         response = requests.post('http://localhost/api/loginPhone', data={'email': email, 'password': password})
+        
 
         if response.status_code == 200:
             # Redireccionar al login si la respuesta del servidor es correcta
             Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
             app.switch_screen('dashboard')
-            # Recuperamos el token de sessión
+            # Recuperamos el token de sessión y el company_id para poder filtrar
             token = response.json().get('token')
-            # Guardamos el token en la session
+            company_id = response.json().get('company_id')
+            print(response.json())
+            # Guardamos el token en la session y el company_id
             self.session.put('token',token=token)
+            self.session.put('company_id', company_id=company_id)
 
         else:
             # Si la respuesta es incorrecta, se muestra el mensaje de error
