@@ -24,7 +24,7 @@ class SplashScreen(MDScreen):
         print('[*ALEIX*]: I\'m in switch_to_home')
         app = MDApp.get_running_app()
         print('[*ALEIX*]: App saved')
-        app.switch_screen('home')
+        app.switch_screen('login')
 
 class ContentNavigationDrawer(MDScrollView):
     manager = ObjectProperty()
@@ -67,7 +67,7 @@ class Main(MDApp):
         self.title = "Pymeshield"
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
-        self.api = "http://localhost/api/"
+        self.api = "http://192.168.224.241/api/"
         
     def update(self):
         Update()

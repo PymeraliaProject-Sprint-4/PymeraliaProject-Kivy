@@ -96,7 +96,7 @@ def dataTasks(data):
 
 api_data = []
 api_data2 = []
-api = "http://localhost/api/"
+api = "http://192.168.224.241/api/"
 
 def get_api(url):
 
