@@ -149,7 +149,7 @@ def Update():
     session_user_type = session.get('type')['type']
     session_companyID = None
 
-    if(session_user_type != 'admin'):
+    if(session_user_type == 'client'):
         session_companyID = str(session.get('company_id')['company_id'])
         datainventories = get_api_data('devicelist/' + session_companyID)
     else:
