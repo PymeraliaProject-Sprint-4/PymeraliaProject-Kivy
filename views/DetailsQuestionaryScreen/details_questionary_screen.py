@@ -3,6 +3,7 @@ from kivymd.uix.screen import MDScreen
 from utils import load_kv #cargar ruta del script
 import requests
 from utils import Notify
+from views.QuestionaryScreen.questionary_screen import get_data_sqlite
 
 load_kv(__name__)
 
@@ -18,10 +19,7 @@ class DetailsQuestionaryScreen(MDScreen):
             # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
             app = MDApp.get_running_app()
             id_informe = app.rowPressed()
-            url = "http://localhost/api/kivy/report"
-            response = requests.get(url)
-            response.raise_for_status()
-            data = response.json()
+            data = get_data_sqlite()
 
             img2 = 'views/DetailsQuestionaryScreen/inprogress.gif'
             img3 = 'views/DetailsQuestionaryScreen/done.gif'

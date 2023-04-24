@@ -122,28 +122,8 @@ def dataTasks(data):
     conn.close()
 
 api_data = []
-api_data2 = []
 api = "http://localhost/api/"
 
-def get_api(url):
-    
-    #Recuperar token session
-    session = JsonStore('session.json')
-    session_token = session.get('token')['token']
-
-    # Configurar la cabecera de la solicitud GET
-    headers = {'Authorization': 'Bearer ' + session_token}
-
-    # Realizar la solicitud GET a la API
-    # response = requests.get('http://localhost/api/user', headers=headers)
-
-    url = api + url
-    response = requests.get(url, headers=headers)
-    print(response.text)
-    data = json.loads(response.text)
-    api_data = data['data']
-    # self.insert_data();
-    return api_data
 
 def get_api_data(url):
     
@@ -161,16 +141,15 @@ def get_api_data(url):
     response = requests.get(url, headers=headers)
     print(response.text)
     data = json.loads(response.text)
-    api_data2 = data
+    api_data = data
     # self.insert_data();
-    return api_data2
+    return api_data
 
 def Update():
     #Recuperar company_id session y transformar en string para poder hacer la petición a la Api
-    
+    datatasks = get_api_data('all-data-kivy')
     datainventories = get_api_data('devicelist/')
-    datacourses = get_api_data('course-user-data')
-    datatasks = get_api('all-data')
+    datacourses = get_api_data('course-user-data')  
     databudgets = get_api_data('budgets-data')
     datareports = get_api_data('kivy/report')
     dataTasks(datatasks)
