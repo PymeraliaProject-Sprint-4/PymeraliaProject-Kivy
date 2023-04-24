@@ -3,6 +3,7 @@ import json
 from kivy.storage.jsonstore import JsonStore # libreria para las sessiones
 import requests
 import os #importa biblioteca os para trabajar con rutas y archivos
+from utils import ControlApi
 
 from utils import load_kv
 
@@ -11,18 +12,10 @@ load_kv(__name__)
 class ProfileScreen(MDScreen):
 
     def on_enter(self):
-        #Recuperar token session
-        self.session = JsonStore('session.json')
-        session_token = self.session.get('token')['token']
 
-        # Configurar la cabecera de la solicitud GET
-        headers = {'Authorization': 'Bearer ' + session_token}
-
-        # Realizar la solicitud GET a la API
-        response = requests.get('http://localhost/api/user', headers=headers)
+        # # Realizar la solicitud GET a la API
+        response = ControlApi.metodoControlApi('http://localhost/api/user')
         
-        
-
         # Procesar la respuesta
         if response.status_code == 200:
             data = response.json()

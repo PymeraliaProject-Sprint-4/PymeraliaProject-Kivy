@@ -1,11 +1,15 @@
 from kivy.core.window import Window
+from kivymd.app import MDApp
 from kivy.lang import Builder
+import requests
 from kivy.metrics import dp
 from kivymd.uix.snackbar import Snackbar
+from kivy.storage.jsonstore import JsonStore # libreria para las sessiones
 import os
 
 def load_kv(module_name):
     Builder.load_file(f"{os.path.join(*module_name.split('.'))}.kv")
+    
 class Notify(Snackbar):
     def __init__(self, **kwargs):
         text = kwargs.get('text', '')
@@ -17,3 +21,20 @@ class Notify(Snackbar):
                          snackbar_x="10dp",
                          snackbar_y="10dp"
                          )
+
+class ControlApi():
+    def metodoControlApi(direccion):
+        #Recuperar token session
+        session = JsonStore('session.json')
+        session_token = session.get('token')['token']
+        # Configurar la cabecera de la solicitud GET
+        headers = {'Authorization': 'Bearer ' + session_token}
+        # Realizar la solicitud GET a la API
+        
+        try:
+            response = requests.get(direccion, headers=headers)
+            return response  
+        except requests.exceptions.RequestException as e:
+            # Manejar excepciones de solicitud HTTP
+            Notify(text="¡Error al conectarse al servidor!", snack_type='error').open()
+            return response

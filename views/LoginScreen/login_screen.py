@@ -26,32 +26,33 @@ class LoginScreen(MDScreen):
         self.session = JsonStore('session.json')
         email = self.ids.email.text
         password = self.ids.password.text
-
-        # DE MOMENTO HASTA LA UNIFICACIÓN
-        Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
-        app.switch_screen('dashboard')
-
-        # Envía la solicitud POST con los datos de email y password
-        response = requests.post('http://localhost/api/loginPhone', data={'email': email, 'password': password})
         
+        try:
+            # Envía la solicitud POST con los datos de email y password
+            response = requests.post('http://localhost/api/loginPhone', data={'email': email, 'password': password})
 
-        if response.status_code == 200:
-            # Redireccionar al login si la respuesta del servidor es correcta
-            Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
-            app.switch_screen('dashboard')
-            # Recuperamos el token de sessión, el company_id para poder filtrar y el tipo de usuario
-            token = response.json().get('token')
-            company_id = response.json().get('company_id')
-            type = response.json().get('user_type')
-            # print(response.json())
-            # Guardamos el token, el company_id y el tipo de usuario en la session
-            self.session.put('token',token=token)
-            self.session.put('company_id', company_id=company_id)
-            self.session.put('type', type=type)
-            CreateDB()
-            Update()
+            if response.status_code == 200:
+                # Redireccionar al login si la respuesta del servidor es correcta
+                Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
+                app.switch_screen('dashboard')
+                # Recuperamos el token de sessión, el company_id para poder filtrar y el tipo de usuario
+                token = response.json().get('token')
+                company_id = response.json().get('company_id')
+                tipo = response.json().get('user_type')
+                # Guardamos el token, el company_id y el tipo de usuario en la session
+                self.session.put('token',token=token)
+                self.session.put('company_id', company_id=company_id)
+                self.session.put('type', type=tipo)
+                CreateDB()
+                Update()
 
-        else:
-            # Si la respuesta es incorrecta, se muestra el mensaje de error
-            Notify(text="¡Usuario o contraseña incorrecta!", snack_type='error').open()
-            self.clear()
+            else:
+                # Si la respuesta es incorrecta, se muestra el mensaje de error
+                Notify(text="¡Usuario o contraseña incorrecta!", snack_type='error').open()
+                self.clear()
+
+        except requests.exceptions.RequestException as e:
+            # Manejar excepciones de solicitud HTTP
+            Notify(text="¡Error al conectarse al servidor, inténtelo de nuevo más tarde!", snack_type='error').open()
+            
+            
