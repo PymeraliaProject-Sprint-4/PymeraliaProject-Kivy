@@ -10,8 +10,6 @@ import sqlite3
 from utils import load_kv
 import json
 
-API_URL = "http://localhost"  # Definimos la ruta para la api y la guardamos en una variable
-
 load_kv(__name__)
 
 

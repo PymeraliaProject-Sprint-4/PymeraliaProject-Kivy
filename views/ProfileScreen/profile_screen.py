@@ -3,7 +3,8 @@ import json
 from kivy.storage.jsonstore import JsonStore # libreria para las sessiones
 import requests
 import os #importa biblioteca os para trabajar con rutas y archivos
-from utils import ControlApi
+from utils import ControlApi, Notify
+from updates import returnUrl
 
 from utils import load_kv
 
@@ -12,9 +13,9 @@ load_kv(__name__)
 class ProfileScreen(MDScreen):
 
     def on_enter(self):
-
-        # # Realizar la solicitud GET a la API
-        response = ControlApi.metodoControlApi('http://localhost/api/user')
+        api = returnUrl()
+        # Realizar la solicitud GET a la API
+        response = ControlApi.metodoControlApi(api + 'user')
         
         # Procesar la respuesta
         if response.status_code == 200:
@@ -41,7 +42,8 @@ class ProfileScreen(MDScreen):
                 self.ids.imagen.source = "./assets/default_profile.jpg" #imagen que carga por defecto si no encuentra imagen
                 
         else:
-            print("You don't have access")
+            # Si la respuesta es incorrecta, se muestra el mensaje de error
+            Notify(text="¡Error al recuperar los datos!", snack_type='error').open()
 
 if __name__ == "__main__": #per a arrancar el main
     ProfileScreen().run()

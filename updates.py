@@ -2,6 +2,7 @@ import json
 import requests
 import sqlite3
 from datetime import datetime
+from utils import ControlApi, Notify
 from kivy.storage.jsonstore import JsonStore
 from sqlalchemy import Float, create_engine, Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
@@ -78,9 +79,13 @@ def dataCourses(data):
 def dataTasks(data):
     insert_data(data, Task)
 
+
 # api_data = []
 api = "http://localhost/api/"
 
+#devuelve la url para poder hacer uso de la API
+def returnUrl():
+    return api
 
 def get_api_data(url):
     
@@ -90,13 +95,13 @@ def get_api_data(url):
 
     # Configurar la cabecera de la solicitud GET
     headers = {'Authorization': 'Bearer ' + session_token}
-
+    
+    
     # Realizar la solicitud GET a la API
     # response = requests.get('http://localhost/api/user', headers=headers)
     
     url = api + url
     response = requests.get(url, headers=headers)
-    print(response.text)
     data = json.loads(response.text)
     api_data = data
     # self.insert_data();
