@@ -11,6 +11,7 @@
 #:import CourseScreen views.CourseScreen
 #:import Window kivy.core.window.Window
 #:import DetailsQuestionaryScreen views.DetailsQuestionaryScreen
+#:import PhotoScreen views.PhotoScreen
 
 #aquí van las vistas
 ScreenManager:
@@ -48,6 +49,8 @@ ScreenManager:
         name: 'details_budgets'
     ProfileScreen:
         name: 'test'
+    PhotoScreen:
+        name: 'photo'
 
  
 <SplashScreen>:
@@ -129,6 +132,9 @@ ScreenManager:
             QrScreen:
                 name: "QR"
 
+            PhotoScreen:
+                name: "photo"
+
         MDNavigationDrawer:
             id: nav_drawer    
             elevation: 1    
@@ -197,3 +203,10 @@ ScreenManager:
             on_release: 
                 root.nav_drawer.set_state("close")
                 root.manager.current="Contacto"
+
+        DrawerClickableItem:
+            icon: "email"
+            text: "PHOTO"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="photo"

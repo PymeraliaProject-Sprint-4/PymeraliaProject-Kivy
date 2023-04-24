@@ -1,0 +1,13 @@
+<PhotoScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Camera:
+            id: camera_obj
+            play: True
+            size_hint: 1, 1
+            #resolution: (300, 300)
+        Button:
+            text: 'Take Photo'
+            size_hint: (.5, .2)
+            pos_hint: {'x': .25, 'y': .75}
+            on_press: root.onCameraClick()
