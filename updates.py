@@ -1,127 +1,84 @@
-import json  # importamos la libreria de python que nos permite trabajar con json
+import json
 import requests
 import sqlite3
-from kivy.storage.jsonstore import JsonStore # libreria para las sesiones
+from datetime import datetime
+from kivy.storage.jsonstore import JsonStore
+from sqlalchemy import Float, create_engine, Column, Integer, String, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+# Definir conexión a la base de datos
+engine = create_engine('sqlite:///pymeshield.db', echo=True)
+
+# Crear sesión
+Session = sessionmaker(bind=engine)
+session = Session()
+
+Base = declarative_base()
+
+class Budget(Base):
+    __tablename__ = 'budgets'
+    id = Column(Integer, primary_key=True)
+    price = Column(String)
+    accepted = Column(String)
+
+class Inventory(Base):
+    __tablename__ = 'inventories'
+    id = Column(Integer, primary_key=True)
+    brand = Column(String)
+    model = Column(String)
+    description = Column(String)
+    state = Column(String)
+    serial_number = Column(String)
+    mac_ethernet = Column(String)
+    mac_wifi = Column(String)
+
+class Report(Base):
+    __tablename__ = 'reports'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    status = Column(String)
+
+class Course(Base):
+    __tablename__ = 'courses'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    description = Column(String)
+    
+class Task(Base):
+    __tablename__ = 'tasks'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    recommendation = Column(String)
+    danger = Column(String)
+    manages = Column(String)
+    price = Column(Float)
+    price_customer = Column(Float)
+
+def insert_data(data, table):
+    session = Session()
+    session.query(table).delete()
+    for item in data:
+        session.add(table(**item))
+    session.commit()
+    session.close()
 
 def dataBudgets(data):
-    conn = sqlite3.connect('pymeshield.db')
+    insert_data(data, Budget)
 
-    cursor = conn.cursor()
-    
-    cursor.execute('DELETE FROM budgets')
-    
-    for i in data:
-        id = int(i['id'])
-        price = i['price']
-        accepted = i['accepted']
-        
-        datos = [(id, price, accepted)]
-        
-        for dato in datos:
-            cursor.execute('INSERT INTO budgets (id, price, accepted) VALUES (?, ?, ?)', dato)
-            
-            conn.commit()
-        
-    conn.close()
-   
 def dataInventory(data):
-    conn = sqlite3.connect('pymeshield.db')
+    insert_data(data, Inventory)
 
-    cursor = conn.cursor()
-    
-    cursor.execute('DELETE FROM inventories')
-    
-    for i in data:
-        id = int(i['id'])
-        brand = i['brand']
-        model = i['model']
-        description = i['description']
-        state = i['state']
-        serial_number = i['serial_number']
-        mac_ethernet = i['mac_ethernet']
-        mac_wifi = i['mac_wifi']
-        
-        datos = [(id, brand, model, description, state, serial_number, mac_ethernet, mac_wifi)]
-        
-        for dato in datos:
-            cursor.execute('INSERT INTO inventories (id, brand, model, description, state, serial_number, mac_ethernet, mac_wifi) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', dato)
-            
-            conn.commit()
-        
-    conn.close()
-    
 def dataReports(data):
-    conn = sqlite3.connect('pymeshield.db')
+    insert_data(data, Report)
 
-    cursor = conn.cursor()
-    
-    cursor.execute('DELETE FROM reports')
-    
-    for i in data:
-        id = int(i['id'])
-        name = i['name']
-        status = i['status']
-        date = i['date']
-        
-        datos = [(id, name, status, date)]
-        
-        for dato in datos:
-            cursor.execute('INSERT INTO reports (id, name, status, date) VALUES (?, ?, ?, ?)', dato)
-            
-            conn.commit()
-        
-    conn.close()
-    
 def dataCourses(data):
-    conn = sqlite3.connect('pymeshield.db')
-
-    cursor = conn.cursor()
-    
-    cursor.execute('DELETE FROM courses')
-    
-    for i in data:
-        id = int(i['id'])
-        name = i['name']
-        description = i['description']
-        date = i['date']
-        
-        datos = [(id, name, description, date)]
-        
-        for dato in datos:
-            cursor.execute('INSERT INTO courses (id, name, description, date) VALUES (?, ?, ?, ?)', dato)
-            
-            conn.commit()
-        
-    conn.close()
+    insert_data(data, Course)
 
 def dataTasks(data):
-    conn = sqlite3.connect('pymeshield.db')
+    insert_data(data, Task)
 
-    cursor = conn.cursor()
-
-    cursor.execute('DELETE FROM tasks')
-
-    for i in data:
-            id = int(i['id'])
-            name = i['name']
-            recommendation = i['recommendation']
-            danger = i['peligro']
-            manages = i['manages']
-            price = i['price']
-            price_customer = i['price_customer']
-
-            datos = [(id, name, recommendation, danger,
-                      manages, price, price_customer)]
-
-            for dato in datos:
-                cursor.execute(
-                    'INSERT INTO tasks (id, name, recommendation, danger, manages, price, price_customer) VALUES (?, ?, ?, ?, ?, ?, ?)', dato)
-
-                conn.commit()
-
-    conn.close()
-
-api_data = []
+# api_data = []
 api = "http://localhost/api/"
 
 
