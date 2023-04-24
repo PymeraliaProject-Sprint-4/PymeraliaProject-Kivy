@@ -27,7 +27,6 @@ def get_data_sqlite():
         'id': row[0],
         'name': row[1],
         'status': row[2],
-        'date': row[3]
         })
 
     data = data

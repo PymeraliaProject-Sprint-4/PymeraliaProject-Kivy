@@ -59,7 +59,7 @@ class Main(MDApp):
     
 
     def build(self):
-        CreateDB()
+        # CreateDB()
         #Update()
         if platform in ['win', 'linux', 'macosx']:
             # resolución más común móvil
