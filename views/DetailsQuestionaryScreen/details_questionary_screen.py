@@ -18,7 +18,7 @@ class DetailsQuestionaryScreen(MDScreen):
             # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
             app = MDApp.get_running_app()
             id_informe = app.rowPressed()
-            url = "http://192.168.224.241/api/kivy/report"
+            url = "http://localhost/api/kivy/report"
             response = requests.get(url)
             response.raise_for_status()
             data = response.json()

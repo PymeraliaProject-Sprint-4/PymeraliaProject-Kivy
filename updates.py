@@ -123,12 +123,23 @@ def dataTasks(data):
 
 api_data = []
 api_data2 = []
-api = "http://192.168.224.241/api/"
+api = "http://localhost/api/"
 
 def get_api(url):
+    
+    #Recuperar token session
+    session = JsonStore('session.json')
+    session_token = session.get('token')['token']
+
+    # Configurar la cabecera de la solicitud GET
+    headers = {'Authorization': 'Bearer ' + session_token}
+
+    # Realizar la solicitud GET a la API
+    # response = requests.get('http://localhost/api/user', headers=headers)
 
     url = api + url
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
+    print(response.text)
     data = json.loads(response.text)
     api_data = data['data']
     # self.insert_data();
@@ -136,8 +147,19 @@ def get_api(url):
 
 def get_api_data(url):
     
+    #Recuperar token session
+    session = JsonStore('session.json')
+    session_token = session.get('token')['token']
+
+    # Configurar la cabecera de la solicitud GET
+    headers = {'Authorization': 'Bearer ' + session_token}
+
+    # Realizar la solicitud GET a la API
+    # response = requests.get('http://localhost/api/user', headers=headers)
+    
     url = api + url
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
+    print(response.text)
     data = json.loads(response.text)
     api_data2 = data
     # self.insert_data();
@@ -145,20 +167,9 @@ def get_api_data(url):
 
 def Update():
     #Recuperar company_id session y transformar en string para poder hacer la petición a la Api
-    session = JsonStore('session.json')
-    session_user_type = session.get('type')['type']
-    session_companyID = None
-
-    if(session_user_type == 'client'):
-        session_companyID = str(session.get('company_id')['company_id'])
-        datainventories = get_api_data('devicelist/' + session_companyID)
-    else:
-        datainventories = get_api_data('devicelist/')
-
     
-
-
-    datacourses = get_api_data('couser-user-data')
+    datainventories = get_api_data('devicelist/')
+    datacourses = get_api_data('course-user-data')
     datatasks = get_api('all-data')
     databudgets = get_api_data('budgets-data')
     datareports = get_api_data('kivy/report')
