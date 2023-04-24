@@ -67,7 +67,7 @@ class Main(MDApp):
         self.title = "Pymeshield"
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
-        self.api = "http://192.168.224.241/api/"
+        self.api = "http://localhost/api/"
         
     def update(self):
         Update()
@@ -95,6 +95,9 @@ class Main(MDApp):
 
     def rowPressed(self):
         return self.rowDetails
+    
+    def goBack(self, screen):
+        self.manager.current = screen
 
     def switch_screen(self, screen_name='login'):
         try:
