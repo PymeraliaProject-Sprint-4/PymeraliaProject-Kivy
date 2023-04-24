@@ -1,6 +1,7 @@
 import sqlite3
 
 def CreateDB():
+    print('[***ALEIX***]: Anem a crear la base de dades')
     conn = sqlite3.connect('pymeshield.db')
 
     cursor = conn.cursor()

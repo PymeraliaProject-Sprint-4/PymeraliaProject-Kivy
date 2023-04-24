@@ -11,3 +11,4 @@ from views.ProfileScreen.profile_screen import ProfileScreen
 from views.QuestionaryScreen.questionary_screen import QuestionaryScreen
 from views.DetailsQuestionaryScreen.details_questionary_screen import DetailsQuestionaryScreen
 from views.CourseScreen.course_screen import CourseScreen
+from views.PhotoScreen.photo_screen import PhotoScreen
