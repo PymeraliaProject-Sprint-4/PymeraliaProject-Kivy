@@ -10,7 +10,7 @@ import sqlite3
 from utils import load_kv
 import json
 
-API_URL = "http://localhost"  # Definimos la ruta para la api y la guardamos en una variable
+API_URL = "http://192.168.224.241"  # Definimos la ruta para la api y la guardamos en una variable
 
 load_kv(__name__)
 
@@ -42,6 +42,7 @@ class CourseScreen(MDScreen):
 
     def on_enter(self, *args):
         # Obtener la lista completa de cursos
+        print('ALEIX: on_enter cursos')
         self.cursos_completos = self.get_cursos()
         self.mostrar_cursos(self.cursos_completos)
 
