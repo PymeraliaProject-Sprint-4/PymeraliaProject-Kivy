@@ -33,7 +33,6 @@ class CourseScreen(MDScreen):
             'id': row[0],
             'name': row[1],
             'description': row[2],
-            'date': row[3]
             })
 
         self.data = data
