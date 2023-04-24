@@ -28,7 +28,7 @@ class SplashScreen(MDScreen):
         print('[*ALEIX*]: I\'m in switch_to_home')
         app = MDApp.get_running_app()
         print('[*ALEIX*]: App saved')
-        app.switch_screen('login')
+        app.switch_screen('photo')
 
 class ContentNavigationDrawer(MDScrollView):
     manager = ObjectProperty()
@@ -59,7 +59,7 @@ class Main(MDApp):
     
 
     def build(self):
-        CreateDB()
+        # CreateDB()
         #Update()
         if platform in ['win', 'linux', 'macosx']:
             # resolución más común móvil
