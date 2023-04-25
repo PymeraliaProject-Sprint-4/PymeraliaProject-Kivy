@@ -2,7 +2,15 @@
 # #:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
 
 <QrScreen>:
-    # md_bg_color: app.theme_cls.bg_dark    
+    # md_bg_color: app.theme_cls.bg_dark
+    MDTopAppBar:
+        title: "PymeShield"
+        elevation: 1
+        pos_hint: {"top": 1}
+        md_bg_color: "#ff6720"
+        specific_text_color: "black"
+        left_action_items: [["keyboard-backspace", lambda x: root.goBack('inventory')]]
+
     MDBoxLayout:
         orientation: 'vertical'
         # TODO: La càmera s'obre per defecte...
@@ -20,7 +28,7 @@
         pos_hint: {'center_y': 0.8, 'x': 0.2}
     MDFloatingActionButton:
         pos_hint: {'center_y': 0.80, 'x': 0.8}
-        on_release: root.goHome()
+        on_release: root.manager.current = 'Inicio'
         md_bg_color: app.theme_cls.primary_color
         MDIcon:
             icon: 'home'

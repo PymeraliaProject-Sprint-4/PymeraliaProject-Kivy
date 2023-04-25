@@ -1,4 +1,5 @@
 from views.LoginScreen.login_screen import LoginScreen
+from views.ContactScreen.contact_screen import ContactScreen
 from views.HomeScreen.home_screen import HomeScreen
 from views.QrScreen.qr_screen import QrScreen
 from views.InventoryScreen.inventory_screen import InventoryScreen
@@ -8,7 +9,7 @@ from views.BudgetScreen.budget_screen import BudgetScreen
 from views.DetailsBudgetScreen.details_budget_screen import DetailsBudgetScreen
 from views.DetailsInventoryScreen.details_inventory_screen import DetailsInventoryScreen
 from views.ProfileScreen.profile_screen import ProfileScreen
-from views.QuestionaryScreen.questionary_screen import QuestionaryScreen
-from views.DetailsQuestionaryScreen.details_questionary_screen import DetailsQuestionaryScreen
+from views.ReportScreen.report_screen import ReportScreen
+from views.DetailsReportScreen.details_report_screen import DetailsReportScreen
 from views.CourseScreen.course_screen import CourseScreen
 from views.PhotoScreen.photo_screen import PhotoScreen
