@@ -1,6 +1,6 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
-from kivy.uix.camera import Camera
+# from kivy.uix.camera import Camera
 from utils import load_kv
 import base64
 from PIL import Image
