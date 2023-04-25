@@ -17,20 +17,28 @@
 ScreenManager:
     SplashScreen:
         name: 'splash'
+
     LoginScreen:
         name: 'login'
+
     Dashboard:
         name: 'dashboard'
+
     HomeScreen:
         name: 'home'
+
     InventoryScreen:
         name: 'inventory'
+
     QrScreen:
         name: 'QR'
+
     TaskScreen:
         name: 'tasks'
+
     CourseScreen:
         name: 'course'
+
     DetailsTaskScreen:
         name: 'details_tasks'
 
@@ -45,10 +53,16 @@ ScreenManager:
 
     BudgetScreen:
         name: 'budgets'
+
     DetailsBudgetScreen:
         name: 'details_budgets'
+
     ProfileScreen:
         name: 'test'
+
+    ContactScreen:
+        name: 'contact'
+
     PhotoScreen:
         name: 'photo'
 
@@ -89,6 +103,9 @@ ScreenManager:
             id: screen_manager
             HomeScreen:
                 name: "Inicio"
+            
+            LoginScreen:
+                name: "login"
 
             ProfileScreen:
                 name: "profile"
@@ -126,8 +143,8 @@ ScreenManager:
             InventoryScreen:
                 name: "inventory"
 
-            MDScreen:
-                name: "Contacto"
+            ContactScreen:
+                name: "contact"
 
             QrScreen:
                 name: "QR"
@@ -202,11 +219,21 @@ ScreenManager:
             text: "Contacto"
             on_release: 
                 root.nav_drawer.set_state("close")
-                root.manager.current="Contacto"
+                root.manager.current="contact"
 
         DrawerClickableItem:
-            icon: "email"
-            text: "PHOTO"
+            icon: "camera"
+            text: "Photo"
             on_release: 
                 root.nav_drawer.set_state("close")
                 root.manager.current="photo"
+        
+        MDNavigationDrawerDivider:
+        
+        DrawerClickableItem:
+            icon: "logout"
+            text: "Cerrar Sesión"
+            on_release: 
+                root.nav_drawer.set_state("close")
+                root.manager.current="Inicio"
+                LoginScreen.logout()

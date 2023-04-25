@@ -5,6 +5,8 @@ import requests
 from kivy.storage.jsonstore import JsonStore # libreria para las sessiones
 from updates import Update
 from db import CreateDB
+import os
+import atexit
 
 load_kv(__name__)
 
@@ -16,6 +18,25 @@ class LoginScreen(MDScreen):
         app = MDApp.get_running_app()
         self.ids.email.focus = True
         app.switch_screen('login')
+
+    #  Método que elimina los archivos session.json y pymeshield.db
+    def borrarSesion():
+        archivoSesion = './session.json'
+        archivoBBDD = './pymeshield.db'
+
+        if os.path.exists(archivoSesion):
+            os.remove(archivoSesion)
+        if os.path.exists(archivoBBDD):
+            os.remove(archivoBBDD) 
+    
+    #acción que ejecuta el método borrar sesión si se cierra el aplicativo de manera forzosa
+    atexit.register(borrarSesion)
+
+    # Método que cierra sesión
+    def logout():
+        app = MDApp.get_running_app()
+        app.switch_screen('login')
+        LoginScreen.borrarSesion()
 
     def clear(self):
         self.ids.email.text = ""

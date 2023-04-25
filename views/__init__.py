@@ -1,4 +1,5 @@
 from views.LoginScreen.login_screen import LoginScreen
+from views.ContactScreen.contact_screen import ContactScreen
 from views.HomeScreen.home_screen import HomeScreen
 from views.QrScreen.qr_screen import QrScreen
 from views.InventoryScreen.inventory_screen import InventoryScreen
