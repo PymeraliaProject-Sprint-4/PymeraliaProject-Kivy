@@ -19,6 +19,7 @@ class SplashScreen(MDScreen):
     def on_enter(self, *args):
         print('[*ALEIX*]: Entering')
         Clock.schedule_once(self.switch_to_home, 1)
+        Window.maximize()
         
     def build(self, *args):
         #request_permissions([Permission.CAMERA,Permission.WRITE_EXTERNAL_STORAGE,Permission.READ_EXTERNAL_STORAGE])
@@ -28,7 +29,7 @@ class SplashScreen(MDScreen):
         print('[*ALEIX*]: I\'m in switch_to_home')
         app = MDApp.get_running_app()
         print('[*ALEIX*]: App saved')
-        app.switch_screen('photo')
+        app.switch_screen('login')
 
 class ContentNavigationDrawer(MDScrollView):
     manager = ObjectProperty()
