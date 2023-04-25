@@ -53,7 +53,7 @@ class LoginScreen(MDScreen):
         try:
             # Envía la solicitud POST con los datos de email y password
             response = requests.post('http://localhost/api/loginPhone', data={'email': email, 'password': password})
-
+            print(response)
             if response.status_code == 200:
                 # Redireccionar al login si la respuesta del servidor es correcta
                 Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
@@ -70,7 +70,13 @@ class LoginScreen(MDScreen):
                 self.session.put('type', type=tipo)
                 CreateDB()
                 Update()
-
+            
+            #error para el servicio caído
+            elif response.status_code == 404:
+                # Si la respuesta es incorrecta, se muestra el mensaje de error
+                Notify(text="¡Servicio No Disponible!", snack_type='error').open()
+                self.clear()
+                
             else:
                 # Si la respuesta es incorrecta, se muestra el mensaje de error
                 Notify(text="¡Usuario o contraseña incorrecta!", snack_type='error').open()

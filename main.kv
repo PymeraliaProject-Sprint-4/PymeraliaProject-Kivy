@@ -30,9 +30,6 @@ ScreenManager:
     InventoryScreen:
         name: 'inventory'
 
-    QrScreen:
-        name: 'QR'
-
     TaskScreen:
         name: 'tasks'
 
@@ -194,7 +191,7 @@ ScreenManager:
                 root.manager.current="tasks"  
 
         DrawerClickableItem:
-            text: "Presupuesto"
+            text: "Presupuestos"
             icon: "chart-gantt"
             on_release: 
                 root.nav_drawer.set_state("close")
@@ -208,8 +205,8 @@ ScreenManager:
                 root.manager.current="course"
 
         DrawerClickableItem:
-            text: "QR"
-            icon: "qrcode-scan"
+            text: "Inventario"
+            icon: "devices"
             on_release: 
                 root.nav_drawer.set_state("close")
                 root.manager.current="inventory" 
