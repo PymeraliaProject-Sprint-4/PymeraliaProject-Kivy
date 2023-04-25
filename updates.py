@@ -17,11 +17,13 @@ session = Session()
 
 Base = declarative_base()
 
+
 class Budget(Base):
     __tablename__ = 'budgets'
     id = Column(Integer, primary_key=True)
     price = Column(String)
     accepted = Column(String)
+
 
 class Inventory(Base):
     __tablename__ = 'inventories'
@@ -34,18 +36,21 @@ class Inventory(Base):
     mac_ethernet = Column(String)
     mac_wifi = Column(String)
 
+
 class Report(Base):
     __tablename__ = 'reports'
     id = Column(Integer, primary_key=True)
     name = Column(String)
     status = Column(String)
 
+
 class Course(Base):
     __tablename__ = 'courses'
     id = Column(Integer, primary_key=True)
     name = Column(String)
     description = Column(String)
-    
+
+
 class Task(Base):
     __tablename__ = 'tasks'
     id = Column(Integer, primary_key=True)
@@ -56,6 +61,7 @@ class Task(Base):
     price = Column(Float)
     price_customer = Column(Float)
 
+
 def insert_data(data, table):
     session = Session()
     session.query(table).delete()
@@ -64,17 +70,22 @@ def insert_data(data, table):
     session.commit()
     session.close()
 
+
 def dataBudgets(data):
     insert_data(data, Budget)
+
 
 def dataInventory(data):
     insert_data(data, Inventory)
 
+
 def dataReports(data):
     insert_data(data, Report)
 
+
 def dataCourses(data):
     insert_data(data, Course)
+
 
 def dataTasks(data):
     insert_data(data, Task)
@@ -83,42 +94,63 @@ def dataTasks(data):
 # api_data = []
 api = "http://localhost/api/"
 
-#devuelve la url para poder hacer uso de la API
+# devuelve la url para poder hacer uso de la API
+
+
 def returnUrl():
     return api
 
-def get_api_data(url):
-    
-    #Recuperar token session
-    session = JsonStore('session.json')
-    session_token = session.get('token')['token']
 
-    # Configurar la cabecera de la solicitud GET
-    headers = {'Authorization': 'Bearer ' + session_token}
-    
-    
+def get_api_data(url):
     # Realizar la solicitud GET a la API
-    # response = requests.get('http://localhost/api/user', headers=headers)
-    
-    url = api + url
-    response = requests.get(url, headers=headers)
-    data = json.loads(response.text)
-    api_data = data
-    # self.insert_data();
-    return api_data
+    try:
+        response = ControlApi.metodoControlApi(api + url)
+        data = json.loads(response.text)
+        api_data = data
+        print('funciono')
+        # self.insert_data();
+        engine.dispose()
+        return api_data
+    # except requests.exceptions.RequestException as e:
+    #     # Manejar excepciones de solicitud HTTP
+    #     engine.dispose()
+    #     print('No funciono primer except')
+    #     print(requests.exceptions.RequestException)
+    #     Notify(text="¡Error al conectarse al servidor!", snack_type='error').open() 
+    except:
+        # Manejar excepciones de solicitud HTTP
+        engine.dispose()
+        print('No funciono')
+        Notify(text="¡Error al conectarse al servidor!", snack_type='error').open()
+        engine.dispose()
+    finally:
+        engine.dispose()
+        
+        
+
 
 def Update():
-    #Recuperar company_id session y transformar en string para poder hacer la petición a la Api
+    # Recuperar company_id session y transformar en string para poder hacer la petición a la Api
+
     datatasks = get_api_data('all-data-kivy')
     datainventories = get_api_data('devicelist/')
-    datacourses = get_api_data('course-user-data')  
+    datacourses = get_api_data('course-user-data')
     databudgets = get_api_data('budgets-data')
     datareports = get_api_data('kivy/report')
-    dataTasks(datatasks)
-    dataBudgets(databudgets)
-    dataReports(datareports)
-    dataCourses(datacourses)
-    dataInventory(datainventories)
+    
+    if datatasks is not None:
+        dataTasks(datatasks)
+    
+    if databudgets is not None:
+        dataBudgets(databudgets)
+    
+    if datareports is not None:
+        dataReports(datareports)
+    
+    if datacourses is not None:
+        dataCourses(datacourses)
+    
+    if datainventories is not None:
+        dataInventory(datainventories)
 
-    #cierra la conexión a la base de datos
-    engine.dispose() 
+    engine.dispose()
