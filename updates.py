@@ -119,3 +119,6 @@ def Update():
     dataReports(datareports)
     dataCourses(datacourses)
     dataInventory(datainventories)
+
+    #cierra la conexión a la base de datos
+    engine.dispose() 

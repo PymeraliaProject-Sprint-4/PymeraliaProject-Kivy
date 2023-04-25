@@ -1,16 +1,9 @@
-<DetailsInventoryScreen>
-    MDTopAppBar:
-        title: "PymeShield"
-        elevation: 1
-        pos_hint: {"top": 1}
-        md_bg_color: "#ff6720"
-        specific_text_color: "black"
-        left_action_items: [["keyboard-backspace", lambda x: root.goBack('inventory')]]
+<ContactScreen>
     MDBoxLayout:
         # padding:0, 100, 0, 0
         orientation: "vertical"
         size_hint_y: None
-        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
         spacing: dp(50)
         MDLabel:
             id: text1
@@ -47,32 +40,6 @@
             halign: "center"
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
-        MDLabel:
-            id: text6
-            text:""
-            height: "50dp"
-            halign: "center"
-            theme_text_color: "Custom"
-            text_color: 0, 0, 0, 1
-        MDLabel:
-            id: text7
-            text:""
-            height: "50dp"
-            halign: "center"
-            theme_text_color: "Custom"
-            text_color: 0, 0, 0, 1
-        # Image:
-        #     id: imagen
-        #     center: self.parent.center
-        #     size: 600, 600
         MDScrollView:
             MDList:
                 id: estat
-                
-    MDFloatingActionButton:
-        pos_hint: {'center_y': 0.09, 'x': 0.83}
-        on_release: root.open_camera()
-        md_bg_color: app.theme_cls.primary_color
-        MDIcon:
-            icon: 'qrcode-scan'
-            halign: 'center'

@@ -33,13 +33,13 @@ def get_data_sqlite():
     
     return data    
 
-class QuestionaryScreen(MDScreen):
+class ReportScreen(MDScreen):
     reports = []
     
     def open(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
-        app.switch_screen('questionary')
+        app.switch_screen('report')
 
     def on_enter(self):
         data = get_data_sqlite()
@@ -82,4 +82,4 @@ class QuestionaryScreen(MDScreen):
     def print(self, row):
         app = MDApp.get_running_app()
         app.setRowDetails(row.id)
-        self.manager.current="details_questionary"
+        self.manager.current="details_report"
