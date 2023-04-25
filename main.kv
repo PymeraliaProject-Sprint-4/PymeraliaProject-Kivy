@@ -10,7 +10,7 @@
 #:import ProfileScreen views.ProfileScreen
 #:import CourseScreen views.CourseScreen
 #:import Window kivy.core.window.Window
-#:import DetailsQuestionaryScreen views.DetailsQuestionaryScreen
+#:import DetailsReportScreen views.DetailsReportScreen
 #:import PhotoScreen views.PhotoScreen
 
 #aquí van las vistas
@@ -42,11 +42,11 @@ ScreenManager:
     DetailsTaskScreen:
         name: 'details_tasks'
 
-    QuestionaryScreen:
-        name: 'questionary'
+    ReportScreen:
+        name: 'report'
 
-    DetailsQuestionaryScreen:
-        name: 'details_questionary'
+    DetailsReportScreen:
+        name: 'details_report'
 
     DetailsInventoryScreen:
         name: 'details_inventory'
@@ -128,11 +128,11 @@ ScreenManager:
             DetailsInventoryScreen:
                 name: "details_inventory"
 
-            QuestionaryScreen:
-                name: "questionary"
+            ReportScreen:
+                name: "report"
 
-            DetailsQuestionaryScreen:
-                name: "details_questionary"
+            DetailsReportScreen:
+                name: "details_report"
 
             MDScreen:
                 name: "Gantt"
@@ -184,7 +184,7 @@ ScreenManager:
             icon: "file-document"
             on_release: 
                 root.nav_drawer.set_state("close")
-                root.manager.current="questionary"     
+                root.manager.current="report"     
 
         DrawerClickableItem:
             text: "Tareas"

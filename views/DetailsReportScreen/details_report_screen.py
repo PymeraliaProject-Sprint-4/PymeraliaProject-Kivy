@@ -3,15 +3,19 @@ from kivymd.uix.screen import MDScreen
 from utils import load_kv #cargar ruta del script
 import requests
 from utils import Notify
-from views.QuestionaryScreen.questionary_screen import get_data_sqlite
+from main import Main
+from views.ReportScreen.report_screen import get_data_sqlite
 
 load_kv(__name__)
 
-class DetailsQuestionaryScreen(MDScreen):
+class DetailsReportScreen(MDScreen):
 
     def index(self):
         app = MDApp.get_running_app()
         app.switch_screen('dashboard') #mostrar detalles de la tarea.
+    
+    def goBack(self, screen):
+        self.manager.current = screen
 
     def on_enter(self):
         print('[*ALEIX*]: Questionary screen')
@@ -21,8 +25,8 @@ class DetailsQuestionaryScreen(MDScreen):
             id_informe = app.rowPressed()
             data = get_data_sqlite()
 
-            img2 = 'views/DetailsQuestionaryScreen/inprogress.gif'
-            img3 = 'views/DetailsQuestionaryScreen/done.gif'
+            img2 = 'views/DetailsReportScreen/inprogress.gif'
+            img3 = 'views/DetailsReportScreen/done.gif'
 
             id_informe = int(id_informe[8:])
 

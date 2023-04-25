@@ -29,6 +29,9 @@ class DetailsInventoryScreen(MDScreen):
     def index(self):
         app = MDApp.get_running_app()
         app.switch_screen('dashboard') #mostrar detalles de la tarea.
+    
+    def goBack(self, screen):
+        self.manager.current = screen
 
     def on_enter(self):
         try:

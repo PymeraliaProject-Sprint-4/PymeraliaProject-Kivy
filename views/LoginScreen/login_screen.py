@@ -28,15 +28,17 @@ class LoginScreen(MDScreen):
             os.remove(archivoSesion)
         if os.path.exists(archivoBBDD):
             os.remove(archivoBBDD) 
-    
-    #acción que ejecuta el método borrar sesión si se cierra el aplicativo de manera forzosa
-    atexit.register(borrarSesion)
 
     # Método que cierra sesión
     def logout():
         app = MDApp.get_running_app()
         app.switch_screen('login')
         LoginScreen.borrarSesion()
+        
+        
+    
+    #acción que ejecuta el método borrar sesión si se cierra el aplicativo de manera forzosa
+    atexit.register(borrarSesion)
 
     def clear(self):
         self.ids.email.text = ""
@@ -55,6 +57,8 @@ class LoginScreen(MDScreen):
             if response.status_code == 200:
                 # Redireccionar al login si la respuesta del servidor es correcta
                 Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
+                #limpia los inputs para que queden vacios al hacer logout
+                self.clear()
                 app.switch_screen('dashboard')
                 # Recuperamos el token de sessión, el company_id para poder filtrar y el tipo de usuario
                 token = response.json().get('token')

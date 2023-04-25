@@ -9,7 +9,7 @@ from views.BudgetScreen.budget_screen import BudgetScreen
 from views.DetailsBudgetScreen.details_budget_screen import DetailsBudgetScreen
 from views.DetailsInventoryScreen.details_inventory_screen import DetailsInventoryScreen
 from views.ProfileScreen.profile_screen import ProfileScreen
-from views.QuestionaryScreen.questionary_screen import QuestionaryScreen
-from views.DetailsQuestionaryScreen.details_questionary_screen import DetailsQuestionaryScreen
+from views.ReportScreen.report_screen import ReportScreen
+from views.DetailsReportScreen.details_report_screen import DetailsReportScreen
 from views.CourseScreen.course_screen import CourseScreen
 from views.PhotoScreen.photo_screen import PhotoScreen
