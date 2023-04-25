@@ -37,4 +37,3 @@ class ControlApi():
         except requests.exceptions.RequestException as e:
             # Manejar excepciones de solicitud HTTP
             Notify(text="¡Error al conectarse al servidor!", snack_type='error').open()
-            return response

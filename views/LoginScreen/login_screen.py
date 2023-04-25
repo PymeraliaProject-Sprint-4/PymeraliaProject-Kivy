@@ -84,6 +84,6 @@ class LoginScreen(MDScreen):
 
         except requests.exceptions.RequestException as e:
             # Manejar excepciones de solicitud HTTP
-            Notify(text="¡Error al conectarse al servidor, inténtelo de nuevo más tarde!", snack_type='error').open()
+            Notify(text="¡Error al conectarse al servidor!", snack_type='error').open()
             
             
