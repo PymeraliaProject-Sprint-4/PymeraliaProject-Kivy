@@ -24,5 +24,5 @@ class PhotoScreen(MDScreen):
         self.camera.export_to_png('selfie.png')
         filepath = os.path.join(self.app.user_data_dir, 'selfie.png')
         image = {"files": open(filepath, "rb")}
-        response = requests.post(self.app.api + 'image', files=image)
+        response = requests.post(self.app.api + 'image', data={'id_device': 2}, files=image)
         print(response.status_code)
