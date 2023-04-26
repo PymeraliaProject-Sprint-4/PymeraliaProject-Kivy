@@ -7,7 +7,6 @@
         specific_text_color: "black"
         left_action_items: [["keyboard-backspace", lambda x: root.goBack('inventory')]]
     MDBoxLayout:
-        # padding:0, 100, 0, 0
         orientation: "vertical"
         size_hint_y: None
         pos_hint: {"center_x": 0.5, "center_y": 0.3}
@@ -61,10 +60,6 @@
             halign: "center"
             theme_text_color: "Custom"
             text_color: 0, 0, 0, 1
-        # Image:
-        #     id: imagen
-        #     center: self.parent.center
-        #     size: 600, 600
         MDScrollView:
             MDList:
                 id: estat
