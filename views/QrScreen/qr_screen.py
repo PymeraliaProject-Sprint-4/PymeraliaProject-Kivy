@@ -3,11 +3,8 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from utils import load_kv, Notify
-import json
-import bcrypt
 
 load_kv(__name__)
-
 
 class QrScreen(MDScreen):
 
@@ -31,13 +28,11 @@ class QrScreen(MDScreen):
 
     # cierra el mensaje de la ventana emergente y nos dirige a la pantalla de detalles del dispositivo
     def detailsQr(self, instance, readQR):
-        # self.dialog.dismiss()
         app = MDApp.get_running_app()
         app.setRowDetails(readQR)
         self.manager.current = 'details_inventory'
 
     # método que nos lleva a la pantalla "home"
-
     def goHome(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         self.manager.current = 'Inicio'

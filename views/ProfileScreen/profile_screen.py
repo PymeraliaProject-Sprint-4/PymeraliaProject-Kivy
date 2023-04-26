@@ -1,16 +1,9 @@
 from kivymd.uix.screen import MDScreen
-import json
-from kivy.storage.jsonstore import JsonStore  # libreria para las sessiones
-import requests
-import os  # importa biblioteca os para trabajar con rutas y archivos
-from utils import ControlApi, Notify
 from updates import returnUrl
-import sqlite3
-
-from utils import load_kv
+from utils import ControlApi, Notify, load_kv
+import os, requests, sqlite3
 
 load_kv(__name__)
-
 
 class ProfileScreen(MDScreen):
 

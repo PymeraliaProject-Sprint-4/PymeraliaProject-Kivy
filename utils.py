@@ -1,11 +1,9 @@
 from kivy.core.window import Window
-from kivymd.app import MDApp
 from kivy.lang import Builder
-import requests
 from kivy.metrics import dp
 from kivymd.uix.snackbar import Snackbar
 from kivy.storage.jsonstore import JsonStore # libreria para las sessiones
-import os
+import os, requests
 
 def load_kv(module_name):
     Builder.load_file(f"{os.path.join(*module_name.split('.'))}.kv")

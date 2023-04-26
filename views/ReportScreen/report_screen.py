@@ -1,10 +1,7 @@
 from kivymd.app import MDApp
-from kivymd.uix.list import OneLineIconListItem
+from kivymd.uix.list import OneLineIconListItem, IconLeftWidget
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.list import IconLeftWidget
 from utils import load_kv
-import requests
-from utils import Notify
 import sqlite3
 
 load_kv(__name__)
