@@ -20,8 +20,6 @@ class SplashScreen(MDScreen):
         print('[*ALEIX*]: Entering')
         Clock.schedule_once(self.switch_to_home, 1)
 
-        
-        
     def build(self, *args):
         #request_permissions([Permission.CAMERA,Permission.WRITE_EXTERNAL_STORAGE,Permission.READ_EXTERNAL_STORAGE])
         pass
@@ -31,8 +29,6 @@ class SplashScreen(MDScreen):
         app = MDApp.get_running_app()
         print('[*ALEIX*]: App saved')
         app.switch_screen('login')
-        
-
 class ContentNavigationDrawer(MDScrollView):
     manager = ObjectProperty()
     nav_drawer = ObjectProperty()
