@@ -1,19 +1,16 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 from utils import Notify, load_kv
-import requests
 from kivy.storage.jsonstore import JsonStore # libreria para las sessiones
 from updates import Update
 from db import CreateDB
-import os
-import atexit
+import requests, os, atexit
 
 load_kv(__name__)
 
 class LoginScreen(MDScreen):
     def on_enter(self, *args):
-        print('[*ALEIX*]: On enter login')
-        
+        pass        
     def open(self):
         app = MDApp.get_running_app()
         self.ids.email.focus = True

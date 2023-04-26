@@ -2,7 +2,7 @@ name: APK
 
 on:
   push:
-    branches: [ "feature-buildozer" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read
