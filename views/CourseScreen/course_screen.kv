@@ -11,14 +11,13 @@
         MDBoxLayout:
             orientation: "vertical"
             padding:0, 70, 0, 0
-            TextInput:
+            SearchE4:
                 id: search
-                hint_text: "Buscar Curso.."
-                halign: "center"
-                size_hint_y: 0.055
-                size_hint_x: 1
-                multiline: False
-                on_text: root.buscar_curso(self.text)
+                hint_text: "Buscar..."
+                mode: "round"
+                pos_hint: {'center_x': 0.5}
+                size_hint_x: 0.9
+                on_text: root.buscar_curso(self.text) 
             MDScrollView:
                 MDList:
                     id: course

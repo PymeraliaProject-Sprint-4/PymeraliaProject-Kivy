@@ -90,14 +90,12 @@ def dataTasks(data):
 api = "http://localhost/api/"
 
 # devuelve la url para poder hacer uso de la API
-
-
 def returnUrl():
     return api
 
 
+# Realiza la solicitud GET a la API
 def get_api_data(url):
-    # Realizar la solicitud GET a la API
     try:
         response = ControlApi.metodoControlApi(api + url)
         data = json.loads(response.text)
@@ -107,19 +105,15 @@ def get_api_data(url):
         return api_data
     except:
         # Manejar excepciones de solicitud HTTP
-        engine.dispose()
         print('No funciono')
         Notify(text="¡Error al conectarse al servidor!", snack_type='error').open()
-        engine.dispose()
     finally:
         engine.dispose()
         
         
 
-
+#Método que recupera los datos de la API y recarga los datos en la aplicación
 def Update():
-    # Recuperar company_id session y transformar en string para poder hacer la petición a la Api
-
     datatasks = get_api_data('all-data-kivy')
     datainventories = get_api_data('devicelist/')
     datacourses = get_api_data('course-user-data')
