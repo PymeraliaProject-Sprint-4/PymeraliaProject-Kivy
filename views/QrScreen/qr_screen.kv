@@ -2,7 +2,6 @@
 #:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
 
 <QrScreen>:
-    # md_bg_color: app.theme_cls.bg_dark
     MDTopAppBar:
         title: "PymeShield"
         elevation: 1
@@ -13,16 +12,15 @@
 
     MDBoxLayout:
         orientation: 'vertical'
-        # TODO: La càmera s'obre per defecte...
-        ZBarCam:
-            id: zbarcam
-            # optional, by default checks all types
-        MDLabel:
-            id: qrlabel
-            size_hint: None, None
-            size: self.texture_size[0], 50
-            text: ', '.join([str(symbol.data) for symbol in zbarcam.symbols])
-            on_text: root.leerQR(self.text)
+        # ZBarCam:
+        #     id: zbarcam
+        #     # optional, by default checks all types
+        # MDLabel:
+        #     id: qrlabel
+        #     size_hint: None, None
+        #     size: self.texture_size[0], 50
+        #     text: ', '.join([str(symbol.data) for symbol in zbarcam.symbols])
+        #     on_text: root.leerQR(self.text)
     MDLabel:
         text: "Escanear el código QR"
         pos_hint: {'center_y': 0.8, 'x': 0.2}

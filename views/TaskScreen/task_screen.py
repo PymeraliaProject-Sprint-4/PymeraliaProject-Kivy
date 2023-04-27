@@ -1,20 +1,7 @@
-from kivy.lang import Builder
 from kivymd.app import MDApp
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.theming import ThemableBehavior
-from kivymd.uix.list import MDList
 from kivymd.uix.textfield import MDTextField
-from kivymd.uix.list import OneLineIconListItem
-from kivy.uix.scrollview import ScrollView
-from kivy.core.window import Window
-from kivy.utils import platform
 from kivymd.uix.screen import MDScreen
-from kivy.properties import ObjectProperty
-from kivymd.uix.scrollview import MDScrollView
-from kivy.clock import Clock
-from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget #import para crear listas (cambia dependiendo de los campos que queremos que tenga la lista), le pasamos diferentes imports de la misma biblioteca
-import json #importamos la libreria de python que nos permite trabajar con json
-from pathlib import Path
+from kivymd.uix.list import OneLineIconListItem, ThreeLineIconListItem, IconLeftWidget #import para crear listas (cambia dependiendo de los campos que queremos que tenga la lista), le pasamos diferentes imports de la misma biblioteca
 from utils import load_kv #cargar ruta del script
 import sqlite3
 
@@ -75,7 +62,6 @@ class TaskScreen(MDScreen):
                     id = f"Tarea {result['id']}",
                     text = f"{result['name']}",
                     on_press = self.detalles
-                    # secondary_text=f"Descripcion {result['descripcion']}",
                 )
             )
                    
@@ -101,16 +87,8 @@ class TaskScreen(MDScreen):
                 )
             )# Lista que muestra las tareas
             
-        print('[*ALEIX*]: For finalitzat')
-            
     def detalles(self,row): #inicializamos una función con el parametro row
-        print('[*ALEIX*]: S\'ha fet clic a alguna fila, en concret aquesta: {}'.format(row.id))
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
-        print('[*ALEIX*]: App getted correctly')
-        print('[*ALEIX*]: app.setRowDetails')
         app.setRowDetails(row.id)
-        print('[*ALEIX*]: Method passed, let\'s try to change to details_tasks')
-        app.switch_screen('details_tasks') #mostrar detalles de la tarea.
-        print('[*ALEIX*]: Called app.switch_screen')
-        
+        app.switch_screen('details_tasks') #mostrar detalles de la tarea.        

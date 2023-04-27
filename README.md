@@ -1,13 +1,13 @@
 # PymeraliaProject-Kivy
-Prova2
+Benvinguts al repositori de l'aplicatiu de Kivy.
 
-Requerimientos de la app: 
+## Requeriments: 
 
 pip install bcrypt\
 pip install zbarcam\
 pip install sqlalchemy
 
 
-Usuarios de prueba:\
+## Usuaris de prova:
 email: admin@pymeshield.com contraseña: password\
 email: test@pymeshield.com contraseña: test

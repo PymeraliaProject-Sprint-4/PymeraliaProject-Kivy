@@ -1,21 +1,11 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.textfield import MDTextField
-from kivymd.uix.dialog import MDDialog
-from kivymd.uix.button import MDFloatingActionButton
-from kivymd.uix.list import OneLineIconListItem
-from kivy.uix.scrollview import ScrollView
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.list import MDList, IconLeftWidget
-from kivymd.uix.list import TwoLineIconListItem
+from kivymd.uix.list import IconLeftWidget, TwoLineIconListItem
+from utils import load_kv
 import sqlite3
 
-from utils import load_kv
-import json
-import bcrypt
-
 load_kv(__name__)
-
 
 data = []
 def get_data_sqlite():
@@ -73,9 +63,7 @@ class InventoryScreen(MDScreen):
     def on_enter(self, *args):
         self.ids.listaDispositivos.clear_widgets()
 
-        # app = MDApp.get_running_app()
         datosDevices = get_data_sqlite()
-        # self.datosDevices = datosDevices
 
         # Crear el layout principal
         layout = MDBoxLayout()
@@ -101,11 +89,9 @@ class InventoryScreen(MDScreen):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         app.setRowDetails(row.id)
-        # app.switch_screen('details_inventory')  # mostrar detalles de la tarea.
         self.manager.current = "details_inventory"
         
     
     def open_camera(self, *args):
-        app = MDApp.get_running_app()
         self.manager.current = "QR"
         

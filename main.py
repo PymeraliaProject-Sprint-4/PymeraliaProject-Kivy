@@ -5,34 +5,17 @@ from kivymd.uix.screen import MDScreen
 from kivy.properties import ObjectProperty
 from kivymd.uix.scrollview import MDScrollView
 from kivy.clock import Clock
-import json  # importamos la libreria de python que nos permite trabajar con json
+import json, requests  # importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path  # cargar ruta del script
 from updates import Update
-from db import CreateDB
-import requests
-import sqlite3
-import db
-import kivy
-#from android.permissions import request_permissions, Permission
 
 class SplashScreen(MDScreen):
     def on_enter(self, *args):
-        print('[*ALEIX*]: Entering')
         Clock.schedule_once(self.switch_to_home, 1)
 
-        
-        
-    def build(self, *args):
-        #request_permissions([Permission.CAMERA,Permission.WRITE_EXTERNAL_STORAGE,Permission.READ_EXTERNAL_STORAGE])
-        pass
-
     def switch_to_home(self, dt):
-        print('[*ALEIX*]: I\'m in switch_to_home')
         app = MDApp.get_running_app()
-        print('[*ALEIX*]: App saved')
         app.switch_screen('login')
-        
-
 class ContentNavigationDrawer(MDScrollView):
     manager = ObjectProperty()
     nav_drawer = ObjectProperty()
@@ -62,8 +45,6 @@ class Main(MDApp):
     
 
     def build(self):
-        # CreateDB()
-        #Update()
         if platform in ['win', 'linux', 'macosx']:
             # resolución más común móvil
             Window.size = (414, 750)
@@ -84,7 +65,6 @@ class Main(MDApp):
         response = requests.get(url)
         data = json.loads(response.text)
         self.api_data = data['data']
-        # self.insert_data();
         return self.api_data
     
     def get_api_data(self, url):
@@ -93,7 +73,6 @@ class Main(MDApp):
         response = requests.get(url)
         data = json.loads(response.text)
         self.api_data = data
-        # self.insert_data();
         return self.api_data
 
     def setRowDetails(self, row):
@@ -107,10 +86,7 @@ class Main(MDApp):
         self.manager.current = screen
 
     def switch_screen(self, screen_name='login'):
-        
-        print('[*ALEIX*]: App.switch_screen called, screen: {}'.format(screen_name))
         self.sm.current = screen_name
-        print('[*ALEIX*]: Setted the new screen')
         
 
     

@@ -1,10 +1,6 @@
 import json
-import requests
-import sqlite3
-from datetime import datetime
 from utils import ControlApi, Notify
-from kivy.storage.jsonstore import JsonStore
-from sqlalchemy import Float, create_engine, Column, Integer, String, DateTime
+from sqlalchemy import Float, create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -91,7 +87,6 @@ def dataTasks(data):
     insert_data(data, Task)
 
 
-# api_data = []
 api = "http://localhost/api/"
 
 # devuelve la url para poder hacer uso de la API
@@ -105,6 +100,8 @@ def get_api_data(url):
         response = ControlApi.metodoControlApi(api + url)
         data = json.loads(response.text)
         api_data = data
+        print('funciono')
+        engine.dispose()
         return api_data
     except:
         # Manejar excepciones de solicitud HTTP

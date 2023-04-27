@@ -1,9 +1,6 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
-from utils import load_kv #cargar ruta del script
-import requests
-from utils import Notify
-from main import Main
+from utils import load_kv, Notify #cargar ruta del script
 from views.ReportScreen.report_screen import get_data_sqlite
 
 load_kv(__name__)
@@ -18,7 +15,6 @@ class DetailsReportScreen(MDScreen):
         self.manager.current = screen
 
     def on_enter(self):
-        print('[*ALEIX*]: Questionary screen')
         try:
             # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
             app = MDApp.get_running_app()

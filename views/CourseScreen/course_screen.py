@@ -1,17 +1,9 @@
-import requests
 from kivymd.uix.screen import MDScreen
-from kivymd.app import MDApp
-from kivy.uix.scrollview import ScrollView
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.list import IconLeftWidget
-from kivymd.uix.list import ThreeLineIconListItem
-from kivy.clock import Clock
-import sqlite3
+from kivymd.uix.list import IconLeftWidget, ThreeLineIconListItem
 from utils import load_kv
-import json
+import sqlite3
 
 load_kv(__name__)
-
 
 class CourseScreen(MDScreen):
 
@@ -39,7 +31,6 @@ class CourseScreen(MDScreen):
 
     def on_enter(self, *args):
         # Obtener la lista completa de cursos
-        print('ALEIX: on_enter cursos')
         self.cursos_completos = self.get_cursos()
         self.mostrar_cursos(self.cursos_completos)
 
