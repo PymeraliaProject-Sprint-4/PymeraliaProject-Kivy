@@ -2,6 +2,7 @@ from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivymd.uix.snackbar import Snackbar
+from kivymd.uix.textfield import MDTextField
 from kivy.storage.jsonstore import JsonStore # libreria para las sessiones
 import os, requests
 
@@ -35,3 +36,7 @@ class ControlApi():
         except requests.exceptions.RequestException as e:
             # Manejar excepciones de solicitud HTTP
             Notify(text="¡Error al conectarse al servidor!", snack_type='error').open()
+
+# Clase que se encarga de las acciones que van a realizar los buscadores.
+class SearchE4(MDTextField): 
+    pass

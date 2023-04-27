@@ -1,7 +1,6 @@
 from kivymd.app import MDApp
-from kivymd.uix.textfield import MDTextField
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.list import OneLineIconListItem, ThreeLineIconListItem, IconLeftWidget #import para crear listas (cambia dependiendo de los campos que queremos que tenga la lista), le pasamos diferentes imports de la misma biblioteca
+from kivymd.uix.list import TwoLineIconListItem, IconLeftWidget #import para crear listas (cambia dependiendo de los campos que queremos que tenga la lista), le pasamos diferentes imports de la misma biblioteca
 from utils import load_kv #cargar ruta del script
 import sqlite3
 
@@ -35,17 +34,13 @@ def get_data_sqlite():
     
     return data     
 
-# Esta clase es la clase que se encarga de las acciones que va a realizar el buscador.
-class SearchE4(MDTextField): 
-    pass
-
 class TaskScreen(MDScreen):
     def calc(self, item):
         #variable que guarda el resultado el método getTareasData()
         data = get_data_sqlite()
             
         # Filtramos los datos según el texto de búsqueda
-        search_results = [search_text for search_text in data if item.lower() in search_text['name'].lower()]
+        search_results = [search_text for search_text in data if (item.lower() in search_text['recommendation'].lower()) or (item.lower() in search_text['danger'].lower())]
 
         # Actualizamos la lista de resultados de búsqueda en la interfaz de usuario
         search_results_list = self.ids.tareas
@@ -54,13 +49,14 @@ class TaskScreen(MDScreen):
 
         for result in search_results:
             search_results_list.add_widget(
-                OneLineIconListItem( #método que nos deja trabajar con 1 linea que previamente lo hemos importado en la parte superior
+                TwoLineIconListItem( #método que nos deja trabajar con 1 linea que previamente lo hemos importado en la parte superior
                     IconLeftWidget( #método que nos permite agregar un icono
                         icon="clipboard-list"
                     ),
                     
                     id = f"Tarea {result['id']}",
-                    text = f"{result['name']}",
+                    text = f"Tarea: {result['recommendation']}",
+                    secondary_text=f"Nivel de peligro: {result['danger']}",
                     on_press = self.detalles
                 )
             )
@@ -76,13 +72,13 @@ class TaskScreen(MDScreen):
 
         for i in data: #bucle que recorre el rango que le pasemos como parametro
             self.ids.tareas.add_widget( #añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
-                ThreeLineIconListItem( #método que nos deja trabajar con 3 lineas que previamente lo hemos importado en la parte superior
+                TwoLineIconListItem( #método que nos deja trabajar con 3 lineas que previamente lo hemos importado en la parte superior
                     IconLeftWidget( #método que nos permite agregar un icono
                         icon="clipboard-list"
                     ),
                     id = f"Tarea {i['id']}",
-                    text = f"{i['name']}",
-                    # secondary_text=f"Descripcion {i['descripcion']}", #línea 2
+                    text = f"Tarea: {i['recommendation']}",
+                    secondary_text=f"Nivel de peligro: {i['danger']}", #línea 2
                     on_press = self.detalles
                 )
             )# Lista que muestra las tareas

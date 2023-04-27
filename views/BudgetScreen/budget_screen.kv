@@ -5,10 +5,10 @@
         SearchE4:
             id: search_item
             hint_text: "Buscar..."
-            halign: "center"
-            size_hint_x: 0.8
+            mode: "round"
             pos_hint: {'center_x': 0.5}
-            on_text: root.calc(self.text)
+            size_hint_x: 0.9
+            on_text: root.calc(self.text) 
         MDScrollView:
             MDList:
                 id: presupuesto

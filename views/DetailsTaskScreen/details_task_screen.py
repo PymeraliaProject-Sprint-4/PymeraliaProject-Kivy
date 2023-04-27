@@ -30,9 +30,13 @@ class DetailsTaskScreen(MDScreen):
         for i in dataTareas:  # recorremos los valores de la variable data2 que guarda los datos del json
             id = i['id']  # asignamos el nuevo valos a la variable id
             # asignamos un nuevo valor a la variable text recuperando datos del archivo json
-            text = f"{i['name']}"
+            text = f"Tarea: {i['recommendation']}"
+            text2 = f"Nivel de peligro: {i['danger']}"
+            text3 = f"Gestión: {i['manages']}"
 
-            self.ids.desc.text = text  # damos valor a la variable
+            self.ids.text1.text = text  # damos valor a la variable
+            self.ids.text2.text = text2
+            self.ids.text3.text = text3
 
             if id == id_tasca:  # comprovamos si id es igual a id_tasca
                 break  # si los valores son iguales generamos un break en la ejecución del código

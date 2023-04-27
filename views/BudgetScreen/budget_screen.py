@@ -33,10 +33,6 @@ def get_data_sqlite():
     
     return data    
 
-class SearchE4(MDTextField):
-    pass
-
-
 class BudgetScreen(MDScreen):
     def calc(self, item):
         # variable que guarda el resultado el método getTareasData()

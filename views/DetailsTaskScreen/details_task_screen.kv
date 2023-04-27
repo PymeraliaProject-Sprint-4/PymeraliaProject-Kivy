@@ -7,13 +7,32 @@
         specific_text_color: "black"
         left_action_items: [["keyboard-backspace", lambda x: root.inici()]]
     MDBoxLayout:
-        orientation: 'vertical'
-        padding:0, 70, 0, 0
+        orientation: "vertical"
+        size_hint_y: None
+        pos_hint: {"center_x": 0.5, "center_y": 0.4}
+        spacing: dp(80)
+        padding: 10, 0, 10, 0
         MDLabel:
-            id: desc
+            id: text1
             text:""
             halign: "center"
-            font_style: "H3"
+            height: "50dp"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+        MDLabel:
+            id: text2
+            text:""
+            halign: "center"
+            height: "50dp"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+        MDLabel:
+            id: text3
+            text:""
+            height: "50dp"
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
         MDScrollView:
             MDList:
                 id: detalles

@@ -1,5 +1,6 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.textfield import MDTextField
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.list import IconLeftWidget, TwoLineIconListItem
 from utils import load_kv
@@ -35,6 +36,7 @@ def get_data_sqlite():
     return data
 
 
+# Clase encargada de la pantalla de inventario de dispositivos
 class InventoryScreen(MDScreen):
     def buscar(self, item):
         data = get_data_sqlite()
@@ -59,7 +61,7 @@ class InventoryScreen(MDScreen):
                 )
             )
 
-    
+    # Método que se ejecuta al entrar en la pantalla inventario
     def on_enter(self, *args):
         self.ids.listaDispositivos.clear_widgets()
 
@@ -85,13 +87,14 @@ class InventoryScreen(MDScreen):
         # retornem la llista de dispositius
         return layout
     
+    # Método que nos dirige a la pantalla de detalles del dispositivo que seleccionamos
     def detalles(self, row):  # inicializamos una función con el parametro row
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         app = MDApp.get_running_app()
         app.setRowDetails(row.id)
         self.manager.current = "details_inventory"
         
-    
+    # Método que nos redirige a la pantalla de la cámara QR
     def open_camera(self, *args):
         self.manager.current = "QR"
         
