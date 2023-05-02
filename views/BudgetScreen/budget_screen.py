@@ -39,7 +39,7 @@ class BudgetScreen(MDScreen):
         data = get_data_sqlite()
 
         # Filtramos los datos según el precio de búsqueda
-        search_results = [search_text for search_text in data if str(item) in str(search_text['price'])]
+        search_results = [search_text for search_text in data if (str(item) in str(search_text['price'])) or (item.lower() in search_text['accepted'].lower()) or (str(item) in str(search_text['id']))]
 
         # Actualizamos la lista de resultados de búsqueda en la interfaz de usuario
         search_results_list = self.ids.presupuesto
@@ -48,14 +48,15 @@ class BudgetScreen(MDScreen):
 
         for result in search_results:
             search_results_list.add_widget(
-                OneLineIconListItem(  # método que nos deja trabajar con 1 linea que previamente lo hemos importado en la parte superior
+                ThreeLineIconListItem(  # método que nos deja trabajar con 1 linea que previamente lo hemos importado en la parte superior
                     IconLeftWidget(  # método que nos permite agregar un icono
                         icon="account-cash"
                     ),
                     
                     id=f"Presupuesto {result['id']}",
-                    text=f"{result['price']}€",
-                    secondary_text=f"{result['accepted']}",  # línea 2
+                    text=f"Presupuesto número {result['id']}", #línea 1
+                    secondary_text=f"Total presupuesto: {result['price']} €",  # línea 2
+                    tertiary_text=f"Aceptado: {result['accepted']}", # línea 3
                     on_press=self.detalles
                 )
             )      
@@ -78,8 +79,9 @@ class BudgetScreen(MDScreen):
                     ),
 
                     id=f"Presupuesto {i['id']}",
-                    text=f"{i['price']}€",
-                    secondary_text=f"{i['accepted']}",  # línea 2
+                    text=f"Presupuesto número {i['id']}", #línea 1
+                    secondary_text=f"Total presupuesto: {i['price']} €",  # línea 2
+                    tertiary_text=f"Aceptado: {i['accepted']}", # línea 3
                     on_press=self.detalles
                 )
             )  # Lista que muestra las tareas
