@@ -10,9 +10,15 @@ class QrScreen(MDScreen):
 
     contador = False
     
+    #Método que se ejecuta al entrar en la pantalla QR
     def on_enter(self):
         self.contador = False
+    
+    # Método que tira hacia la pantalla anterior
+    def goBack(self, screen):
+        self.manager.current = screen
         
+    # Método que lee el código QR
     def leerQR(self, instance):
         readQR = self.ids['qrlabel'].text
         readQR = readQR[2:-1]
@@ -26,13 +32,13 @@ class QrScreen(MDScreen):
                 self.contador = True
                   
 
-    # cierra el mensaje de la ventana emergente y nos dirige a la pantalla de detalles del dispositivo
+    # Método que nos dirige a la pantalla de detalles del dispositivo
     def detailsQr(self, instance, readQR):
         app = MDApp.get_running_app()
         app.setRowDetails(readQR)
         self.manager.current = 'details_inventory'
 
-    # método que nos lleva a la pantalla "home"
+    # Método que nos lleva a la pantalla "home"
     def goHome(self):
         # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
         self.manager.current = 'Inicio'
