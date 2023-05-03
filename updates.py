@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Definir conexión a la base de datos
-engine = create_engine('sqlite:///pymeshield.db', echo=True)
+engine = create_engine('sqlite:///pymeshield.db')
 
 # Crear sesión
 Session = sessionmaker(bind=engine)
@@ -87,7 +87,7 @@ def dataTasks(data):
     insert_data(data, Task)
 
 
-api = "http://localhost/api/"
+api = "http://pymeshield.ebrehosting.asix2.iesmontsia.cat/api/"
 
 # devuelve la url para poder hacer uso de la API
 def returnUrl():
@@ -100,12 +100,10 @@ def get_api_data(url):
         response = ControlApi.metodoControlApi(api + url)
         data = json.loads(response.text)
         api_data = data
-        print('funciono')
         engine.dispose()
         return api_data
     except:
         # Manejar excepciones de solicitud HTTP
-        print('No funciono')
         Notify(text="¡Error al conectarse al servidor!", snack_type='error').open()
     finally:
         engine.dispose()
