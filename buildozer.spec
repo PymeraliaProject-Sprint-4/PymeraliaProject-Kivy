@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,kivymd,sqlite3,zbarcam,requests,urllib3,chardet,idna,bcrypt,pillow,pyzbar,xcamera,libzbar,sqlalchemy
+requirements = python3,kivy,kivymd==1.0.2,sqlite3,zbarcam,requests,urllib3,chardet,certifi,idna,bcrypt,pillow,pyzbar,xcamera,libzbar,sqlalchemy,libiconv,materialyoucolor
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
@@ -66,7 +66,7 @@ orientation = portrait
 osx.python_version = 3
 
 # Kivy version to use
-osx.kivy_version = 2.1.1
+osx.kivy_version = 2.1.0
 
 #
 # Android specific
@@ -100,7 +100,7 @@ android.permissions = android.permission.INTERNET, (name=android.permission.WRIT
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-android.api = 30
+android.api = 33
 
 # (int) Minimum API your APK / AAB will support.
 android.minapi = 21
@@ -282,7 +282,7 @@ android.sdk = 20
 
 # (list) The Android archs to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
 # In past, was `android.arch` as we weren't supporting builds for multiple archs at the same time.
-android.archs = arm64-v8a, armeabi-v7a
+android.archs = arm64-v8a
 
 # (int) overrides automatic versionCode computation (used in build.gradle)
 # this is not the same as app version and should only be edited if you know what you're doing

@@ -46,11 +46,12 @@ class LoginScreen(MDScreen):
         self.session = JsonStore('session.json')
         email = self.ids.email.text
         password = self.ids.password.text
+        #print('do login', email, password)
         
         try:
             # Envía la solicitud POST con los datos de email y password
-            response = requests.post('http://localhost/api/loginPhone', data={'email': email, 'password': password})
-            print(response)
+            response = requests.post('https://pymeshield.ebrehosting.asix2.iesmontsia.cat/api/loginPhone', data={'email': email, 'password': password})
+            #print('try', response.request.body)
             if response.status_code == 200:
                 # Redireccionar al login si la respuesta del servidor es correcta
                 Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
@@ -76,6 +77,7 @@ class LoginScreen(MDScreen):
                 
             else:
                 # Si la respuesta es incorrecta, se muestra el mensaje de error
+                #print('else', response.request.body)
                 Notify(text="¡Usuario o contraseña incorrecta!", snack_type='error').open()
                 self.clear()
 

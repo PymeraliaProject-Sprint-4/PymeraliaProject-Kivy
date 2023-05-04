@@ -11,7 +11,6 @@ class ProfileScreen(MDScreen):
         api = returnUrl()
         # Realizar la solicitud GET a la API
         response = ControlApi.metodoControlApi(api + 'user')
-        print(response)
         # Procesar la respuesta
         try:
             if response.status_code == 200:
@@ -43,7 +42,7 @@ class ProfileScreen(MDScreen):
 
                 # comprueba si el dato que recoge existe o no
                 if data['profile_image'] is not None:
-                    image_url = "http://localhost/img/profile_images/" + \
+                    image_url = "http://pymeshield.ebrehosting.asix2.iesmontsia.cat/img/profile_images/" + \
                         data['profile_image']  # guarda la url donde se encuentra la imagen
                     # os.path.join() une varias rutas, os.getcwd() obtiene el directorio actual
                     image_path = os.path.join(

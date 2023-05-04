@@ -55,7 +55,7 @@ class Main(MDApp):
         self.title = "Pymeshield"
         self.sm = self.root
         self.rutaPath = Path(__file__).absolute().parent
-        self.api = "http://localhost/api/"
+        self.api = "http://pymeshield.ebrehosting.asix2.iesmontsia.cat/api/"
         
     def update(self):
         Update()
