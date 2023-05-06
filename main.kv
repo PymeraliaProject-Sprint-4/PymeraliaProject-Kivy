@@ -1,20 +1,8 @@
+#:kivy 2.1.0
 #:import LoginScreen views.LoginScreen
-#:import HomeScreen views.HomeScreen
-#:import InventoryScreen views.InventoryScreen
-#:import QrScreen views.QrScreen
-#:import TaskScreen views.TaskScreen
-#:import DetailsTaskScreen views.DetailsTaskScreen
-#:import BudgetScreen views.BudgetScreen
-#:import DetailsBudgetScreen views.DetailsBudgetScreen
-#:import DetailsInventoryScreen views.DetailsInventoryScreen
-#:import ProfileScreen views.ProfileScreen
-#:import CourseScreen views.CourseScreen
-#:import Window kivy.core.window.Window
-#:import DetailsReportScreen views.DetailsReportScreen
-#:import PhotoScreen views.PhotoScreen
 
-#aquí van las vistas
-ScreenManager:
+#aquí van las vistas hasta el dashboard
+MDScreenManager:
     SplashScreen:
         name: 'splash'
 
@@ -24,85 +12,36 @@ ScreenManager:
     Dashboard:
         name: 'dashboard'
 
-    HomeScreen:
-        name: 'home'
-
-    InventoryScreen:
-        name: 'inventory'
-
-    TaskScreen:
-        name: 'tasks'
-
-    CourseScreen:
-        name: 'course'
-
-    DetailsTaskScreen:
-        name: 'details_tasks'
-
-    ReportScreen:
-        name: 'report'
-
-    DetailsReportScreen:
-        name: 'details_report'
-
-    DetailsInventoryScreen:
-        name: 'details_inventory'
-
-    BudgetScreen:
-        name: 'budgets'
-
-    DetailsBudgetScreen:
-        name: 'details_budgets'
-
-    ProfileScreen:
-        name: 'test'
-
-    ContactScreen:
-        name: 'contact'
-
-    PhotoScreen:
-        name: 'photo'
-
- 
 <SplashScreen>:
     md_bg_color: app.theme_cls.primary_color
     MDBoxLayout:
         Image:
             source:'assets/splash_pymeshield.png'
 
-<DrawerClickableItem@MDNavigationDrawerItem>
+<DrawerClickableItem@MDNavigationDrawerItem>:
     focus_color: "#efb58c"
     text_color: "#4a4939"
     icon_color: "#4a4939"
     ripple_color: "#c5bdd2"
     selected_color: "#ff6720"
 
-<DrawerLabelItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    focus_behavior: False
-    selected_color: "#4a4939"
-    _no_ripple_effect: True
-
 <Dashboard>:
     MDTopAppBar:
         title: "PymeShield"
         elevation: 1
         pos_hint: {"top": 1}
+        padding: dp(20), dp(0)
         md_bg_color: "#ff6720"
         specific_text_color: "black"
         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
         right_action_items: [["refresh", lambda x: app.update()]]
         
     MDNavigationLayout:
-
+        #aquí las otras pantallas
         MDScreenManager:
             id: screen_manager
             HomeScreen:
                 name: "Inicio"
-            
-            LoginScreen:
-                name: "login"
 
             ProfileScreen:
                 name: "profile"
@@ -130,12 +69,6 @@ ScreenManager:
 
             DetailsReportScreen:
                 name: "details_report"
-
-            MDScreen:
-                name: "Gantt"
-                               
-            MDScreen:
-                name: "Listado tareas"
                                
             InventoryScreen:
                 name: "inventory"
@@ -150,10 +83,10 @@ ScreenManager:
                 name: "photo"
 
         MDNavigationDrawer:
-            id: nav_drawer    
-            elevation: 1    
+            id: nav_drawer
+            elevation: 2
             radius:(0, 16, 16, 0)
-            BoxLayout:
+            MDBoxLayout:
                 orientation: 'vertical' 
                 ContentNavigationDrawer:
                     manager: screen_manager
@@ -166,8 +99,8 @@ ScreenManager:
             title_font_style: "H5"
             text: "Menú"
             source: "assets/logo_menu.png"
-            spacing: "20dp"
-            padding: "12dp", 0, 0, "56dp"
+            spacing: dp(20)
+            padding: dp(12), dp(0), dp(0), dp(56)
 
         DrawerClickableItem:
             text: "Inicio"

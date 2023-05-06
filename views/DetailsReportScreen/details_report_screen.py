@@ -1,16 +1,15 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
-from utils import load_kv, Notify #cargar ruta del script
+from utils import load_kv, Notify  # cargar ruta del script
 from views.ReportScreen.report_screen import get_data_sqlite
 
 load_kv(__name__)
 
-class DetailsReportScreen(MDScreen):
 
+class DetailsReportScreen(MDScreen):
     def index(self):
-        app = MDApp.get_running_app()
-        app.switch_screen('dashboard') #mostrar detalles de la tarea.
-    
+        self.manager.current = "Inicio"
+
     def goBack(self, screen):
         self.manager.current = screen
 
@@ -21,21 +20,21 @@ class DetailsReportScreen(MDScreen):
             id_informe = app.rowPressed()
             data = get_data_sqlite()
 
-            img2 = 'views/DetailsReportScreen/inprogress.gif'
-            img3 = 'views/DetailsReportScreen/done.gif'
+            img2 = "assets/inprogress.gif"
+            img3 = "assets/done.gif"
 
             id_informe = int(id_informe[8:])
 
             for i in data:
-                if i['id'] == id_informe:
-                    status = i['status']
+                if i["id"] == id_informe:
+                    status = i["status"]
                     self.ids.estatext.text = f"{i['name']} - {status}"
-                    if status == 'pending':
+                    if status == "pending":
                         self.ids.imagen.source = img2
-                    elif status == 'done':
+                    elif status == "done":
                         self.ids.imagen.source = img3
                     break
 
         except Exception as e:
             # Handle any exceptions that may have occurred during the request.
-            Notify(text="Error al recuperar los datos", snack_type='error').open()
+            Notify(text="Error al recuperar los datos", snack_type="error").open()

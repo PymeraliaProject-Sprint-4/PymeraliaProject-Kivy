@@ -1,3 +1,4 @@
+#:kivy 2.1.0
 <DetailsReportScreen>:
     MDTopAppBar:
         title: "PymeShield"
@@ -7,7 +8,7 @@
         specific_text_color: "black"
         left_action_items: [["keyboard-backspace", lambda x: root.goBack('report')]]
     MDBoxLayout:
-        padding:0, 50, 0, 0
+        padding:dp(0), dp(50), dp(0), dp(0)
         orientation: "vertical"
         MDLabel:
             id: estatext

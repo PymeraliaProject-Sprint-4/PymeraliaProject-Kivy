@@ -8,5 +8,9 @@
             "name": "Kivy",
             "database": "${workspaceFolder:PymeraliaProject-Kivy}/pymeshield.db"
         }
-    ]
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
 }

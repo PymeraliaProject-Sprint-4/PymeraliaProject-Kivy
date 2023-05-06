@@ -1,16 +1,17 @@
-<DetailsInventoryScreen>
+#:kivy 2.1.0
+<DetailsInventoryScreen>:
     MDTopAppBar:
         title: "PymeShield"
         elevation: 1
         pos_hint: {"top": 1}
         md_bg_color: "#ff6720"
         specific_text_color: "black"
-        left_action_items: [["keyboard-backspace", lambda x: root.goBack('inventory')]]
+        left_action_items: [["keyboard-backspace", lambda x: root.goBack('Inicio')]]
     MDBoxLayout:
         orientation: "vertical"
         size_hint_y: None
         pos_hint: {"center_x": 0.5, "center_y": 0.3}
-        padding: 10, 0, 10, 0
+        padding: dp(10), dp(0), dp(10), dp(0)
         spacing: dp(50)
         MDLabel:
             id: text1
@@ -68,7 +69,5 @@
     MDFloatingActionButton:
         pos_hint: {'center_y': 0.09, 'x': 0.83}
         on_release: root.open_camera()
-        md_bg_color: app.theme_cls.primary_color
-        MDIcon:
-            icon: 'qrcode-scan'
-            halign: 'center'
+        icon: 'qrcode-scan'
+        halign: 'center'

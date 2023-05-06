@@ -13,7 +13,7 @@ package.domain = com.pymeshield
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,json
+source.include_exts = py,png,jpg,kv,atlas,json, gif
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
@@ -37,13 +37,13 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,kivymd==1.0.2,sqlite3,zbarcam,requests,urllib3,chardet,certifi,idna,bcrypt,pillow,pyzbar,xcamera,libzbar,sqlalchemy,libiconv,materialyoucolor
+requirements = python3,kivy==2.2.0rc1,kivymd==1.0.2,sqlite3,zbarcam,requests,urllib3,chardet,certifi,idna,pillow,pyzbar,xcamera,libzbar,sqlalchemy,libiconv,materialyoucolor
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/assets/splash_pymeshield.png
+#presplash.filename = %(source.dir)s/assets/splash_pymeshield.png
 
 # (str) Icon of the application
 icon.filename = %(source.dir)s/assets/pymeshield_favicon.png
@@ -86,7 +86,7 @@ fullscreen = 0
 # see https://lottiefiles.com/ for examples and https://airbnb.design/lottie/
 # for general documentation.
 # Lottie files can be created using various tools, like Adobe After Effect or Synfig.
-#android.presplash_lottie = "path/to/lottie/file.json"
+android.presplash_lottie = %(source.dir)s/assets/splash.json
 
 # (str) Adaptive icon of the application (used if Android API level is 26+ at runtime)
 #icon.adaptive_foreground.filename = %(source.dir)s/data/icon_fg.png
@@ -94,7 +94,7 @@ fullscreen = 0
 
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
-android.permissions = android.permission.INTERNET, (name=android.permission.WRITE_EXTERNAL_STORAGE;maxSdkVersion=18), android.permission.CAMERA
+android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE;maxSdkVersion=18,CAMERA
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
@@ -282,7 +282,7 @@ android.sdk = 20
 
 # (list) The Android archs to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
 # In past, was `android.arch` as we weren't supporting builds for multiple archs at the same time.
-android.archs = arm64-v8a
+android.archs = armeabi-v7a, arm64-v8a
 
 # (int) overrides automatic versionCode computation (used in build.gradle)
 # this is not the same as app version and should only be edited if you know what you're doing

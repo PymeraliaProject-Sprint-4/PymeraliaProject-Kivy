@@ -9,3 +9,5 @@ session.json
 bin/
 .bin/*
 pymeshield.db 
+.profile_images/
+.profile_images/*

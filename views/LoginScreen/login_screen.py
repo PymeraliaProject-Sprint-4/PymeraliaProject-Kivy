@@ -1,40 +1,42 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 from utils import Notify, load_kv
-from kivy.storage.jsonstore import JsonStore # libreria para las sessiones
+from kivy.storage.jsonstore import JsonStore  # libreria para las sessiones
 from updates import Update
 from db import CreateDB
-import requests, os, atexit
+import requests
+import os
+import atexit
 
 load_kv(__name__)
 
+
 class LoginScreen(MDScreen):
     def on_enter(self, *args):
-        pass        
+        pass
+
     def open(self):
         app = MDApp.get_running_app()
         self.ids.email.focus = True
-        app.switch_screen('login')
+        app.switch_screen("login")
 
     #  Método que elimina los archivos session.json y pymeshield.db
     def borrarSesion():
-        archivoSesion = './session.json'
-        archivoBBDD = './pymeshield.db'
+        archivoSesion = "./session.json"
+        archivoBBDD = "./pymeshield.db"
 
         if os.path.exists(archivoSesion):
             os.remove(archivoSesion)
         if os.path.exists(archivoBBDD):
-            os.remove(archivoBBDD) 
+            os.remove(archivoBBDD)
 
     # Método que cierra sesión
     def logout():
         app = MDApp.get_running_app()
-        app.switch_screen('login')
+        app.switch_screen("login")
         LoginScreen.borrarSesion()
-        
-        
-    
-    #acción que ejecuta el método borrar sesión si se cierra el aplicativo de manera forzosa
+
+    # acción que ejecuta el método borrar sesión si se cierra el aplicativo de manera forzosa
     atexit.register(borrarSesion)
 
     def clear(self):
@@ -43,46 +45,49 @@ class LoginScreen(MDScreen):
 
     def do_login(self):
         app = MDApp.get_running_app()
-        self.session = JsonStore('session.json')
+        self.session = JsonStore("session.json")
         email = self.ids.email.text
         password = self.ids.password.text
-        #print('do login', email, password)
-        
+        # print('do login', email, password)
+
         try:
             # Envía la solicitud POST con los datos de email y password
-            response = requests.post('https://pymeshield.ebrehosting.asix2.iesmontsia.cat/api/loginPhone', data={'email': email, 'password': password})
-            #print('try', response.request.body)
+            response = requests.post(
+                "https://pymeshield.ebrehosting.asix2.iesmontsia.cat/api/loginPhone",
+                data={"email": email, "password": password},
+            )
+            # print('try', response.request.body)
             if response.status_code == 200:
                 # Redireccionar al login si la respuesta del servidor es correcta
-                Notify(text="¡Bienvenido a Pymeshield!", snack_type='success').open()
-                #limpia los inputs para que queden vacios al hacer logout
+                Notify(text="¡Bienvenido a Pymeshield!", snack_type="success").open()
+                # limpia los inputs para que queden vacios al hacer logout
                 self.clear()
-                app.switch_screen('dashboard')
+                app.switch_screen("dashboard")
                 # Recuperamos el token de sessión, el company_id para poder filtrar y el tipo de usuario
-                token = response.json().get('token')
-                company_id = response.json().get('company_id')
-                tipo = response.json().get('user_type')
+                token = response.json().get("token")
+                company_id = response.json().get("company_id")
+                tipo = response.json().get("user_type")
                 # Guardamos el token, el company_id y el tipo de usuario en la session
-                self.session.put('token',token=token)
-                self.session.put('company_id', company_id=company_id)
-                self.session.put('type', type=tipo)
+                self.session.put("token", token=token)
+                self.session.put("company_id", company_id=company_id)
+                self.session.put("type", type=tipo)
                 CreateDB()
                 Update()
-            
-            #error para el servicio caído
+
+            # error para el servicio caído
             elif response.status_code == 404:
                 # Si la respuesta es incorrecta, se muestra el mensaje de error
-                Notify(text="¡Servicio No Disponible!", snack_type='error').open()
+                Notify(text="¡Servicio No Disponible!", snack_type="error").open()
                 self.clear()
-                
+
             else:
                 # Si la respuesta es incorrecta, se muestra el mensaje de error
-                #print('else', response.request.body)
-                Notify(text="¡Usuario o contraseña incorrecta!", snack_type='error').open()
+                # print('else', response.request.body)
+                Notify(
+                    text="¡Usuario o contraseña incorrecta!", snack_type="error"
+                ).open()
                 self.clear()
 
         except requests.exceptions.RequestException as e:
             # Manejar excepciones de solicitud HTTP
-            Notify(text="¡Error al conectarse al servidor!", snack_type='error').open()
-            
-            
+            Notify(text="¡Error al conectarse al servidor!", snack_type="error").open()

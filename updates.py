@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Definir conexión a la base de datos
-engine = create_engine('sqlite:///pymeshield.db')
+engine = create_engine("sqlite:///pymeshield.db")
 
 # Crear sesión
 Session = sessionmaker(bind=engine)
@@ -15,14 +15,14 @@ Base = declarative_base()
 
 
 class Budget(Base):
-    __tablename__ = 'budgets'
+    __tablename__ = "budgets"
     id = Column(Integer, primary_key=True)
     price = Column(String)
     accepted = Column(String)
 
 
 class Inventory(Base):
-    __tablename__ = 'inventories'
+    __tablename__ = "inventories"
     id = Column(Integer, primary_key=True)
     brand = Column(String)
     model = Column(String)
@@ -34,21 +34,21 @@ class Inventory(Base):
 
 
 class Report(Base):
-    __tablename__ = 'reports'
+    __tablename__ = "reports"
     id = Column(Integer, primary_key=True)
     name = Column(String)
     status = Column(String)
 
 
 class Course(Base):
-    __tablename__ = 'courses'
+    __tablename__ = "courses"
     id = Column(Integer, primary_key=True)
     name = Column(String)
     description = Column(String)
 
 
 class Task(Base):
-    __tablename__ = 'tasks'
+    __tablename__ = "tasks"
     id = Column(Integer, primary_key=True)
     name = Column(String)
     recommendation = Column(String)
@@ -90,6 +90,8 @@ def dataTasks(data):
 api = "http://pymeshield.ebrehosting.asix2.iesmontsia.cat/api/"
 
 # devuelve la url para poder hacer uso de la API
+
+
 def returnUrl():
     return api
 
@@ -104,32 +106,30 @@ def get_api_data(url):
         return api_data
     except:
         # Manejar excepciones de solicitud HTTP
-        Notify(text="¡Error al conectarse al servidor!", snack_type='error').open()
+        Notify(text="¡Error al conectarse al servidor!", snack_type="error").open()
     finally:
         engine.dispose()
-        
-        
 
-#Método que recupera los datos de la API y recarga los datos en la aplicación
+# Método que recupera los datos de la API y recarga los datos en la aplicación
 def Update():
-    datatasks = get_api_data('all-data-kivy')
-    datainventories = get_api_data('devicelist/')
-    datacourses = get_api_data('course-user-data')
-    databudgets = get_api_data('budgets-data')
-    datareports = get_api_data('kivy/report')
-    
+    datatasks = get_api_data("all-data-kivy")
+    datainventories = get_api_data("devicelist/")
+    datacourses = get_api_data("course-user-data")
+    databudgets = get_api_data("budgets-data")
+    datareports = get_api_data("kivy/report")
+
     if datatasks is not None:
         dataTasks(datatasks)
-    
+
     if databudgets is not None:
         dataBudgets(databudgets)
-    
+
     if datareports is not None:
         dataReports(datareports)
-    
+
     if datacourses is not None:
         dataCourses(datacourses)
-    
+
     if datainventories is not None:
         dataInventory(datainventories)
 
