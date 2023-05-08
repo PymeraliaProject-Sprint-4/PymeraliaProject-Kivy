@@ -8,7 +8,7 @@ from kivymd.uix.list import OneLineIconListItem
 
 
 Builder.load_string(
-    '''
+    """
 #:import images_path kivymd.images_path
 
 
@@ -48,7 +48,7 @@ Builder.load_string(
                 size_hint_y: None
                 height: self.minimum_height
                 orientation: 'vertical'
-'''
+"""
 )
 
 
@@ -57,9 +57,8 @@ class CustomOneLineIconListItem(OneLineIconListItem):
 
 
 class PreviousMDIcons(Screen):
-
     def set_list_md_icons(self, text="", search=False):
-        '''Builds a list of icons for the screen MDIcons.'''
+        """Builds a list of icons for the screen MDIcons."""
 
         def add_icon_item(name_icon):
             self.ids.rv.data.append(
@@ -80,7 +79,7 @@ class PreviousMDIcons(Screen):
                 add_icon_item(name_icon)
 
 
-class MainApp(MDApp):
+class IconosApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.screen = PreviousMDIcons()
@@ -92,4 +91,4 @@ class MainApp(MDApp):
         self.screen.set_list_md_icons()
 
 
-MainApp().run()
+IconosApp().run()

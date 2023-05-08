@@ -5,18 +5,14 @@ from views.BudgetScreen.budget_screen import get_data_sqlite
 
 load_kv(__name__)
 
-class DetailsBudgetScreen(MDScreen):
 
+class DetailsBudgetScreen(MDScreen):
     def inici(self):
-        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
-        app = MDApp.get_running_app()
-        app.switch_screen('dashboard')  # mostrar pantalla detalles tareas.
+        self.manager.current = "budgets"
 
     def open(self):
-        # Variable que utilizaremos para acceder a la applicacion que esta ejecutada.
-        app = MDApp.get_running_app()
         # mostrar pantalla detalles presupuestos.
-        app.switch_screen('details_budgets')
+        self.manager.current = "details_budgets"
 
     id_presu = ""  # creamos una variable vacia
 
@@ -28,7 +24,7 @@ class DetailsBudgetScreen(MDScreen):
         id_presu = int(id_presu[12:])
 
         for i in dataPresu:
-            id = i['id']
+            id = i["id"]
             text = f"Presupuesto número {i['id']}"
             text2 = f"Total presupuesto: {i['price']} €"
             text3 = f"Aceptado: {i['accepted']}"

@@ -1,12 +1,14 @@
+#:kivy 2.1.0
 <InventoryScreen>:
     id: inventory
     MDBoxLayout:
         orientation:"vertical"
-        padding:0, 70, 0, 0
+        padding:dp(0), dp(70), dp(0), dp(0)
         SearchE4:
             id: search_field
-            mode: "round"
+            mode: "rectangle"
             hint_text: "Buscar..."
+            icon_right: "magnify"
             size_hint_x: 0.9
             pos_hint: {'center_x': 0.5}
             on_text: root.buscar(self.text)
@@ -17,7 +19,5 @@
     MDFloatingActionButton:
         pos_hint: {'center_y': 0.09, 'x': 0.83}
         on_release: root.open_camera()
-        md_bg_color: app.theme_cls.primary_color
-        MDIcon:
-            icon: 'qrcode-scan'
-            halign: 'center'
+        icon: 'qrcode-scan'
+        halign: 'center'

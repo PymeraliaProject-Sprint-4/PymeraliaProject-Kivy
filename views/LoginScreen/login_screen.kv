@@ -1,13 +1,14 @@
-<ElevatedCard@MDCard+CommonElevationBehavior>
+#:kivy 2.1.0
+<ElevatedCard@MDCard>:
     orientation: 'vertical'
-    elevation: 1
+    style: 'elevated'
 
 <LoginField@MDTextField>:
     mode: "fill"
     normal_color: app.theme_cls.primary_light
     pos_hint: {"center_x": 0.5}
     write_tab: False
-    multiline: True
+    multiline: False
 
 <LoginScreen>:
     md_bg_color: app.theme_cls.bg_dark
@@ -18,13 +19,12 @@
         size_hint: 0.8, 0.8
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: 'vertical'
             size_hint_x: 0.6
             size_hint_y: 0.6
-            spacing: "20dp"
+            spacing: dp(20)
             pos_hint: {"center_x": .5, "center_y": .6}
-            adaptive_height: True
             Image:
                 source: 'assets/logo_pymeshield.png'
 
@@ -42,13 +42,12 @@
             font_style: 'H5'
             text_color: app.theme_cls.primary_color
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: 'vertical'
             size_hint_x: 0.9
             size_hint_y: 0.6
-            spacing: "20dp"
+            spacing: dp(20)
             pos_hint: {"center_x": .5, "center_y": .6}
-            adaptive_height: True
 
             LoginField:
                 id: email
@@ -65,7 +64,7 @@
                 text: "Entra"
                 pos_hint: {"center_x": 0.5}
                 on_release: root.do_login()
-                font_size: 28
+                font_size: sp(28)
 
             Widget:
                 size_hint_y: 0.2

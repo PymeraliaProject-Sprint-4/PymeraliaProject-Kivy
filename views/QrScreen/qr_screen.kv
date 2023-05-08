@@ -1,3 +1,4 @@
+#:kivy 2.1.0
 #:import ZBarCam kivy_garden.zbarcam.ZBarCam
 #:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
 
@@ -27,7 +28,5 @@
     MDFloatingActionButton:
         pos_hint: {'center_y': 0.80, 'x': 0.8}
         on_release: root.manager.current = 'Inicio'
-        md_bg_color: app.theme_cls.primary_color
-        MDIcon:
-            icon: 'home'
-            halign: 'center'
+        icon: 'home'
+        halign: 'center'

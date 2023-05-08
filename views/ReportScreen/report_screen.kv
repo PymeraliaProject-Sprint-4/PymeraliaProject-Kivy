@@ -1,11 +1,13 @@
+#:kivy 2.1.0
 <ReportScreen>:
     MDBoxLayout:
         orientation: "vertical"
-        padding:0, 70, 0, 0
+        padding:dp(0), dp(70), dp(0), dp(0)
         SearchE4:
             id: search
             hint_text: "Buscar..."
-            mode: "round"
+            icon_right: "magnify"
+            mode: "rectangle"
             pos_hint: {'center_x': 0.5}
             size_hint_x: 0.9
             on_text: root.buscar_informe(self.text) 
