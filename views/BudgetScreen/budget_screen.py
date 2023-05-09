@@ -27,8 +27,8 @@ def get_data_sqlite():
         data.append(
             {
                 "id": row[0],
-                "price": row[1],
-                "accepted": row[2],
+                "price": row[1] if row[1] is not None else None,
+                "accepted": row[2] if row[2] is not None else None
             }
         )
 
@@ -74,8 +74,8 @@ class BudgetScreen(MDScreen):
                     ),
                     id=f"Presupuesto {result['id']}",
                     text=f"Presupuesto número {result['id']}",  # línea 1
-                    secondary_text=f"Total presupuesto: {result['price']} €",  # línea 2
-                    tertiary_text=f"Aceptado: {result['accepted']}",  # línea 3
+                    secondary_text=f"Total presupuesto: {result['price'] if result['price'] is not None else '0'} €",  # línea 2
+                    tertiary_text=f"Aceptado: {result['accepted'] if result['accepted'] is not None else 'No'}",  # línea 3
                     on_press=self.detalles,
                 )
             )
@@ -97,8 +97,8 @@ class BudgetScreen(MDScreen):
                     ),
                     id=f"Presupuesto {i['id']}",
                     text=f"Presupuesto número {i['id']}",  # línea 1
-                    secondary_text=f"Total presupuesto: {i['price']} €",  # línea 2
-                    tertiary_text=f"Aceptado: {i['accepted']}",  # línea 3
+                    secondary_text=f"Total presupuesto: {i['price'] if i['price'] is not None else '0'} €",  # línea 2
+                    tertiary_text=f"Aceptado: {i['accepted'] if i['accepted'] is not None else 'No'}",  # línea 3
                     on_press=self.detalles,
                 )
             )  # Lista que muestra las tareas

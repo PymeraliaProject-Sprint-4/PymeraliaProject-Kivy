@@ -26,7 +26,7 @@ class DetailsBudgetScreen(MDScreen):
         for i in dataPresu:
             id = i["id"]
             text = f"Presupuesto número {i['id']}"
-            text2 = f"Total presupuesto: {i['price']} €"
+            text2 = f"Total presupuesto: {i['price'] if i['price'] is not None else '0'} €"
             text3 = f"Aceptado: {i['accepted']}"
 
             self.ids.text1.text = text
