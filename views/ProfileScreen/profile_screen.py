@@ -50,7 +50,7 @@ class ProfileScreen(MDScreen):
                 # comprueba si el dato que recoge existe o no
                 if data["profile_image"] is not None:
                     image_url = (
-                        "http://pymeshield.ebrehosting.asix2.iesmontsia.cat/img/profile_images/"
+                        "https://pymeshield.ebrehosting.asix2.iesmontsia.cat/img/profile_images/"
                         + data["profile_image"]
                     )  # guarda la url donde se encuentra la imagen
                     # os.path.join() une varias rutas, os.getcwd() obtiene el directorio actual

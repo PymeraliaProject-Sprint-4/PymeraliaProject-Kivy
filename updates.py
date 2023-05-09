@@ -87,7 +87,7 @@ def dataTasks(data):
     insert_data(data, Task)
 
 
-api = "http://pymeshield.ebrehosting.asix2.iesmontsia.cat/api/"
+api = "https://pymeshield.ebrehosting.asix2.iesmontsia.cat/api/"
 
 # devuelve la url para poder hacer uso de la API
 
