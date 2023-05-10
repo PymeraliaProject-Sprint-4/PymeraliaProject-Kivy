@@ -78,8 +78,8 @@ MDScreenManager:
             QrScreen:
                 name: "QR"
 
-            PhotoScreen:
-                name: "photo"
+            # PhotoScreen:
+            #     name: "photo"
 
         MDNavigationDrawer:
             id: nav_drawer
@@ -150,12 +150,12 @@ MDScreenManager:
                 root.nav_drawer.set_state("close")
                 root.manager.current="contact"
 
-        DrawerClickableItem:
-            icon: "camera"
-            text: "Photo"
-            on_release: 
-                root.nav_drawer.set_state("close")
-                root.manager.current="photo"
+        # DrawerClickableItem:
+        #     icon: "camera"
+        #     text: "Photo"
+        #     on_release: 
+        #         root.nav_drawer.set_state("close")
+        #         root.manager.current="photo"
         
         MDNavigationDrawerDivider:
         
